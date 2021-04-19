@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "site": "casatwitter-815ac",
     "public": "build",
     "ignore": [
       "firebase.json",
