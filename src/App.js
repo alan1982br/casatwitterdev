@@ -23,7 +23,9 @@ function App() {
                 <PrivateRoute exact path="/dashboard">
                   <TemplateDashboard component={Dashboard} />
                 </PrivateRoute>
-                <PrivateRoute path="/update-profile" component={UpdateProfile} />
+                <PrivateRoute path="/update-profile">
+                  <TemplateDashboard component={UpdateProfile} />
+                </PrivateRoute>
                 <Route path="/signup">
                   <TemplateDashboard component={SignUp} noroute="true"/>
                 </Route>
