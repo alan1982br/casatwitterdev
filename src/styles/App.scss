@@ -1,6 +1,12 @@
 .content-wrapper {
   min-height: 100vh;
-  padding: 0;
+  padding: 0 !important;
+  margin: 0 !important;
+
+  .col, .row {
+    margin: 0;
+    padding: 0;
+  }
 }
 
 .debug {
