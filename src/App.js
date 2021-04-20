@@ -7,7 +7,6 @@ import { Dashboard, ForgotPassword, Login, TemplateDashboard, SignUp, PrivateRou
 
 function App() {
 
-  const TestComponent = () => <h1>teste</h1>;
   return (
     <Container fluid
       className="content-wrapper"
