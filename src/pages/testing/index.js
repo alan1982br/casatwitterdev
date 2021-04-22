@@ -13,7 +13,7 @@ const TestingPage = () => {
   }
   return (
     <Container fluid className="p-0 content-wrapper position-relative testing">
-      <Row className="m-4">
+      <Row className="p-4">
         <Col>
         <div className="btn btn-success" onClick={() => showHideTerms(true) }>Open Modal</div>
         </Col>

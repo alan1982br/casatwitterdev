@@ -1,5 +1,5 @@
-import React, { useEffect } from "react"
-import { useSelector, useDispatch } from 'react-redux';
+import React from "react"
+import { useSelector } from 'react-redux';
 import { Container, Row, Col } from "react-bootstrap"
 import { AuthProvider } from "./contexts/AuthContext"
 import { AnimatePresence } from 'framer-motion'
@@ -18,17 +18,6 @@ import { Dashboard,
 function App() {
 
   const showterms = useSelector(state => state.showterms);
-  const dispatch = useDispatch();
-
-  const showHideTerms = (show) => {
-    dispatch({ type: 'UPDATE_TERMS', payload: show });
-  }
-
-  useEffect(() => {
-    // setTimeout(() => {
-    //   showHideTerms(true)
-    // }, 2000)
-  }, [showHideTerms])
 
   return (
       <Container fluid

@@ -65,8 +65,8 @@ const TimelineComponent = () => {
               <div key={button.id}
                   data-id={button.id}
                   className={`timeline__button ${_class}`}
-                  onMouseUp={onClick} 
-                  onMouseDown={setDown}
+                  onMouseUp={_class !== 'active' && onClick} 
+                  onMouseDown={_class !== 'active' && setDown}
               >
                 <div className="image-container" style={{backgroundImage: `url(${getImage(button.image)})`}}>
                   <AnimatePresence>
