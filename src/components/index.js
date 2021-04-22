@@ -5,6 +5,14 @@ import Login from './login'
 import SignUp from './signup'
 import UpdateProfile from './update-profile'
 import PrivateRoute from './private-route'
+import TimelineComponent from './timeline'
 
 
-export { TemplateDashboard, Dashboard, ForgotPassword, Login, SignUp, UpdateProfile, PrivateRoute }
+export { TemplateDashboard, 
+        Dashboard, 
+        ForgotPassword, 
+        Login, 
+        SignUp, 
+        UpdateProfile, 
+        PrivateRoute,
+        TimelineComponent as Timeline }

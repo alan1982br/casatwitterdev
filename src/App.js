@@ -3,6 +3,7 @@ import { Container, Row, Col } from "react-bootstrap"
 import { AuthProvider } from "./contexts/AuthContext"
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 import "./styles/App.scss"
+import { TestingPage } from './pages'
 import { Dashboard, ForgotPassword, Login, TemplateDashboard, SignUp, PrivateRoute, UpdateProfile } from './components'
 
 function App() {
@@ -34,6 +35,7 @@ function App() {
                 <Route path="/forgot-password" component={ForgotPassword}>
                   <TemplateDashboard component={ForgotPassword} noroute="true"/>
                 </Route>
+                <Route exact path="/testing" component={TestingPage} />
               </Switch>
             </AuthProvider>
           </Router>

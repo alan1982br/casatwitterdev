@@ -9,10 +9,26 @@
   }
 }
 
+*::-webkit-scrollbar { width: 1px; height: 1px } *::-webkit-scrollbar-track { background: transparent } *::-webkit-scrollbar-thumb { background: transparent }
+* { scrollbar-color: transparent; scrollbar-width: thin; }
+
 .debug {
   border: solid 1px red;
 
   &-blue {
     border: solid 1px blue;
+  }
+}
+
+.testing { 
+  .timeline {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 272px;
+
+    background-position: bottom center;
+    background-repeat: no-repeat;
+    background-size: cover;
   }
 }
