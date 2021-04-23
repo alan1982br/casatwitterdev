@@ -23,7 +23,7 @@ const VirtualTourPage = () => {
   }, [currentTour, getLink]);
 
   return (
-    <Container fluid className="p-0 content-wrapper position-relative">
+    <Container fluid className="p-0 content-wrapper position-relative vh-mobile">
         <Header />
         {current3d !== null && 
           <iframe className="responsive-iframe" src={`${current3d}`}></iframe>

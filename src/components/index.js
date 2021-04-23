@@ -12,6 +12,7 @@ import LogoComponent from './logo-svg'
 import ConfirmeEmailComponent from './confirme-email'
 import Start from './start-login'
 import Register from './register'
+import HeightMobile from './height-mobile'
 
 
 export { TemplateDashboard, 
@@ -27,4 +28,5 @@ export { TemplateDashboard,
         LogoComponent as Logo,
         Start,
         Register,
+        HeightMobile,
         ConfirmeEmailComponent as ConfirmeEmail }

@@ -16,6 +16,7 @@ import { Dashboard,
   ConfirmeEmail,
   Start,
   Register,
+  HeightMobile,
   TermsOfUse } from './components'
 
 function App() {
@@ -70,6 +71,7 @@ function App() {
             </Router>
           </Col>
           </Row>
+          <HeightMobile />
       </Container>
   )
 }
