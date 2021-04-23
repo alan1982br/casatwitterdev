@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable jsx-a11y/iframe-has-title */
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux';
@@ -10,19 +11,14 @@ import './style.scss'
 const VirtualTourPage = () => {
 
   const [current3d, setCurrent3D] = useState(null);
-  //path 
-
   const currentTour = useSelector(state => state.currentTour)
 
-
   const getLink = () => {
-    // console.log("link", data);
     const findLink = data.findIndex(dado => dado.id === currentTour);
     setCurrent3D(data[findLink].path);
   }
 
   useEffect(() => {
-    // console.log(currentTour)
     getLink(currentTour);
   }, [currentTour, getLink]);
 

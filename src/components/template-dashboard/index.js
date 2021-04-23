@@ -2,6 +2,7 @@ import React from 'react'
 import { Route, Redirect } from "react-router-dom"
 import { useAuth } from "../../contexts/AuthContext"
 import { Container, Row, Col } from 'react-bootstrap'
+import { Logo } from '..'
 import './style.scss'
 
 const TemplateDashboard = ({ component: Component, ...rest }) => {
@@ -17,6 +18,7 @@ const TemplateDashboard = ({ component: Component, ...rest }) => {
             <Row>
               <Col className="col-12 col-md-8 vh100 content__left" />
               <Col className="col-12 col-md-4 content__right">
+                <Logo />
                 <Component {...rest} />
               </Col>
             </Row>

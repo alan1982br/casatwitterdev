@@ -18,12 +18,25 @@
   src: url("../assets/fonts/chirp-bold.otf") format("opentype")
 }
 
+@font-face {
+  font-family: "Chirp Extended Bold";
+  src: url("../assets/fonts/chirp-extended-bold.otf") format("opentype")
+}
+
 html, body {
   font-family: 'Chirp Regular', sans-serif;
 }
 
+button {
+  font-family: 'Chirp Extended Bold', sans-serif !important;
+}
+
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Chirp Bold', sans-serif;
+}
+
+p, span {
+  font-family: "Chirp Light";
 }
 
 .content-wrapper {
@@ -76,5 +89,92 @@ h1, h2, h3, h4, h5, h6 {
     background-position: bottom center;
     background-repeat: no-repeat;
     background-size: cover;
+  }
+}
+
+.form {
+  max-width: 525px !important;
+  p {
+    color: #D9D9D9;
+    font-size: 18px;
+  }
+
+  .form-group {
+    position: relative;
+    font-size: 22px;
+    margin: 0;
+  }
+
+  .form-control {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    height: 70px;
+    border: solid 2px #CFD9DE;
+    border-radius: 8px;
+    background: #000;
+    color: #D9D9D9;
+    font-size: 22px;
+    padding: 0 24px;
+    margin: 0;
+    outline: none;
+
+    &:focus, &:valid , &:focus-within {
+      background: #000;
+      color: #D9D9D9;
+      ~ label {
+        transform: translateY(-10%)  scale(.6);
+        color:#fff;
+        opacity: .8;
+        top: 0px;
+        cursor: default;
+      }
+    }
+  }
+
+  .form-label {
+    position: absolute;
+    top: 50%;
+    left: 25px;
+    color: #D9D9D9;
+    font-size: 22px;
+    transform-origin: left;
+    transform: translateY(-50%) scale(1);
+    transition: all .25s ease;
+    opacity: 1;
+    margin: 0;
+    cursor: text;
+
+    &.filled {
+      transform: translateY(-10%)  scale(.6);
+      opacity: .8;
+      top: 0;
+      color:#fff;
+      cursor: default;
+    }
+  }
+
+  .btn-form {
+    height: 70px;
+    background: #000;
+    color: #1D9BF0;
+    border: solid 2px #1D9BF0;
+    border-radius: 8px;
+    letter-spacing: 1px;
+    font-size: 20px;
+
+    &:hover {
+      color: #FFF;
+      border: solid 2px #1D9BF0;
+      background: #1D9BF0;
+    }
+  }
+
+  .distance-top {
+    margin-top: 40px;
+
+    &.higher {
+      margin-top: 56px;
+    }
   }
 }
