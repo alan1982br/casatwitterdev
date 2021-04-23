@@ -18,7 +18,7 @@ export default function Start() {
   async function handleSubmit(e) {
     e.preventDefault()
 
-    history.push("/confirme-email")
+    history.push("/register")
     return ;
     // try {
     //   setError("")
@@ -42,7 +42,7 @@ export default function Start() {
               <Form.Control onChange={handleChange} type="email" name="email" id="txtEmail" required autoComplete="off" />
               <Form.Label className={inputs.email !== '' ? 'filled': 'empty'} htmlFor="txtEmail">Email</Form.Label>
             </Form.Group>
-            <Button disabled={loading} className="btn-form w-100 distance-top" type="submit">
+            <Button className="btn-form w-100 distance-top" type="submit">
               Entrar
             </Button>
           </Form>

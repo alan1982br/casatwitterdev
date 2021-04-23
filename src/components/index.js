@@ -11,6 +11,7 @@ import HeaderComponent from './header'
 import LogoComponent from './logo-svg'
 import ConfirmeEmailComponent from './confirme-email'
 import Start from './start-login'
+import Register from './register'
 
 
 export { TemplateDashboard, 
@@ -25,4 +26,5 @@ export { TemplateDashboard,
         HeaderComponent as Header,
         LogoComponent as Logo,
         Start,
+        Register,
         ConfirmeEmailComponent as ConfirmeEmail }
