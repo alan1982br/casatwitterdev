@@ -7,6 +7,7 @@ import UpdateProfile from './update-profile'
 import PrivateRoute from './private-route'
 import TimelineComponent from './timeline'
 import TermsOfUseComponent from './terms'
+import HeaderComponent from './header'
 
 
 export { TemplateDashboard, 
@@ -17,4 +18,5 @@ export { TemplateDashboard,
         UpdateProfile, 
         PrivateRoute,
         TimelineComponent as Timeline,
-        TermsOfUseComponent as TermsOfUse }
+        TermsOfUseComponent as TermsOfUse,
+        HeaderComponent as Header }
