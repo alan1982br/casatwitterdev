@@ -8,6 +8,7 @@ import PrivateRoute from './private-route'
 import TimelineComponent from './timeline'
 import TermsOfUseComponent from './terms'
 import HeaderComponent from './header'
+import LogoComponent from './logo-svg'
 
 
 export { TemplateDashboard, 
@@ -19,4 +20,5 @@ export { TemplateDashboard,
         PrivateRoute,
         TimelineComponent as Timeline,
         TermsOfUseComponent as TermsOfUse,
-        HeaderComponent as Header }
+        HeaderComponent as Header,
+        LogoComponent as Logo }
