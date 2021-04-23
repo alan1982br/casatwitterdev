@@ -1,4 +1,6 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect, useRef } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
 import { FaCheck } from 'react-icons/fa'
 import { useResize } from '../../hooks'
 import { getImage } from '../../utils'
@@ -12,6 +14,25 @@ const TimelineComponent = () => {
   const [ currentThumb, setCurrentThumb ] = useState(null)
   const { isMobile, width } = useResize();
   const [ sobra, setSobra ] = useState(0);
+  const dispatch = useDispatch();
+
+  const currentTour = useSelector(state => state.currentTour)
+  const visitedTour = useSelector(state => state.visitedTour)
+
+  const setCurrentTour = (tour) => {
+    dispatch({ type: 'UPDATE_TOUR', payload: tour });
+  }
+
+  const updateVisitedTour = (tourId) => {
+    const newTour = [...visitedTour];
+    const hasVisitedTour = newTour.includes(tourId);
+    if(hasVisitedTour === false) {
+      newTour.push(tourId);
+      // console.log("insere o valor", newTour)
+      dispatch({ type: 'UPDATE_VISITED_TOUR', payload: newTour });
+    }
+    // console.log("visited tour", visitedTour, hasVisitedTour);
+  }
 
   const paddingDrag = 50;
 
@@ -39,8 +60,13 @@ const TimelineComponent = () => {
       setCurrentThumb(null);
     } else {
       setCurrentThumb(id);
+      setCurrentTour(id);
     }
   }
+
+  useEffect(() => {
+    updateVisitedTour(currentTour);
+  }, [currentTour])
 
   useEffect(() => {
     const limitDrag = ((containerButtonRef.current.offsetWidth + paddingDrag) - width) *-1;
@@ -61,16 +87,17 @@ const TimelineComponent = () => {
         { dados.length > 0 &&
           dados.map(button => {
             const _class = currentThumb === button.id ? 'active' : '';
+            const hasVisitedTour = visitedTour.includes(button.id);
             return (
               <div key={button.id}
                   data-id={button.id}
                   className={`timeline__button ${_class}`}
-                  onMouseUp={_class !== 'active' && onClick} 
-                  onMouseDown={_class !== 'active' && setDown}
+                  onMouseUp={_class !== 'active' ? onClick : () => {}} 
+                  onMouseDown={_class !== 'active' ? setDown : () => {}}
               >
                 <div className="image-container" style={{backgroundImage: `url(${getImage(button.image)})`}}>
                   <AnimatePresence>
-                    {_class !== 'active' && 
+                    {hasVisitedTour && 
                       <motion.div 
                       key={button.title}
                       initial={{opacity: 0, y: 0, x: 11}}

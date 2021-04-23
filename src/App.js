@@ -4,8 +4,8 @@ import { Container, Row, Col } from "react-bootstrap"
 import { AuthProvider } from "./contexts/AuthContext"
 import { AnimatePresence } from 'framer-motion'
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
+import { TestingPage, VirtualTour  } from './pages'
 import "./styles/App.scss"
-import { TestingPage } from './pages'
 import { Dashboard, 
   ForgotPassword, 
   Login, 
@@ -52,6 +52,7 @@ function App() {
                     <TemplateDashboard component={ForgotPassword} noroute="true"/>
                   </Route>
                   <Route exact path="/testing" component={TestingPage} />
+                  <Route exact path="/virtual-tour" component={VirtualTour} />
                 </Switch>
               </AuthProvider>
             </Router>

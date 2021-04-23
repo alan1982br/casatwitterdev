@@ -1,3 +1,5 @@
 import TestingPage from './testing'
+import VirtualTourPage from './virtual-tour'
 
-export { TestingPage }
+export { TestingPage,
+        VirtualTourPage as VirtualTour }
