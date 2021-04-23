@@ -15,6 +15,7 @@ import { Dashboard,
   UpdateProfile,
   ConfirmeEmail,
   Start,
+  Register,
   TermsOfUse } from './components'
 
 function App() {
@@ -49,6 +50,9 @@ function App() {
                   </Route>
                   <Route path="/confirme-email">
                     <TemplateDashboard component={ConfirmeEmail} noroute="true"/>
+                  </Route>
+                  <Route path="/register">
+                    <TemplateDashboard component={Register} noroute="true"/>
                   </Route>
                   <Route path="/start">
                     <TemplateDashboard component={Start} noroute="true"/>
