@@ -6,7 +6,7 @@ const HeaderComponent = () => {
   return (
     <div className="header">
       <div className="logo-container">
-        <img src={LogoHeader} />
+        <img src={LogoHeader} alt="Twitter" />
       </div>
       <div className="menu">
         <p>Olá Fulano</p>

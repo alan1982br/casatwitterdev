@@ -94,9 +94,25 @@ p, span {
 
 .form {
   max-width: 525px !important;
-  p {
+  p, h2 {
     color: #D9D9D9;
     font-size: 18px;
+  }
+
+  h2 {
+    font-size: 28px;
+    text-align: center;
+  }
+
+  a {
+    color: #1D9BF0;
+    transition: all .3s ease;
+    font-size: 18px;
+    text-decoration: underline;
+
+    &:hover {
+      color: #97E3FF;
+    }
   }
 
   .form-group {
@@ -144,6 +160,7 @@ p, span {
     opacity: 1;
     margin: 0;
     cursor: text;
+    pointer-events: none;
 
     &.filled {
       transform: translateY(-10%)  scale(.6);

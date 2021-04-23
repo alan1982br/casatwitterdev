@@ -9,6 +9,8 @@ import TimelineComponent from './timeline'
 import TermsOfUseComponent from './terms'
 import HeaderComponent from './header'
 import LogoComponent from './logo-svg'
+import ConfirmeEmailComponent from './confirme-email'
+import Start from './start-login'
 
 
 export { TemplateDashboard, 
@@ -21,4 +23,6 @@ export { TemplateDashboard,
         TimelineComponent as Timeline,
         TermsOfUseComponent as TermsOfUse,
         HeaderComponent as Header,
-        LogoComponent as Logo }
+        LogoComponent as Logo,
+        Start,
+        ConfirmeEmailComponent as ConfirmeEmail }
