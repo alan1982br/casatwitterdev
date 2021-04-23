@@ -13,6 +13,8 @@ import { Dashboard,
   SignUp, 
   PrivateRoute,
   UpdateProfile,
+  ConfirmeEmail,
+  Start,
   TermsOfUse } from './components'
 
 function App() {
@@ -44,6 +46,12 @@ function App() {
                   </PrivateRoute>
                   <Route path="/signup">
                     <TemplateDashboard component={SignUp} noroute="true"/>
+                  </Route>
+                  <Route path="/confirme-email">
+                    <TemplateDashboard component={ConfirmeEmail} noroute="true"/>
+                  </Route>
+                  <Route path="/start">
+                    <TemplateDashboard component={Start} noroute="true"/>
                   </Route>
                   <Route path="/login">
                     <TemplateDashboard component={Login} noroute="true"/>
