@@ -1,23 +1,37 @@
 /* eslint-disable jsx-a11y/iframe-has-title */
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux';
 import { Container } from 'react-bootstrap'
+import data from '../../assets/mock-data/timeline.json'
 import { Timeline, Header } from '../../components'
 import './style.scss'
 
 
 const VirtualTourPage = () => {
 
+  const [current3d, setCurrent3D] = useState(null);
+  //path 
+
   const currentTour = useSelector(state => state.currentTour)
+
+
+  const getLink = () => {
+    // console.log("link", data);
+    const findLink = data.findIndex(dado => dado.id === currentTour);
+    setCurrent3D(data[findLink].path);
+  }
 
   useEffect(() => {
     // console.log(currentTour)
-  }, [currentTour]);
+    getLink(currentTour);
+  }, [currentTour, getLink]);
 
   return (
     <Container fluid className="p-0 content-wrapper position-relative">
         <Header />
-        <iframe className="responsive-iframe" src={`https://cloud.3dvista.com/hosting/7086438/2/index.htm?media-index=${currentTour}`}></iframe>
+        {current3d !== null && 
+          <iframe className="responsive-iframe" src={`${current3d}`}></iframe>
+        }
         <Timeline />
     </Container>
   )
