@@ -20,7 +20,8 @@ const TemplateDashboard = ({ component: Component, ...rest }) => {
                 <Component {...rest} />
               </Col>
             </Row>
-          </Container> : <Redirect to="/login" />
+          </Container>
+          {/* : <Redirect to="/login" /> */}
         </>
       )
     } else {

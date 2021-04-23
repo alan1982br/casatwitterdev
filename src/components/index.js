@@ -6,6 +6,7 @@ import SignUp from './signup'
 import UpdateProfile from './update-profile'
 import PrivateRoute from './private-route'
 import TimelineComponent from './timeline'
+import TermsOfUseComponent from './terms'
 
 
 export { TemplateDashboard, 
@@ -15,4 +16,5 @@ export { TemplateDashboard,
         SignUp, 
         UpdateProfile, 
         PrivateRoute,
-        TimelineComponent as Timeline }
+        TimelineComponent as Timeline,
+        TermsOfUseComponent as TermsOfUse }

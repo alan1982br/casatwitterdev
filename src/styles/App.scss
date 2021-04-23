@@ -1,3 +1,31 @@
+@font-face {
+  font-family: "Chirp Regular";
+  src: url("../assets/fonts/chirp-regular.otf") format("opentype")
+}
+
+@font-face {
+  font-family: "Chirp Light";
+  src: url("../assets/fonts/chirp-light.otf") format("opentype")
+}
+
+@font-face {
+  font-family: "Chirp Light";
+  src: url("../assets/fonts/chirp-light.otf") format("opentype")
+}
+
+@font-face {
+  font-family: "Chirp Bold";
+  src: url("../assets/fonts/chirp-bold.otf") format("opentype")
+}
+
+html, body {
+  font-family: 'Chirp Regular', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Chirp Bold', sans-serif;
+}
+
 .content-wrapper {
   min-height: 100vh;
   padding: 0 !important;
@@ -6,6 +34,10 @@
   .col, .row {
     margin: 0;
     padding: 0;
+  }
+
+  &.overflow {
+    overflow: hidden;
   }
 }
 
@@ -18,6 +50,20 @@
   &-blue {
     border: solid 1px blue;
   }
+}
+
+.modal-wrapper {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background: rgba(0,0,0,.7);
+  z-index: 1001;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .testing { 
