@@ -12,7 +12,7 @@ export default function Register() {
   const dispatch = useDispatch();
 
   const showHideTerms = (show) => {
-    dispatch({ type: 'UPDATE_TERMS', payload: true });
+    dispatch({ type: 'UPDATE_TERMS', payload: show });
   }
 
   const [ inputs, setAllInputs ] = useState({
