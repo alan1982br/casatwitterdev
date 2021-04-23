@@ -17,7 +17,8 @@ export default function Login() {
     try {
       setError("")
       setLoading(true)
-      await login(emailRef.current.value, passwordRef.current.value)
+      // await login(emailRef.current.value, passwordRef.current.value)
+      await login(emailRef.current.value, 'Venosa@dev0003')
       history.push("/")
     } catch {
       setError("Failed to log in")
@@ -37,10 +38,10 @@ export default function Login() {
               <Form.Label>Email</Form.Label>
               <Form.Control type="email" ref={emailRef} required />
             </Form.Group>
-            <Form.Group id="password">
+            {/* <Form.Group id="password">
               <Form.Label>Password</Form.Label>
               <Form.Control type="password" ref={passwordRef} required />
-            </Form.Group>
+            </Form.Group> */}
             <Button disabled={loading} className="w-100" type="submit">
               Log In
             </Button>
