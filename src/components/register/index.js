@@ -53,11 +53,11 @@ export default function Register() {
 
   useEffect(() => {
     const email = localStorage.getItem('@Twitter:email');
-    if(email !== null) {
-      setUserEmail(email);
-    } else {
-      history.push("/start")
-    }
+    // if(email !== null) {
+    //   setUserEmail(email);
+    // } else {
+    //   history.push("/start")
+    // }
   }, [])
 
   return (

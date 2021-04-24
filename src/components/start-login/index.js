@@ -36,13 +36,14 @@ export default function Start() {
       await login(activeEmail, process.env.REACT_APP_PASSWORD_USER_FIRST)
      
     }
-  // if(!activePassword){
+    
     if(localStorage.getItem('@Twitter:ActiveEmail') === true){
-      history.push("/register");
+       history.push("/register");
     } else {
       if(typeof(activeEmail) === 'string') {
-        history.push("/register")
-        doLogin()
+         doLogin()
+         history.push("/register")
+       
         // adicionar email ao localStorage
         localStorage.setItem('@Twitter:ActiveEmail',true)
         localStorage.setItem('@Twitter:email', activeEmail)
@@ -52,19 +53,15 @@ export default function Start() {
       }
     }
 
-  // }else{
-
-  //   history.push("/confirme-email")
-
-  // }
+ 
     
     
-  }, [activeEmail,activePassword])
+  }, [activeEmail])
 
   useEffect(() => {
     const email = localStorage.getItem('@Twitter:email');
     if(email !== null) {
-      history.push("/register")
+       history.push("/register")
     }
     console.log('activePassword ', activePassword)
   }, [activePassword])

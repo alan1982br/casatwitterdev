@@ -12,6 +12,7 @@ import { Dashboard,
   TemplateDashboard, 
   SignUp, 
   PrivateRoute,
+  PrivatePreRegisterRoute,
   UpdateProfile,
   ConfirmeEmail,
   Start,
@@ -41,7 +42,7 @@ function App() {
                     <TemplateDashboard component={Dashboard} />
                   </PrivateRoute>
                   <PrivateRoute exact path="/dashboard">
-                    <TemplateDashboard component={Dashboard} />
+                    <TemplateDashboard component={Dashboard} forcedashboard={true} />
                   </PrivateRoute>
                   <PrivateRoute path="/update-profile">
                     <TemplateDashboard component={UpdateProfile} />
@@ -52,9 +53,9 @@ function App() {
                   <Route path="/confirme-email">
                     <TemplateDashboard component={ConfirmeEmail} noroute="true"/>
                   </Route>
-                  <Route path="/register">
-                    <TemplateDashboard component={Register} noroute="true"/>
-                  </Route>
+                  <PrivateRoute path="/register">
+                    <TemplateDashboard component={Register}   />
+                  </PrivateRoute>
                   <Route path="/start">
                     <TemplateDashboard component={Start} noroute="true"/>
                   </Route>

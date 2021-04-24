@@ -13,7 +13,7 @@ export function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState()
   const [loading, setLoading] = useState(true)
   const [activeEmail, setActiveEmail] = useState(null);
-  const [activePassword, setActivePassword] = useState(null);
+  const [activePassword, setActivePassword] = useState(true);
 
   function signup(email, password) {
     return auth.createUserWithEmailAndPassword(email, password)
@@ -89,6 +89,8 @@ export function AuthProvider({ children }) {
     
     if(user != null)
       db.database().ref('participantes').child(user.uid).once("value", snapshot => {
+      
+     
         console.log(' snapshot.val() ALL DATA PARTICIPANTE ', snapshot.val())
         console.log('STEP 1 PasswordCreated ______________', snapshot.val().passwordCreated)
         console.log('STEP 2 sendEmailVerification ________', snapshot.val().sendEmailVerification)

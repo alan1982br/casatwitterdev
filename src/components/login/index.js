@@ -17,8 +17,8 @@ export default function Login() {
     try {
       setError("")
       setLoading(true)
-      // await login(emailRef.current.value, passwordRef.current.value)
-      await login(emailRef.current.value, 'Venosa@dev0003')
+         await login(emailRef.current.value, passwordRef.current.value)
+      // await login(emailRef.current.value, process.env.REACT_APP_PASSWORD_USER_FIRST)
       history.push("/")
     } catch {
       setError("Failed to log in")
