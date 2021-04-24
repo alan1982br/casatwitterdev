@@ -1,5 +1,17 @@
 {
-  "projects": {
-    "default": "casatwitter-815ac"
+  "hosting": {
+    "site": "casatwitter-815ac",
+    "public": "build",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
   }
 }
