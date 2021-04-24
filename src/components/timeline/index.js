@@ -12,9 +12,14 @@ const TimelineComponent = () => {
 
   const [ dados, setDados ] = useState([]);
   const [ currentThumb, setCurrentThumb ] = useState(null)
+  const [ buttonIndex, setButtonIndex ] = useState(-1);
   const { isMobile, width } = useResize();
   const [ sobra, setSobra ] = useState(0);
+  const [ moveX, setMoveX ] = useState(50);
   const dispatch = useDispatch();
+
+  const paddingDrag = 50;
+
 
   const currentTour = useSelector(state => state.currentTour)
   const visitedTour = useSelector(state => state.visitedTour)
@@ -34,7 +39,6 @@ const TimelineComponent = () => {
     // console.log("visited tour", visitedTour, hasVisitedTour);
   }
 
-  const paddingDrag = 50;
 
   const containerButtonRef = useRef(null);
 
@@ -53,14 +57,33 @@ const TimelineComponent = () => {
     const mouseMoved = (posMouse - e.clientX) < 0 ? (posMouse - e.clientX) * -1: (posMouse - e.clientX);
     if(mouseMoved > 5) return;
 
-    const { id } = e.currentTarget.dataset;
+    const { id, index } = e.currentTarget.dataset;
+
 
     if(currentThumb === id) {
       // desativa
       setCurrentThumb(null);
     } else {
       setCurrentThumb(id);
-      setCurrentTour(id);
+      setTimeout(() => {
+        setCurrentTour(id);
+      }, 300)
+      
+      // click for right side of active
+      let adjustMargin = 160;
+      if(buttonIndex === -1) {
+        // click for non active (first click)
+        adjustMargin = 180;
+      } else if(parseInt(index) > buttonIndex) {
+        // click for before active
+        adjustMargin = 120;
+      }
+      
+      let newDistance = e.currentTarget.offsetLeft;
+      let sobraSpacing = (width - adjustMargin) / 2;
+      const posCenter = -newDistance + sobraSpacing;
+      setButtonIndex(parseInt(index));
+      setMoveX(posCenter);
     }
   }
 
@@ -73,6 +96,12 @@ const TimelineComponent = () => {
     setSobra(limitDrag);
   }, [isMobile, width])
 
+  const getDuration = () => moveX === 50 ? 1 : .3
+
+  const getMoveX = () => {
+    return isMobile ? moveX : paddingDrag;
+  }
+
   useEffect(() => {
     const addAttr = data.map(data => ({
       ...data,
@@ -83,14 +112,21 @@ const TimelineComponent = () => {
   }, [])
   return (
     <div  className="timeline__wrapper" >
-      <motion.div animate={{x: paddingDrag, transition: { ease: 'easeInOut', duration: 1}}} drag="x" dragConstraints={{ left: sobra, right: paddingDrag }} ref={containerButtonRef} className="buttons-container">
+      <motion.div animate={{x: getMoveX(), transition: { ease: 'easeOut', duration: getDuration()}}} drag="x" dragConstraints={{ left: sobra, right: paddingDrag }} ref={containerButtonRef} className="buttons-container">
         { dados.length > 0 &&
-          dados.map(button => {
+          dados.map((button, index) => {
             const _class = currentThumb === button.id ? 'active' : '';
             const hasVisitedTour = visitedTour.includes(button.id);
+            let _classBullet = 'first';
+            if(index > 0 && index < dados.length -1) {
+              _classBullet = 'middle';
+            } else if (index === dados.length -1) {
+              _classBullet = 'last'
+            }
             return (
               <div key={button.id}
                   data-id={button.id}
+                  data-index={index}
                   className={`timeline__button ${_class}`}
                   onMouseUp={_class !== 'active' ? onClick : () => {}} 
                   onMouseDown={_class !== 'active' ? setDown : () => {}}
@@ -109,6 +145,7 @@ const TimelineComponent = () => {
                     }
                   </AnimatePresence>
                 </div>
+                <div className={`bullet ${_classBullet}`} />
               </div>
             )
           })
