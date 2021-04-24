@@ -1,37 +1,74 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { Form, Button, Alert, Container } from "react-bootstrap"
 import { useAuth } from "../../contexts/AuthContext"
 import { useHistory } from "react-router-dom"
 
 export default function Start() {
-  const { login } = useAuth()
+  const { login , checkEmail , activeEmail , activePassword} = useAuth()
   const [error, setError] = useState("")
-  const [loading, setLoading] = useState(false)
   const history = useHistory()
 
   const [ inputs, setAllInputs ] = useState({
     email: ''
   });
-
   const handleChange = (e) => setAllInputs({...inputs, [e.target.name]: e.target.value})
 
   async function handleSubmit(e) {
     e.preventDefault()
 
-    history.push("/register")
-    return ;
-    // try {
-    //   setError("")
-    //   setLoading(true)
-    //   // await login(emailRef.current.value, passwordRef.current.value)
-    //   await login(inputs.email, 'Venosa@dev0003')
-    //   history.push("/confirme-email")
-    // } catch {
-    //   setError("Failed to log in")
-    // }
-
-    // setLoading(false)
+    // history.push("/register")
+    // return ;
+    try {
+      setError("")
+      // await login(emailRef.current.value, passwordRef.current.value)
+     await checkEmail(inputs.email)
+      // history.push("/register")
+    } catch {
+      setError("Seu email não existe")
+    }
   }
+
+  useEffect(() => {
+    const hasEmail = localStorage.getItem('@Twitter:ActiveEmail');
+
+    const doLogin = async () => {
+      console.log("REACT_APP_PASSWORD_USER_FIRST ", process.env.REACT_APP_PASSWORD_USER_FIRST)
+      await login(activeEmail, process.env.REACT_APP_PASSWORD_USER_FIRST)
+     
+    }
+  // if(!activePassword){
+    if(localStorage.getItem('@Twitter:ActiveEmail') === true){
+      history.push("/register");
+    } else {
+      if(typeof(activeEmail) === 'string') {
+        history.push("/register")
+        doLogin()
+        // adicionar email ao localStorage
+        localStorage.setItem('@Twitter:ActiveEmail',true)
+        localStorage.setItem('@Twitter:email', activeEmail)
+      } else if (activeEmail === false) {
+        setError("Seu email não existe")
+        history.push("/start")
+      }
+    }
+
+  // }else{
+
+  //   history.push("/confirme-email")
+
+  // }
+    
+    
+  }, [activeEmail,activePassword])
+
+  useEffect(() => {
+    const email = localStorage.getItem('@Twitter:email');
+    if(email !== null) {
+      history.push("/register")
+    }
+    console.log('activePassword ', activePassword)
+  }, [activePassword])
+
 
   return (
     <Container className="form">
