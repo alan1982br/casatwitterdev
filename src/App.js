@@ -12,7 +12,6 @@ import { Dashboard,
   TemplateDashboard, 
   SignUp, 
   PrivateRoute,
-  PrivatePreRegisterRoute,
   UpdateProfile,
   ConfirmeEmail,
   Start,
@@ -23,6 +22,8 @@ import { Dashboard,
 function App() {
 
   const showterms = useSelector(state => state.showterms);
+
+  const Teste = () => <h1>teste</h1>
 
   return (
       <Container fluid
@@ -38,32 +39,26 @@ function App() {
             <Router>
               <AuthProvider>
                 <Switch>
-                  <PrivateRoute exact path="/">
+                  <Route exact path="/" component={Start} />
+                  <PrivateRoute exact path="/dashboard">
                     <TemplateDashboard component={Dashboard} />
                   </PrivateRoute>
-                  <PrivateRoute exact path="/dashboard">
-                    <TemplateDashboard component={Dashboard} forcedashboard={true} />
-                  </PrivateRoute>
-                  <PrivateRoute path="/update-profile">
+                  <Route path="/update-profile">
                     <TemplateDashboard component={UpdateProfile} />
-                  </PrivateRoute>
+                  </Route>
                   <Route path="/signup">
-                    <TemplateDashboard component={SignUp} noroute="true"/>
+                    <TemplateDashboard component={SignUp}/>
                   </Route>
-                  <Route path="/confirme-email">
-                    <TemplateDashboard component={ConfirmeEmail} noroute="true"/>
-                  </Route>
-                  <PrivateRoute path="/register">
-                    <TemplateDashboard component={Register}   />
-                  </PrivateRoute>
+                  <PrivateRoute path="/confirme-email" component={ConfirmeEmail} />
+                  <PrivateRoute path="/register" component={Register} />
                   <Route path="/start">
-                    <TemplateDashboard component={Start} noroute="true"/>
+                    <TemplateDashboard component={Start} />
                   </Route>
                   <Route path="/login">
-                    <TemplateDashboard component={Login} noroute="true"/>
+                    <TemplateDashboard component={Login} />
                   </Route>
                   <Route path="/forgot-password" component={ForgotPassword}>
-                    <TemplateDashboard component={ForgotPassword} noroute="true"/>
+                    <TemplateDashboard component={ForgotPassword} />
                   </Route>
                   <Route exact path="/testing" component={TestingPage} />
                   <Route exact path="/virtual-tour" component={VirtualTour} />
