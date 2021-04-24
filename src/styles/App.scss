@@ -54,7 +54,7 @@ p, span {
 }
 
 .content-wrapper {
-  min-height: 100vh;
+  min-height: var(--height);
   padding: 0 !important;
   margin: 0 !important;
 
