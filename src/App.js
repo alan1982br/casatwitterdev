@@ -23,8 +23,6 @@ function App() {
 
   const showterms = useSelector(state => state.showterms);
 
-  const Teste = () => <h1>teste</h1>
-
   return (
       <Container fluid
         className="content-wrapper overflow"
@@ -39,7 +37,9 @@ function App() {
             <Router>
               <AuthProvider>
                 <Switch>
-                  <Route exact path="/" component={Start} />
+                  <Route exact path="/">
+                    <TemplateDashboard component={Start} />
+                  </Route>
                   <PrivateRoute exact path="/dashboard">
                     <TemplateDashboard component={Dashboard} />
                   </PrivateRoute>
@@ -48,6 +48,9 @@ function App() {
                   </Route>
                   <Route path="/signup">
                     <TemplateDashboard component={SignUp}/>
+                  </Route>
+                  <Route path="/register-fake">
+                    <TemplateDashboard component={Register}/>
                   </Route>
                   <PrivateRoute path="/confirme-email" component={ConfirmeEmail} />
                   <PrivateRoute path="/register" component={Register} />

@@ -69,19 +69,19 @@ export default function Register() {
               <Form.Label>Email</Form.Label>
             </Form.Group>
             <Form.Group id="nome" className="distance-top lighter">
-              <Form.Control onChange={handleChange} value={inputs.nome} type="text" name="nome" required autoComplete="off" />
+              <Form.Control onChange={handleChange} value={inputs.nome} type="text" name="nome" required autoComplete="off" className={inputs.nome !== '' ? 'filled': 'empty'} />
               <Form.Label>Nome</Form.Label>
             </Form.Group>
             <Form.Group id="user_twitter" className="distance-top lighter">
-              <Form.Control type="text" onChange={handleChange} value={inputs.user_twitter} name="user_twitter" autoComplete="off" />
+              <Form.Control type="text" onChange={handleChange} value={inputs.user_twitter} name="user_twitter" autoComplete="off" className={inputs.user_twitter !== '' ? 'filled': 'empty'} />
               <Form.Label>@user</Form.Label>
             </Form.Group>
             <Form.Group id="password" className="distance-top lighter">
-              <Form.Control onChange={handleChange} name="password" type="password" required autoComplete="off" />
+              <Form.Control onChange={handleChange} name="password" type="password" required autoComplete="off" className={inputs.password !== '' ? 'filled': 'empty'} />
               <Form.Label>Senha</Form.Label>
             </Form.Group>
             <Form.Group id="password-confirm" className="distance-top lighter">
-              <Form.Control onChange={handleChange} name="passwordConfirm"  type="password" required autoComplete="off" />
+              <Form.Control onChange={handleChange} name="passwordConfirm"  type="password" required autoComplete="off" className={inputs.passwordConfirm !== '' ? 'filled': 'empty'} />
               <Form.Label>Confirmar senha</Form.Label>
             </Form.Group>
             <label className={inputs.checked !== false ? 'checkbox filled distance-top lighter': 'checkbox empty distance-top lighter'} onClick={handleChangeCheckbox}>
