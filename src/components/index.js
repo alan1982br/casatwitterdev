@@ -14,6 +14,7 @@ import ConfirmeEmailComponent from './confirme-email'
 import Start from './start-login'
 import Register from './register'
 import HeightMobile from './height-mobile'
+import ButtonLogoutComponent from './btn-logout'
 
 
 export { TemplateDashboard, 
@@ -31,4 +32,5 @@ export { TemplateDashboard,
         Start,
         Register,
         HeightMobile,
+        ButtonLogoutComponent as ButtonLogout,
         ConfirmeEmailComponent as ConfirmeEmail }

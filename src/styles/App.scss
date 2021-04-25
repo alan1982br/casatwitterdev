@@ -37,8 +37,12 @@ body {
     overflow: hidden !important;
 }
 
-html, body {
+html, body, div {
   font-family: 'Chirp Regular', sans-serif;
+}
+
+div {
+  box-sizing: border-box;
 }
 
 button {
