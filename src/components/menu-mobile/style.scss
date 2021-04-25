@@ -1,0 +1,37 @@
+
+.menu__mobile {
+  position: fixed;
+  display: flex;
+  justify-content: flex-end;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.90);
+  z-index: 10;
+
+  &-container {
+    width: calc(100% - 48px);
+    height: 100%;
+    background: #000;
+    padding: 24px 18px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-end;
+  }
+
+  nav {
+    display: flex;
+    padding-top: 30px;
+  }
+
+  &-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+
+    color: #FFF;
+  }
+}
+
