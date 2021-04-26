@@ -11,7 +11,7 @@ const TemplateDashboard = ({ component: Component, ...rest }) => {
   return (
     <Container {...rest} fluid className="template__dashboard">
       <Row>
-        {!isMobile && <Col className="col-12 col-md-8 vh100 content__left" />}
+        {!isMobile && <Col className="vh100 content__left" />}
         <Col className="col-12 col-md-4 content__right">
           <Logo />
           <Component {...rest} />
