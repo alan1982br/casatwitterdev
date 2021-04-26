@@ -56,7 +56,7 @@ export default function Start() {
  
     
     
-  }, [activeEmail])
+  }, [activeEmail, history, login])
 
   useEffect(() => {
     const email = localStorage.getItem('@Twitter:email');
@@ -64,7 +64,7 @@ export default function Start() {
        history.push("/register")
     }
     console.log('activePassword ', activePassword)
-  }, [activePassword])
+  }, [activePassword, history])
 
 
   return (
@@ -73,7 +73,7 @@ export default function Start() {
           {error && <Alert variant="danger">{error}</Alert>}
           <Form onSubmit={handleSubmit} className="distance-top higher">
             <Form.Group id="email">
-              <Form.Control onChange={handleChange} type="email" name="email" id="txtEmail" required autoComplete="off" />
+              <Form.Control onChange={handleChange} type="email" name="email" id="txtEmail" required autoComplete="off" className={inputs.email !== '' ? 'filled': 'empty'} />
               <Form.Label className={inputs.email !== '' ? 'filled': 'empty'} htmlFor="txtEmail">Email</Form.Label>
             </Form.Group>
             <Button className="btn-form w-100 distance-top" type="submit">

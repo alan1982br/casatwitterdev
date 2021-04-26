@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch } from 'react-redux';
 import { Container, Col, Row } from 'react-bootstrap'
-import { Timeline } from '../../components'
+import { Timeline, ButtonLogout } from '../../components'
 import { BackgroundFake } from '../../assets'
 
 
@@ -16,6 +16,11 @@ const TestingPage = () => {
       <Row className="p-4">
         <Col>
         <div className="btn btn-success" onClick={() => showHideTerms(true) }>Open Modal</div>
+        </Col>
+      </Row>
+      <Row className="p-4" style={{background: '#000'}}>
+        <Col>
+          <ButtonLogout />
         </Col>
       </Row>
       <Col className="col-12 timeline" style={{backgroundImage: `url(${BackgroundFake})`}}>
