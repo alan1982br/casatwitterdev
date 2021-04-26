@@ -20,7 +20,7 @@ const TermsOfUseComponent = () => {
             className="modal-wrapper">
               <Col className="col-11 col-md-6 d-flex align-items-center justify-content-center button-container">
                   <Col className="col-12 d-flex align-items-end justify-content-end">
-                    <IoCloseSharp size={40} color="#FFF" onClick={() => showHideTerms(false)} />
+                    <IoCloseSharp style={{cursor: 'pointer'}} size={40} color="#FFF" onClick={() => showHideTerms(false)} />
                   </Col>
               </Col>
               <Col className="col-11 col-md-6 terms-container">
