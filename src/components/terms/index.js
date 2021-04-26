@@ -2,6 +2,7 @@ import React from 'react'
 import { motion } from 'framer-motion';
 import { useDispatch } from 'react-redux';
 import { Col, Row } from 'react-bootstrap';
+import { IoCloseSharp } from 'react-icons/all';
 import './style.scss'
 
 const TermsOfUseComponent = () => {
@@ -17,6 +18,11 @@ const TermsOfUseComponent = () => {
             animate={{opacity: 1, transition: {delay: .15, ease: 'easeInOut', duration: .5}}} 
             exit={{opacity: 0, transition: { duration: .3}}}
             className="modal-wrapper">
+              <Col className="col-11 col-md-6 d-flex align-items-center justify-content-center button-container">
+                  <Col className="col-12 d-flex align-items-end justify-content-end">
+                    <IoCloseSharp size={40} color="#FFF" onClick={() => showHideTerms(false)} />
+                  </Col>
+              </Col>
               <Col className="col-11 col-md-6 terms-container">
                 <Row>
                   <Col className="col-12 d-flex align-items-center justify-content-center mt-4">
@@ -34,12 +40,6 @@ const TermsOfUseComponent = () => {
                   </Col>
                 </Row>
               </Col>
-              <Col className="col-11 col-md-6 d-flex align-items-center justify-content-center button-container">
-                  <Col className="col-12 col-md-4">
-                    <div className="btn btn-primary w-100" onClick={() => showHideTerms(false)}>Fechar</div>
-                  </Col>
-              </Col>
-              
     </motion.div>
   )
 }
