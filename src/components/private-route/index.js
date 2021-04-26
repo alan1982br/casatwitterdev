@@ -16,7 +16,7 @@ const renderComponent = (props) => {
 
   
     const pathName = path;
-    // console.log(pathName)
+     console.log("pathName " , pathName)
 
     switch(pathName) {
       case '/register': 
@@ -34,6 +34,16 @@ const renderComponent = (props) => {
           if(activeUserEmail === true) return <Redirect to="/login" />
           else return <TemplateDashboard component={Component} />
         }
+        case '/login': 
+        {
+          console.log("activeUserEmail______________________", activeUserEmail)
+          if(!currentUser) return <Redirect to="/start" />
+          console.log("currentUser " , currentUser)
+          if(currentUser) return <Redirect to="/virtual-tour"/>
+          if(activePassword === true) return  <TemplateDashboard component={Component} />
+         
+        }
+        
       default:
         return <h1>404 private</h1>
         // if logado

@@ -2,6 +2,7 @@ import firebase from "firebase"
 import React, { useContext, useState, useEffect } from "react"
 import { auth } from "../firebase"
 import { db } from "../firebase";
+import { useHistory } from "react-router"
 
 const AuthContext = React.createContext()
 
@@ -15,6 +16,8 @@ export function AuthProvider({ children }) {
   const [activeEmail, setActiveEmail] = useState(null);
   const [activePassword, setActivePassword] = useState(false);
   const [activeUserEmail, setActiveUserEmail] = useState(false);
+
+  const history = useHistory()
 
   function signup(email, password) {
     return auth.createUserWithEmailAndPassword(email, password)
@@ -43,10 +46,15 @@ export function AuthProvider({ children }) {
 
   function login(email, password) {
     return auth.signInWithEmailAndPassword(email, password)
+ 
   }
 
   function logout() {
-    return auth.signOut()
+    return auth.signOut().then(() => {
+console.log("logout resp")
+      setCurrentUser(null);
+      history.push("/login")
+    })
   }
 
   function resetPassword(email) {
@@ -90,16 +98,22 @@ export function AuthProvider({ children }) {
 
       if (user != null)
         db.database().ref('participantes').child(user.uid).on("value", snapshot => {
-
-
-          console.log(' snapshot.val() ALL DATA PARTICIPANTE ', snapshot.val())
-          console.log('STEP 1 PasswordCreated ______________', snapshot.val().passwordCreated)
-          console.log('STEP 2 sendEmailVerification ________', snapshot.val().sendEmailVerification)
-          console.log('STEP 3 EmailVerified ________________', user.emailVerified)
-          setActivePassword(snapshot.val().passwordCreated);
-          setActiveUserEmail(snapshot.val().sendEmailVerification);
+          try {
+            console.log(' snapshot.val() ALL DATA PARTICIPANTE ', snapshot.val())
+            console.log('STEP 1 PasswordCreated ______________', snapshot.val().passwordCreated)
+            console.log('STEP 2 sendEmailVerification ________', snapshot.val().sendEmailVerification)
+            console.log('STEP 3 EmailVerified ________________', user.emailVerified)
+            setActivePassword(snapshot.val().passwordCreated);
+            setActiveUserEmail(user.emailVerified);
+    
+          } catch (error) {
+            console.log(error)
+          }
+         
         })
 
+
+        
     })
     return unsubscribe
   }, [])

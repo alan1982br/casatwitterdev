@@ -57,9 +57,7 @@ function App() {
                   <Route path="/start">
                     <TemplateDashboard component={Start} />
                   </Route>
-                  <Route path="/login">
-                    <TemplateDashboard component={Login} />
-                  </Route>
+                  <PrivateRoute path="/login" component={Login} />
                   <Route path="/forgot-password" component={ForgotPassword}>
                     <TemplateDashboard component={ForgotPassword} />
                   </Route>

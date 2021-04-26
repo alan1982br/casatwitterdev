@@ -18,8 +18,7 @@ export default function Login() {
       setError("")
       setLoading(true)
          await login(emailRef.current.value, passwordRef.current.value)
-      // await login(emailRef.current.value, process.env.REACT_APP_PASSWORD_USER_FIRST)
-      history.push("/")
+         history.push("/virtual-tour")
     } catch {
       setError("Failed to log in")
     }

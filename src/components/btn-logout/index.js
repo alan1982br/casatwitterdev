@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import './style.scss'
+import {Redirect , useHistory } from "react-router-dom"
 import { useAuth } from "../../contexts/AuthContext"
 
 const ButtonLogoutComponent = () => {
 
   const [loged, setLoged ] = useState(false);
   const { logout, currentUser } = useAuth();
-
-  const handleLogout = () => {
+   const history  = useHistory();  
+ 
+ const handleLogout = () => {
     if(currentUser) {
       logout();
+       history.push('/login');
     }
     localStorage.removeItem('@Twitter:ActiveEmail');
     localStorage.removeItem('@Twitter:email');

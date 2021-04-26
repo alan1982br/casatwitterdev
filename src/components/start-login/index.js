@@ -27,10 +27,10 @@ export default function Start() {
       setError("Seu email não existe")
     }
   }
-
+ 
   useEffect(() => {
     const hasEmail = localStorage.getItem('@Twitter:ActiveEmail');
-
+     
     const doLogin = async () => {
       console.log("REACT_APP_PASSWORD_USER_FIRST ", process.env.REACT_APP_PASSWORD_USER_FIRST)
       await login(activeEmail, process.env.REACT_APP_PASSWORD_USER_FIRST)
