@@ -13,7 +13,8 @@ export function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState()
   const [loading, setLoading] = useState(true)
   const [activeEmail, setActiveEmail] = useState(null);
-  const [activePassword, setActivePassword] = useState(true);
+  const [activePassword, setActivePassword] = useState(false);
+  const [activeUserEmail, setActiveUserEmail] = useState(false);
 
   function signup(email, password) {
     return auth.createUserWithEmailAndPassword(email, password)
@@ -86,17 +87,18 @@ export function AuthProvider({ children }) {
     const unsubscribe = auth.onAuthStateChanged(user => {
       setCurrentUser(user)
       setLoading(false)
-    
-    if(user != null)
-      db.database().ref('participantes').child(user.uid).once("value", snapshot => {
-      
-     
-        console.log(' snapshot.val() ALL DATA PARTICIPANTE ', snapshot.val())
-        console.log('STEP 1 PasswordCreated ______________', snapshot.val().passwordCreated)
-        console.log('STEP 2 sendEmailVerification ________', snapshot.val().sendEmailVerification)
-        console.log('STEP 3 EmailVerified ________________', user.emailVerified)
-        setActivePassword(snapshot.val().passwordCreated);
-      })
+
+      if (user != null)
+        db.database().ref('participantes').child(user.uid).on("value", snapshot => {
+
+
+          console.log(' snapshot.val() ALL DATA PARTICIPANTE ', snapshot.val())
+          console.log('STEP 1 PasswordCreated ______________', snapshot.val().passwordCreated)
+          console.log('STEP 2 sendEmailVerification ________', snapshot.val().sendEmailVerification)
+          console.log('STEP 3 EmailVerified ________________', user.emailVerified)
+          setActivePassword(snapshot.val().passwordCreated);
+          setActiveUserEmail(snapshot.val().sendEmailVerification);
+        })
 
     })
     return unsubscribe
@@ -112,7 +114,8 @@ export function AuthProvider({ children }) {
     updatePassword,
     checkEmail,
     activeEmail,
-    activePassword
+    activePassword,
+    activeUserEmail
   }
 
   return (

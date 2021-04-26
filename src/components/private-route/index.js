@@ -6,7 +6,7 @@ import { TemplateDashboard,
         Register } from '..'
 
 export default function PrivateRoute({ component: Component, ...rest }) {
-  const { currentUser , activePassword } = useAuth();
+  const { currentUser , activePassword , activeUserEmail } = useAuth();
 
   const { path } = {...rest};
 
@@ -14,8 +14,7 @@ export default function PrivateRoute({ component: Component, ...rest }) {
 
 const renderComponent = (props) => {
 
-    console.log("PrivateRout______________________", props)
-
+  
     const pathName = path;
     // console.log(pathName)
 
@@ -23,13 +22,17 @@ const renderComponent = (props) => {
       case '/register': 
         {
           // if()
+          console.log("activePassword______________________", activePassword)
           if(!currentUser) <Redirect to="/start" />
           if(activePassword === true) return <Redirect to="/confirme-email" />
           else return <TemplateDashboard component={Component} />
         }
         case '/confirme-email': 
         {
-          return <TemplateDashboard component={Component} />
+          console.log("activeUserEmail______________________", activeUserEmail)
+          if(!currentUser) <Redirect to="/start" />
+          if(activeUserEmail === true) return <Redirect to="/login" />
+          else return <TemplateDashboard component={Component} />
         }
       default:
         return <h1>404 private</h1>
