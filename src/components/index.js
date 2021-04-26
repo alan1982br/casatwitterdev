@@ -5,6 +5,7 @@ import Login from './login'
 import SignUp from './signup'
 import UpdateProfile from './update-profile'
 import PrivateRoute from './private-route'
+import PrivatePreRegisterRoute from './private-pre-register-route'
 import TimelineComponent from './timeline'
 import TermsOfUseComponent from './terms'
 import HeaderComponent from './header'
@@ -13,6 +14,8 @@ import ConfirmeEmailComponent from './confirme-email'
 import Start from './start-login'
 import Register from './register'
 import HeightMobile from './height-mobile'
+import ButtonLogoutComponent from './btn-logout'
+import MenuMobileComponent from './menu-mobile'
 
 
 export { TemplateDashboard, 
@@ -22,6 +25,7 @@ export { TemplateDashboard,
         SignUp, 
         UpdateProfile, 
         PrivateRoute,
+        PrivatePreRegisterRoute,
         TimelineComponent as Timeline,
         TermsOfUseComponent as TermsOfUse,
         HeaderComponent as Header,
@@ -29,4 +33,6 @@ export { TemplateDashboard,
         Start,
         Register,
         HeightMobile,
+        ButtonLogoutComponent as ButtonLogout,
+        MenuMobileComponent as MenuMobile,
         ConfirmeEmailComponent as ConfirmeEmail }

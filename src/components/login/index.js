@@ -17,9 +17,8 @@ export default function Login() {
     try {
       setError("")
       setLoading(true)
-      // await login(emailRef.current.value, passwordRef.current.value)
-      await login(emailRef.current.value, 'Venosa@dev0003')
-      history.push("/")
+         await login(emailRef.current.value, passwordRef.current.value)
+         history.push("/virtual-tour")
     } catch {
       setError("Failed to log in")
     }

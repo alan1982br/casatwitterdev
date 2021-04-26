@@ -37,32 +37,29 @@ function App() {
             <Router>
               <AuthProvider>
                 <Switch>
-                  <PrivateRoute exact path="/">
-                    <TemplateDashboard component={Dashboard} />
-                  </PrivateRoute>
+                  <Route exact path="/">
+                    <TemplateDashboard component={Start} />
+                  </Route>
                   <PrivateRoute exact path="/dashboard">
                     <TemplateDashboard component={Dashboard} />
                   </PrivateRoute>
-                  <PrivateRoute path="/update-profile">
+                  <Route path="/update-profile">
                     <TemplateDashboard component={UpdateProfile} />
-                  </PrivateRoute>
+                  </Route>
                   <Route path="/signup">
-                    <TemplateDashboard component={SignUp} noroute="true"/>
+                    <TemplateDashboard component={SignUp}/>
                   </Route>
-                  <Route path="/confirme-email">
-                    <TemplateDashboard component={ConfirmeEmail} noroute="true"/>
+                  <Route path="/register-fake">
+                    <TemplateDashboard component={Register}/>
                   </Route>
-                  <Route path="/register">
-                    <TemplateDashboard component={Register} noroute="true"/>
-                  </Route>
+                  <PrivateRoute path="/confirme-email" component={ConfirmeEmail} />
+                  <PrivateRoute path="/register" component={Register} />
                   <Route path="/start">
-                    <TemplateDashboard component={Start} noroute="true"/>
+                    <TemplateDashboard component={Start} />
                   </Route>
-                  <Route path="/login">
-                    <TemplateDashboard component={Login} noroute="true"/>
-                  </Route>
+                  <PrivateRoute path="/login" component={Login} />
                   <Route path="/forgot-password" component={ForgotPassword}>
-                    <TemplateDashboard component={ForgotPassword} noroute="true"/>
+                    <TemplateDashboard component={ForgotPassword} />
                   </Route>
                   <Route exact path="/testing" component={TestingPage} />
                   <Route exact path="/virtual-tour" component={VirtualTour} />

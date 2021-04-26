@@ -14,6 +14,16 @@
     top: 100%;
     left: 30px;
     transform: translateY(-50%);
+
+    img {
+      width: 68px;
+      height: 68px;
+
+      @media (min-width: 768px) {
+        width: initial;
+        height: initial;
+      }
+    }
   }
 
   .menu {
@@ -22,8 +32,16 @@
     justify-content: space-between;
     color: #FFF;
 
+    .divisor {
+      width: 1px;
+      height: 30px;
+      background: #FFF;
+      pointer-events: none;
+      margin: 0 38px;
+    }
+
     p {
-      margin: 0 20px;
+      margin: 0;
     }
   }
 
