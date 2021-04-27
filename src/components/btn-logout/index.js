@@ -10,12 +10,11 @@ const ButtonLogoutComponent = () => {
    const history  = useHistory();  
  
  const handleLogout = () => {
+
     if(currentUser) {
-      logout();
-       history.push('/login');
+       logout();      
     }
-    localStorage.removeItem('@Twitter:ActiveEmail');
-    localStorage.removeItem('@Twitter:email');
+    
   }
 
   useEffect(() => {

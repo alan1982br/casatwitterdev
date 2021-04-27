@@ -46,7 +46,7 @@ export default function Start() {
        
         // adicionar email ao localStorage
         localStorage.setItem('@Twitter:ActiveEmail',true)
-        localStorage.setItem('@Twitter:email', activeEmail)
+        // localStorage.setItem('@Twitter:email', activeEmail)
       } else if (activeEmail === false) {
         setError("Seu email não existe")
         history.push("/start")

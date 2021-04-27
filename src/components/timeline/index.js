@@ -7,6 +7,7 @@ import { getImage } from '../../utils'
 import { motion, AnimatePresence } from 'framer-motion'
 import './style.scss'
 import data from '../../assets/mock-data/timeline.json'
+import { db } from "../../firebase";
 
 const TimelineComponent = () => {
 
@@ -106,6 +107,9 @@ const TimelineComponent = () => {
 
   const openCloseTimeline = () => {
     setIsOpen(!isOpen);
+
+    console.log("openCloseTimeline")
+
   }
 
   useEffect(() => {
@@ -115,6 +119,16 @@ const TimelineComponent = () => {
       visited: false
     }))
     setDados(addAttr)
+
+    
+    db.database().ref('timeline_users').child('iR4XROmrhCee8iMZhGVJtGaPjoA2').on("value", snapshot => {
+      try {
+        console.log(' snapshot.val() ALL DATA timeline_users ', snapshot.val())
+      } catch (error) {
+        console.log(error)
+      }
+
+    })
   }, [])
   return (
     <div className={`timeline__wrapper ${isOpen ? '' : 'timeline-close'}`} >

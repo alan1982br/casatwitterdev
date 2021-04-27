@@ -3,7 +3,8 @@ import { createStore } from 'redux';
 const INITIAL_STATE = {
   showterms: false,
   currentTour: "1",
-  visitedTour: []
+  visitedTour: [],
+  currentUser: []
 };
 
 const reducer = (state = INITIAL_STATE, action) => {
@@ -23,6 +24,11 @@ const reducer = (state = INITIAL_STATE, action) => {
           ...state,
           visitedTour: action.payload,
         };
+        case 'SET_CURRENT_USER':
+          return {
+            ...state,
+            currentUser: action.payload,
+          };
     default:
       return state;
   }

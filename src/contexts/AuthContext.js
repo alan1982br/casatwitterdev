@@ -1,4 +1,4 @@
-import firebase from "firebase"
+
 import React, { useContext, useState, useEffect } from "react"
 import { auth } from "../firebase"
 import { db } from "../firebase";
@@ -45,13 +45,16 @@ export function AuthProvider({ children }) {
   }
 
   function login(email, password) {
-    return auth.signInWithEmailAndPassword(email, password)
- 
+    return auth.signInWithEmailAndPassword(email, password).then(() => {
+      localStorage.setItem('@Twitter:ActiveEmail',true)
+      localStorage.setItem('@Twitter:email', email)
+    })
   }
 
   function logout() {
     return auth.signOut().then(() => {
-console.log("logout resp")
+      localStorage.removeItem('@Twitter:ActiveEmail');
+      localStorage.removeItem('@Twitter:email');
       setCurrentUser(null);
       history.push("/login")
     })
@@ -105,15 +108,15 @@ console.log("logout resp")
             console.log('STEP 3 EmailVerified ________________', user.emailVerified)
             setActivePassword(snapshot.val().passwordCreated);
             setActiveUserEmail(user.emailVerified);
-    
+
           } catch (error) {
             console.log(error)
           }
-         
+
         })
 
 
-        
+
     })
     return unsubscribe
   }, [])

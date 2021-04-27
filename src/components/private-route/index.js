@@ -37,10 +37,10 @@ const renderComponent = (props) => {
         case '/login': 
         {
           console.log("activeUserEmail______________________", activeUserEmail)
-          if(!currentUser) return <Redirect to="/start" />
-          console.log("currentUser " , currentUser)
+          if(!currentUser) return  <TemplateDashboard component={Component} />
+           
           if(currentUser) return <Redirect to="/virtual-tour"/>
-          if(activePassword === true) return  <TemplateDashboard component={Component} />
+          // if(activePassword === true) return  <TemplateDashboard component={Component} />
          
         }
         
