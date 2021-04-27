@@ -1,8 +1,9 @@
-import firebase from "firebase"
+
 import React, { useContext, useState, useEffect } from "react"
 import { auth } from "../firebase"
 import { db } from "../firebase";
 import { useHistory } from "react-router"
+import { useDispatch, useSelector } from 'react-redux';
 
 const AuthContext = React.createContext()
 
@@ -18,6 +19,12 @@ export function AuthProvider({ children }) {
   const [activeUserEmail, setActiveUserEmail] = useState(false);
 
   const history = useHistory()
+
+  const dispatch = useDispatch();
+
+  const setStoreCurrentUser = (user) => {
+    dispatch({ type: 'SET_CURRENT_USER', payload: user });
+  }
 
   function signup(email, password) {
     return auth.createUserWithEmailAndPassword(email, password)
@@ -45,14 +52,18 @@ export function AuthProvider({ children }) {
   }
 
   function login(email, password) {
-    return auth.signInWithEmailAndPassword(email, password)
- 
+    return auth.signInWithEmailAndPassword(email, password).then(() => {
+      localStorage.setItem('@Twitter:ActiveEmail',true)
+      localStorage.setItem('@Twitter:email', email)
+    })
   }
 
   function logout() {
     return auth.signOut().then(() => {
-console.log("logout resp")
+      localStorage.removeItem('@Twitter:ActiveEmail');
+      localStorage.removeItem('@Twitter:email');
       setCurrentUser(null);
+      setStoreCurrentUser(null);
       history.push("/login")
     })
   }
@@ -94,6 +105,7 @@ console.log("logout resp")
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(user => {
       setCurrentUser(user)
+      setStoreCurrentUser(user);
       setLoading(false)
 
       if (user != null)
@@ -105,15 +117,15 @@ console.log("logout resp")
             console.log('STEP 3 EmailVerified ________________', user.emailVerified)
             setActivePassword(snapshot.val().passwordCreated);
             setActiveUserEmail(user.emailVerified);
-    
+
           } catch (error) {
             console.log(error)
           }
-         
+
         })
 
 
-        
+
     })
     return unsubscribe
   }, [])
