@@ -6,7 +6,7 @@ import { useResize } from '../../hooks'
 import { getImage } from '../../utils'
 import { motion, AnimatePresence } from 'framer-motion'
 import './style.scss'
-import data from '../../assets/mock-data/timeline.json'
+// import data from '../../assets/mock-data/timeline.json'
 import { db } from "../../firebase";
 
 const TimelineComponent = () => {
@@ -62,10 +62,14 @@ const TimelineComponent = () => {
     if (mouseMoved > 5) return;
 
     const { id, index } = e.currentTarget.dataset;
- 
+ console.log(index)
 
     db.database().ref('timeline_users').child(currentUser.uid+"/room_1/hotspots/" + id).update({
-      status_ckeckin : true
+        // id:id,
+        // image:"",
+        // path:"",
+      status_ckeckin : true,
+
     })
 
     if (currentThumb === id) {
@@ -128,7 +132,7 @@ const TimelineComponent = () => {
     try {
       db.database().ref('timeline_users').child(currentUser.uid).on("value", snapshot => {
         try {
-          console.log(' snapshot.val() ALL DATA timeline_users ', snapshot.val().room_1['hotspots'])
+          // console.log(' snapshot.val() ALL DATA timeline_users ', snapshot.val().room_1['hotspots'])
           let dataHotSpot = snapshot.val().room_1['hotspots'];
            
           const addAttr = dataHotSpot.map(data => ({
@@ -136,22 +140,22 @@ const TimelineComponent = () => {
             active: data.status_ckeckin,
             visited: false
           }))
-          setDados(addAttr)
-             console.log("addAttrTimeline ", dados)
+             setDados(addAttr)
+             console.log("addAttrTimeline ", addAttr)
           // console.log("addAttrTimeline ", addAttrTimeline)
           
   
   
         } catch (error) {
-          console.log(error)
+          console.log("useEffect timeline error " , error)
         }
       })
     } catch (error) {
       
     }
   
-    //console.log("currentTour timeline" , currentUser.uid)
-  }, [])
+    
+  }, [currentUser])
 
 
   return (
