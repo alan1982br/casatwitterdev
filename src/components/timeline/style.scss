@@ -33,6 +33,10 @@
       }
     }
 
+    &.has-open {
+      top: -40px;
+    }
+
     svg {
       transform-origin: center;
       transform: rotate(0deg);
@@ -47,11 +51,23 @@
     bottom: 0px;
     left: 0;
     width: auto;
+    height: 260px;
     min-width: 100vw;
     overflow-x: auto;
     padding-bottom: 40px;
     cursor: grab;
-    pointer-events: all;
+
+    .area-drag {
+      position: absolute;
+      bottom: 0px;
+      left: 0;
+      transform-origin: bottom;
+      width: 100%;
+      height: 150px;
+      transition: all .3s ease;
+      pointer-events: all;
+      z-index: -1;
+    }
 
     // @media (min-width: 768px) {
     //   padding-bottom: 80px;
@@ -78,6 +94,29 @@
     min-height: 120px;
     margin: 0 20px;
     transition: all .3s ease;
+    pointer-events: all;
+
+    .timeline__title {
+      position: absolute;
+      display: table;
+      vertical-align:bottom;
+      width: 100%;
+      bottom: 150px;
+      color: #FFF;
+      font-size:14px;
+      text-align: center;
+      p {
+        width: 100%;
+        display: inline;
+        text-align: center;
+        background-image: linear-gradient(to right, rgba(0,0,0,1), rgba(0,0,0,1) );
+        background-size: 100% 10px;
+        background-repeat: no-repeat;
+        background-position: 0% 100%;
+        padding: 0 12px 0 4px;
+        height: auto;
+      }
+    }
 
     .vertical-line {
       position: absolute;

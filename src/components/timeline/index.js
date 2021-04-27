@@ -108,6 +108,10 @@ const TimelineComponent = () => {
     setIsOpen(!isOpen);
   }
 
+  const getOpacityOpen = () => {
+    return isOpen ? 1 : 0;
+  }
+
   useEffect(() => {
     const addAttr = data.map(data => ({
       ...data,
@@ -121,18 +125,18 @@ const TimelineComponent = () => {
       <AnimatePresence>
       {isMobile && 
          <motion.div
-         key="button-open-close"
-         initial={{opacity: 0, y: 10}}
-         animate={{opacity: 1, y: 0, x: '-50%', transition: { ease: 'easeInOut', duration: .3}}} 
-         exit={{opacity: 0, transition: { duration: .3}}}
-         onClick={openCloseTimeline}
-         className={`controller ${isOpen ? 'open' : 'closed'}`}>
+          key="button-open-close"
+          initial={{opacity: 0, y: 10}}
+          animate={{opacity: 1, y: 0, x: '-50%', transition: { ease: 'easeInOut', duration: .3}}} 
+          exit={{opacity: 0, transition: { duration: .3}}}
+          onClick={openCloseTimeline}
+          className={`controller ${isOpen ? 'open' : 'closed'} ${currentThumb === null ? '': 'has-open'}`}>
          <RiArrowDownSLine size={30} color="#FFF" />
         </motion.div>
       }
       </AnimatePresence>
      
-      <motion.div animate={{x: getMoveX(), transition: { ease: 'easeOut', duration: getDuration()}}} drag="x" dragConstraints={{ left: sobra, right: paddingDrag }} ref={containerButtonRef} className="buttons-container">
+      <motion.div animate={{x: getMoveX(), opacity: getOpacityOpen(), transition: { ease: 'easeOut', duration: getDuration()}}} drag="x" dragConstraints={{ left: sobra, right: paddingDrag }} ref={containerButtonRef} className="buttons-container">
         { dados.length > 0 &&
           dados.map((button, index) => {
             const _class = currentThumb === button.id ? 'active' : '';
@@ -153,6 +157,19 @@ const TimelineComponent = () => {
                   onMouseUp={_class !== 'active' ? onClick : () => {}} 
                   onMouseDown={_class !== 'active' ? setDown : () => {}}
               >
+                  <AnimatePresence>
+                    {_class === 'active' && 
+                      <motion.div 
+                      className="timeline__title"
+                      key={button.title}
+                      initial={{opacity: 0, y: 25}}
+                      animate={{opacity: 1, y: 0, transition: { ease: 'easeOut', delay: .12, duration: .4}}} 
+                      exit={{opacity: 0, y: 50,  transition: { duration: .2}}}>
+                        <p>{button?.title}</p>
+                      </motion.div>
+                    }
+                  </AnimatePresence>
+                  
                 <div className={_classImage} >
                   <div className="image" style={{backgroundImage: `url(${getImage(button.image)})`}}/>
                   <AnimatePresence>
@@ -175,6 +192,7 @@ const TimelineComponent = () => {
             )
           })
         }
+        <div className="area-drag" />
       </motion.div>
     </div>
   )
