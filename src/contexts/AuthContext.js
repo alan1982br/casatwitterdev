@@ -3,6 +3,7 @@ import React, { useContext, useState, useEffect } from "react"
 import { auth } from "../firebase"
 import { db } from "../firebase";
 import { useHistory } from "react-router"
+import { useDispatch, useSelector } from 'react-redux';
 
 const AuthContext = React.createContext()
 
@@ -18,6 +19,12 @@ export function AuthProvider({ children }) {
   const [activeUserEmail, setActiveUserEmail] = useState(false);
 
   const history = useHistory()
+
+  const dispatch = useDispatch();
+
+  const setStoreCurrentUser = (user) => {
+    dispatch({ type: 'SET_CURRENT_USER', payload: user });
+  }
 
   function signup(email, password) {
     return auth.createUserWithEmailAndPassword(email, password)
@@ -56,6 +63,7 @@ export function AuthProvider({ children }) {
       localStorage.removeItem('@Twitter:ActiveEmail');
       localStorage.removeItem('@Twitter:email');
       setCurrentUser(null);
+      setStoreCurrentUser(null);
       history.push("/login")
     })
   }
@@ -97,6 +105,7 @@ export function AuthProvider({ children }) {
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(user => {
       setCurrentUser(user)
+      setStoreCurrentUser(user);
       setLoading(false)
 
       if (user != null)
