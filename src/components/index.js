@@ -18,6 +18,10 @@ import ButtonLogoutComponent from './btn-logout'
 import MenuMobileComponent from './menu-mobile'
 import RequiredComponent from './required'
 import EmailEnviado from './email-enviado'
+import MenuHeaderComponent from './menu-header'
+import DepoimentosComponent from './depoimentos'
+import TrendsComponent from './trends'
+import CasesComponent from './cases'
 
 
 export { TemplateDashboard, 
@@ -39,4 +43,9 @@ export { TemplateDashboard,
         ButtonLogoutComponent as ButtonLogout,
         MenuMobileComponent as MenuMobile,
         RequiredComponent as Required,
-        ConfirmeEmailComponent as ConfirmeEmail }
+        MenuHeaderComponent as MenuHeader,
+        ConfirmeEmailComponent as ConfirmeEmail,
+        DepoimentosComponent as Depoimentos,
+        TrendsComponent as Trends,
+        CasesComponent as Cases
+}

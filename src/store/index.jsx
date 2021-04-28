@@ -4,7 +4,10 @@ const INITIAL_STATE = {
   showterms: false,
   currentTour: "1",
   visitedTour: [],
-  currentUser: []
+  currentUser: [],
+  showDepoimentos: false,
+  showCases: false,
+  showTrends: false
 };
 
 const reducer = (state = INITIAL_STATE, action) => {
@@ -24,11 +27,26 @@ const reducer = (state = INITIAL_STATE, action) => {
           ...state,
           visitedTour: action.payload,
         };
-        case 'SET_CURRENT_USER':
-          return {
-            ...state,
-            currentUser: action.payload,
-          };
+    case 'SET_CURRENT_USER':
+      return {
+        ...state,
+        currentUser: action.payload,
+      };
+    case 'UPDATE_DEPOIMENTOS':
+      return {
+        ...state,
+        showDepoimentos: action.payload,
+      };
+    case 'UPDATE_TRENDS':
+      return {
+        ...state,
+        showTrends: action.payload,
+      };
+    case 'UPDATE_CASES':
+      return {
+        ...state,
+        showCases: action.payload,
+      };
     default:
       return state;
   }

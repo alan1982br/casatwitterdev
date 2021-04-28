@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ButtonLogout } from '..'
+import { ButtonLogout, MenuHeader } from '..'
 import { IoCloseSharp } from 'react-icons/all';
 import './style.scss'
 
@@ -27,13 +27,14 @@ const MenuMobileComponent = ({ closeMenuMobile, user }) => {
         exit={{ opacity: 0, x: '110vw', transition: { duration: 0.35 } }}
         transition={{ delay: 0 }}
       >
-        <IoCloseSharp size={40} color="#FFF" onClick={closeMobile} />
+        <IoCloseSharp size={50} color="#FFF" onClick={closeMobile} />
         <nav>
           <div className="menu__mobile-menu">
             <p>Olá <b>{user}</b></p>
             <ButtonLogout />
           </div>
         </nav>
+        <MenuHeader />
       </motion.div>
     </motion.div>
   );
