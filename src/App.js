@@ -18,11 +18,17 @@ import { Dashboard,
   Register,
   HeightMobile,
   EmailEnviado,
-  TermsOfUse } from './components'
+  TermsOfUse,
+  Depoimentos,
+  Trends,
+  Cases } from './components'
 
 function App() {
 
   const showterms = useSelector(state => state.showterms);
+  const showDepoimentos = useSelector(state => state.showDepoimentos);
+  const showTrends = useSelector(state => state.showTrends);
+  const showCases = useSelector(state => state.showCases);
 
   return (
       <Container fluid
@@ -31,6 +37,22 @@ function App() {
         <AnimatePresence>
           {showterms && 
             <TermsOfUse key="termsofuse" />
+          }
+          
+        </AnimatePresence>
+        <AnimatePresence>
+          {showDepoimentos && 
+            <Depoimentos key="depoimentos" />
+          }
+        </AnimatePresence>
+        <AnimatePresence>
+          {showTrends && 
+            <Trends key="trends" />
+          }
+        </AnimatePresence>
+        <AnimatePresence>
+          {showCases && 
+            <Cases key="cases" />
           }
         </AnimatePresence>
         <Row noGutters>
