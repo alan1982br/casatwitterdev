@@ -12,7 +12,6 @@ import { db } from "../../firebase";
 const TimelineComponent = () => {
 
   const [dados, setDados] = useState([]);
-  const [addAttrTimeline, setAddAttrTimeline] = useState([]);
   const [currentThumb, setCurrentThumb] = useState(null)
   const [buttonIndex, setButtonIndex] = useState(-1);
   const { isMobile, width } = useResize();
@@ -21,10 +20,7 @@ const TimelineComponent = () => {
   const [isOpen, setIsOpen] = useState(true);
 
   const dispatch = useDispatch();
-
   const paddingDrag = 50;
-
-
   const currentTour = useSelector(state => state.currentTour)
   const visitedTour = useSelector(state => state.visitedTour)
   const currentUser = useSelector(state => state.currentUser)
@@ -146,10 +142,6 @@ const TimelineComponent = () => {
           }))
             //  setDados(addAttr)
              console.log("addAttrTimeline ", addAttr)
-          // console.log("addAttrTimeline ", addAttrTimeline)
-          
-  
-  
         } catch (error) {
           console.log("useEffect timeline error " , error)
         }
@@ -157,10 +149,8 @@ const TimelineComponent = () => {
     } catch (error) {
       
     }
-  
     
   }, [currentUser])
-
 
   return (
     <div className={`timeline__wrapper ${isOpen ? '' : 'timeline-close'}`} >
