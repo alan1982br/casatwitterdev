@@ -5,7 +5,7 @@ import {
 import { useResize } from '../../hooks'
 import { IoMenu } from 'react-icons/all' 
 import './styled.scss'
-import { ButtonLogout, MenuMobile } from '..'
+import { ButtonLogout, MenuMobile, MenuHeader } from '..'
 import { LogoHeader } from '../../assets'
 import { useAuth } from "../../contexts/AuthContext"
 
@@ -33,17 +33,17 @@ const HeaderComponent = () => {
       <div className="logo-container">
         <img src={LogoHeader} alt="Twitter" />
       </div>
-      
-        <div className="menu">
-          {!isMobile &&
-            <>
-              <p>Olá <b>{nome}</b></p>
-              <div className="divisor" />
-              <ButtonLogout />
-            </>
-          }
-          {isMobile && <IoMenu size={40} onClick={() => setMenuOpen(true)} />}
-        </div>
+      <div className="menu">
+        {!isMobile &&
+          <>
+            <MenuHeader />
+            <div className="divisor" />
+            <p style={{marginRight: '60px'}}>Olá {' '}<b>{nome}</b></p>
+            <ButtonLogout />
+          </>
+        }
+        {isMobile && <IoMenu size={40} onClick={() => setMenuOpen(true)} />}
+      </div>
       
     </div>
   )
