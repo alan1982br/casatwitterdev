@@ -64,13 +64,13 @@ const TimelineComponent = () => {
     const { id, index } = e.currentTarget.dataset;
  console.log(index)
 
-    db.database().ref('timeline_users').child(currentUser.uid+"/room_1/hotspots/" + id).update({
-        // id:id,
-        // image:"",
-        // path:"",
-      status_ckeckin : true,
+    // db.database().ref('timeline_users').child(currentUser.uid+"/room_1/hotspots/" + id).update({
+    //     // id:id,
+    //     // image:"",
+    //     // path:"",
+    //   status_ckeckin : true,
 
-    })
+    // })
 
     if (currentThumb === id) {
       // desativa
