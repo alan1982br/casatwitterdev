@@ -16,6 +16,8 @@ import Register from './register'
 import HeightMobile from './height-mobile'
 import ButtonLogoutComponent from './btn-logout'
 import MenuMobileComponent from './menu-mobile'
+import RequiredComponent from './required'
+import EmailEnviado from './email-enviado'
 
 
 export { TemplateDashboard, 
@@ -33,6 +35,8 @@ export { TemplateDashboard,
         Start,
         Register,
         HeightMobile,
+        EmailEnviado,
         ButtonLogoutComponent as ButtonLogout,
         MenuMobileComponent as MenuMobile,
+        RequiredComponent as Required,
         ConfirmeEmailComponent as ConfirmeEmail }

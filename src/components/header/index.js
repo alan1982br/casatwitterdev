@@ -16,7 +16,7 @@ const HeaderComponent = () => {
   const { isMobile } = useResize();
 
   useEffect(() => {
-    setNome(currentUser?.displayName || 'Fulano')
+    setNome(currentUser?.email || 'Fulano')
   }, [currentUser])
 
   useEffect(() => {

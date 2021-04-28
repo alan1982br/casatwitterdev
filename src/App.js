@@ -17,6 +17,7 @@ import { Dashboard,
   Start,
   Register,
   HeightMobile,
+  EmailEnviado,
   TermsOfUse } from './components'
 
 function App() {
@@ -40,14 +41,14 @@ function App() {
                   <Route exact path="/">
                     <TemplateDashboard component={Start} />
                   </Route>
-                  <PrivateRoute exact path="/dashboard">
+                  {/* <PrivateRoute exact path="/dashboard">
                     <TemplateDashboard component={Dashboard} />
-                  </PrivateRoute>
-                  <Route path="/update-profile">
+                  </PrivateRoute> */}
+                  {/* <Route path="/update-profile">
                     <TemplateDashboard component={UpdateProfile} />
-                  </Route>
-                  <Route path="/signup">
-                    <TemplateDashboard component={SignUp}/>
+                  </Route> */}
+                  <Route path="/email-enviado">
+                    <TemplateDashboard component={EmailEnviado}/>
                   </Route>
                   <Route path="/register-fake">
                     <TemplateDashboard component={Register}/>

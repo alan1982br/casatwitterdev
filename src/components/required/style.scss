@@ -1,0 +1,17 @@
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 100%;
+  }
+}
+
+.icon-required {
+  position: absolute;
+  top: 50%;
+  right : 30px;
+  transform: translateY(-50%);
+  opacity: 0;
+  animation: fadeIn ease .3s forwards;
+}

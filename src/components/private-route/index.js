@@ -2,8 +2,7 @@
 import React from "react"
 import { Route, Redirect } from "react-router-dom"
 import { useAuth } from "../../contexts/AuthContext"
-import { TemplateDashboard,
-        Register } from '..'
+import { TemplateDashboard } from '..'
 
 export default function PrivateRoute({ component: Component, ...rest }) {
   const { currentUser , activePassword , activeUserEmail } = useAuth();
@@ -13,7 +12,6 @@ export default function PrivateRoute({ component: Component, ...rest }) {
   // const children = {...rest};
 
 const renderComponent = (props) => {
-
   
     const pathName = path;
      console.log("pathName " , pathName)

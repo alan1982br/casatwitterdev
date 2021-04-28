@@ -1,9 +1,9 @@
 
-import React, { useContext, useState, useEffect } from "react"
+import React, { useContext, useState, useEffect, useCallback } from "react"
 import { auth } from "../firebase"
 import { db } from "../firebase";
 import { useHistory } from "react-router"
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 const AuthContext = React.createContext()
 
@@ -22,9 +22,9 @@ export function AuthProvider({ children }) {
 
   const dispatch = useDispatch();
 
-  const setStoreCurrentUser = (user) => {
+  const setStoreCurrentUser = useCallback((user) => {
     dispatch({ type: 'SET_CURRENT_USER', payload: user });
-  }
+  })
 
   function signup(email, password) {
     return auth.createUserWithEmailAndPassword(email, password)
@@ -44,7 +44,7 @@ export function AuthProvider({ children }) {
       }
 
     }).catch((error) => {
-      var errorCode = error.code;
+      // var errorCode = error.code;
       var errorMessage = error.message;
       console.log(errorMessage)
       // ...
@@ -96,6 +96,7 @@ export function AuthProvider({ children }) {
     console.log("updatePassword 4", email)
     return currentUser.sendEmailVerification().then(() => {
       console.log("updatePassword 5")
+      setCurrentUser(null);
       db.database().ref(`participantes`).child(currentUser.uid).update({
         sendEmailVerification: true
       })
@@ -123,12 +124,9 @@ export function AuthProvider({ children }) {
           }
 
         })
-
-
-
     })
     return unsubscribe
-  }, [])
+  }, [setStoreCurrentUser])
 
   const value = {
     currentUser,
