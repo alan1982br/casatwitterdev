@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "casatwitter-815ac"
+  },
+  "targets": {
+    "casatwitter-815ac": {
+      "hosting": {
+        "casatwitter": [
+          "devwebv2-a6850"
+        ]
+      }
+    }
   }
 }
