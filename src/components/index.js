@@ -22,6 +22,7 @@ import MenuHeaderComponent from './menu-header'
 import DepoimentosComponent from './depoimentos'
 import TrendsComponent from './trends'
 import CasesComponent from './cases'
+import ThumbVideoComponent from './thumb-video'
 
 
 export { TemplateDashboard, 
@@ -47,5 +48,6 @@ export { TemplateDashboard,
         ConfirmeEmailComponent as ConfirmeEmail,
         DepoimentosComponent as Depoimentos,
         TrendsComponent as Trends,
-        CasesComponent as Cases
+        CasesComponent as Cases,
+        ThumbVideoComponent as ThumbVideo
 }

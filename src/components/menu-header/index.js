@@ -1,13 +1,24 @@
 import React from 'react'
 import { useDispatch } from 'react-redux';
+import { useResize } from '../../hooks'
 import './styles.scss'
 
-const MenuHeaderComponent = () => {
+const MenuHeaderComponent = ({closeMenuMobile = () => {}}) => {
   const dispatch = useDispatch();
+  const { isMobile } = useResize();
 
-  const showHideDepoimentos = () => dispatch({ type: 'UPDATE_DEPOIMENTOS', payload: true });
-  const showHideTrends = () => dispatch({ type: 'UPDATE_TRENDS', payload: true });
-  const showHideCases = () => dispatch({ type: 'UPDATE_CASES', payload: true });
+  const showHideDepoimentos = () => {
+    isMobile && closeMenuMobile();
+    dispatch({ type: 'UPDATE_DEPOIMENTOS', payload: true })
+  };
+  const showHideTrends = () => {
+    closeMenuMobile();
+    dispatch({ type: 'UPDATE_TRENDS', payload: true });
+  } 
+  const showHideCases = () => {
+    closeMenuMobile();
+    dispatch({ type: 'UPDATE_CASES', payload: true });
+  }
 
   return (
     <div className="menu__header">

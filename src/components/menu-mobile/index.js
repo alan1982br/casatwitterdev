@@ -34,7 +34,7 @@ const MenuMobileComponent = ({ closeMenuMobile, user }) => {
             <ButtonLogout />
           </div>
         </nav>
-        <MenuHeader />
+        <MenuHeader closeMenuMobile={closeMenuMobile} />
       </motion.div>
     </motion.div>
   );
