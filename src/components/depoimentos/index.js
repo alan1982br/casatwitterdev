@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { useDispatch } from 'react-redux';
 import { Col, Row } from 'react-bootstrap';
 import { IoCloseSharp } from 'react-icons/all';
+import { ThumbVideo } from '..'
 import './style.scss'
 
 const DepoimentosComponent = () => {
@@ -13,8 +14,14 @@ const DepoimentosComponent = () => {
   const titleRef = useRef(null);
   const termsRef = useRef(null);
   const dispatch = useDispatch();
+
   const showHideTerms = (show) => {
     dispatch({ type: 'UPDATE_DEPOIMENTOS', payload: show });
+  }
+
+  const setCurrentTour = (tour) => {
+    dispatch({ type: 'UPDATE_TOUR', payload: tour });
+    showHideTerms(false);
   }
 
   useEffect(() => {
@@ -44,7 +51,24 @@ const DepoimentosComponent = () => {
                 </Row>
                 <Row className="text-container">
                   <Col style={{ maxHeight: containerTextHeight}} className="col-12 d-flex flex-column">
-                    Depoimentos Content
+                    <Row>
+                      <ThumbVideo image="https://www.placecage.com/500/405" 
+                                  title="Título do vídeo 01"
+                                  handleClick={() => setCurrentTour('20')}
+                                   />
+                      <ThumbVideo image="https://www.placecage.com/500/400" 
+                                  title="Título do vídeo 02"
+                                  handleClick={() => setCurrentTour('21')} />
+                      <ThumbVideo image="https://www.placecage.com/500/401" 
+                                  title="Título do vídeo 03"
+                                  handleClick={() => setCurrentTour('22')} />
+                      <ThumbVideo image="https://www.placecage.com/500/402" 
+                                  title="Título do vídeo 04"
+                                  handleClick={() => setCurrentTour('23')} />
+                      <ThumbVideo image="https://www.placecage.com/500/403" 
+                                  title="Título do vídeo 05"
+                                  handleClick={() => setCurrentTour('24')} />
+                    </Row>
                   </Col>
                 </Row>
               </Col>

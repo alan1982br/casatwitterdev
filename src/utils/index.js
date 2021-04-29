@@ -4,6 +4,14 @@ export const getImage = (img) => {
   } else {
     console.log("getImage", img)
 
-    return require("../assets/images/" + img).default;
+    return require("../assets/images/" + img);
+  }
+}
+
+export const getFile = (file) => {
+  if(file.includes("http")){
+    return file;
+  } else {
+    return require("../assets/files/twitter.pdf");
   }
 }
