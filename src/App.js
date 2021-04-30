@@ -66,9 +66,9 @@ function App() {
                   {/* <PrivateRoute exact path="/dashboard">
                     <TemplateDashboard component={Dashboard} />
                   </PrivateRoute> */}
-                  {/* <Route path="/update-profile">
+                  <Route path="/update-profile">
                     <TemplateDashboard component={UpdateProfile} />
-                  </Route> */}
+                  </Route>
                   <Route path="/email-enviado">
                     <TemplateDashboard component={EmailEnviado}/>
                   </Route>

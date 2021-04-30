@@ -71,7 +71,7 @@ export default function Register() {
     if(email !== null) {
       setUserEmail(email);
     } else {
-      // history.push("/start")
+       history.push("/start")
     }
   }, [history])
 

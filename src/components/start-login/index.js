@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom"
 import { Required } from '..'
 
 export default function Start() {
-  const { login , checkEmail , activeEmail , activePassword} = useAuth()
+  const { login , checkEmail , activeEmail , activePassword , activePreRegisterPassword ,  checkEmailparticipant} = useAuth()
   const [error, setError] = useState("")
   const history = useHistory()
 
@@ -24,7 +24,8 @@ export default function Start() {
     try {
       setError("")
       // await login(emailRef.current.value, passwordRef.current.value)
-     await checkEmail(inputs.email)
+    //  await checkEmail(inputs.email)
+     await checkEmailparticipant(inputs.email);
       // history.push("/register")
     } catch {
       setError("O email digitado não consta em nosso sistema")
@@ -49,13 +50,22 @@ export default function Start() {
        history.push("/register");
     } else {
       if(typeof(activeEmail) === 'string') {
-         doLogin()
+        if(activePreRegisterPassword == true){
+
+          //  history.push("/login")
+
+        }else{
+
+          doLogin()
          
-         // adicionar email ao localStorage
-         localStorage.setItem('@Twitter:ActiveEmail',true)
-         localStorage.setItem('@Twitter:email', activeEmail)
-         
-         history.push("/register")
+          // adicionar email ao localStorage
+          localStorage.setItem('@Twitter:ActiveEmail',true)
+          localStorage.setItem('@Twitter:email', activeEmail)
+          
+          history.push("/register")
+
+        }
+        
       } else if (activeEmail === false) {
         setError("O email digitado não consta em nosso sistema")
         history.push("/start")

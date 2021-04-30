@@ -3,6 +3,7 @@ import React from "react"
 import { Route, Redirect } from "react-router-dom"
 import { useAuth } from "../../contexts/AuthContext"
 import { TemplateDashboard } from '..'
+import { auth } from "../../firebase"
 
 export default function PrivateRoute({ component: Component, ...rest }) {
   const { currentUser , activePassword , activeUserEmail } = useAuth();
@@ -15,28 +16,27 @@ const renderComponent = (props) => {
   
     const pathName = path;
      console.log("pathName " , pathName)
-
+ 
     switch(pathName) {
       case '/register': 
         {
           // if()
           console.log("activePassword______________________", activePassword)
           if(!currentUser) <Redirect to="/start" />
-          if(activePassword === true) return <Redirect to="/confirme-email" />
+          if(activePassword ==+ true) return <Redirect to="/confirme-email" />
           else return <TemplateDashboard component={Component} />
         }
         case '/confirme-email': 
         {
           console.log("activeUserEmail______________________", activeUserEmail)
           if(!currentUser) <Redirect to="/start" />
-          if(activeUserEmail === true) return <Redirect to="/login" />
+          // if(activeUserEmail ==+ true) return <Redirect to="/login" />
           else return <TemplateDashboard component={Component} />
         }
         case '/login': 
         {
           console.log("activeUserEmail______________________", activeUserEmail)
           if(!currentUser) return  <TemplateDashboard component={Component} />
-           
           if(currentUser) return <Redirect to="/virtual-tour"/>
           // if(activePassword === true) return  <TemplateDashboard component={Component} />
          
