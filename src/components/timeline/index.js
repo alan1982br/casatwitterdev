@@ -11,13 +11,16 @@ import { db } from "../../firebase";
 
 const TimelineComponent = () => {
 
-  const [dados, setDados] = useState([]);
-  const [currentThumb, setCurrentThumb] = useState(null)
-  const [buttonIndex, setButtonIndex] = useState(-1);
+  const [ dados, setDados ] = useState([]);
+  const [ readData, setReadData ] = useState(false);
+  const [ hasSnapShot, setHasSnapShot] = useState(false);
+  const [ fireBaseRead, setFirebaseRed ] = useState(false); 
+  const [ currentThumb, setCurrentThumb ] = useState(null)
+  const [ buttonIndex, setButtonIndex ] = useState(-1);
+  const [ sobra, setSobra ] = useState(0);
+  const [ moveX, setMoveX ] = useState(50);
+  const [ isOpen, setIsOpen ] = useState(true);
   const { isMobile, width } = useResize();
-  const [sobra, setSobra] = useState(0);
-  const [moveX, setMoveX] = useState(50);
-  const [isOpen, setIsOpen] = useState(true);
 
   const dispatch = useDispatch();
   const paddingDrag = 50;
@@ -55,6 +58,11 @@ const TimelineComponent = () => {
   }
 
   const onClick = (e) => {
+
+    // Se o usuário não está logado ou se ainda não leu o firebase, não aciona o click
+    if(currentUser === null || !fireBaseRead) return;
+
+
     if ((Date.now() - firstClick) > 150) {
       return;
     }
@@ -62,15 +70,23 @@ const TimelineComponent = () => {
     if (mouseMoved > 5) return;
 
     const { id, index } = e.currentTarget.dataset;
- console.log(index)
+    console.log(index)
 
-    // db.database().ref('timeline_users').child(currentUser.uid+"/room_1/hotspots/" + id).update({
-    //     // id:id,
-    //     // image:"",
-    //     // path:"",
-    //   status_ckeckin : true,
+    const dataObjToFirebase = dados.find(data => data.id === id);
 
-    // })
+    if(dataObjToFirebase !== null) {
+      console.log("manda para o firebase");
+
+      let objToFirebase = {
+        ...dataObjToFirebase,
+        status_ckeckin : true
+      }
+
+      console.log("hasSnapshot", hasSnapShot)
+      hasSnapShot ? 
+      db.database().ref('timeline_users').child(currentUser.uid+"/hotspots/" + id).update({...objToFirebase }):
+      db.database().ref('timeline_users').child(currentUser.uid+"/hotspots/" + id).set({...objToFirebase })
+  }
 
     if (currentThumb === id) {
       // desativa
@@ -121,36 +137,74 @@ const TimelineComponent = () => {
   }
 
   useEffect(() => {
-    const addAttr = data.map(data => ({
+    const addAttr = data.filter(dado => dado.type === "timeline").map(data => ({
       ...data
     }))
     setDados(addAttr)
+    setReadData(true);
 
   }, [])
 
   useEffect(() => {
-    try {
-      db.database().ref('timeline_users').child(currentUser.uid).on("value", snapshot => {
-        try {
-          // console.log(' snapshot.val() ALL DATA timeline_users ', snapshot.val().room_1['hotspots'])
-          let dataHotSpot = snapshot.val().room_1['hotspots'];
-           
-          const addAttr = dataHotSpot.map(data => ({
-            ...data,
-            active: data.status_ckeckin,
-            visited: false
-          }))
-            //  setDados(addAttr)
-             console.log("addAttrTimeline ", addAttr)
-        } catch (error) {
-          console.log("useEffect timeline error " , error)
-        }
-      })
-    } catch (error) {
-      
+
+    if(readData) {
+   
+      try {
+        db.database().ref('timeline_users').child(currentUser.uid).on("value", snapshot => {
+          try {
+            // console.log(' snapshot.val() ALL DATA timeline_users ', snapshot.val().room_1['hotspots'])
+            console.log(' snapshot.val() ALL DATA timeline_users ', snapshot.val())
+            const snapshotVal = snapshot.val();
+
+            // Se nenhum thumb ainda foi clicado pelo user 
+            if(snapshotVal === null) {
+              console.log("não tem nenhum hotspot que já foi visitado");
+              
+            } else { 
+              setHasSnapShot(true);
+              console.log("tem hotspots visitados");
+              console.log("val", snapshotVal.hotspots)
+
+              // converte os visitados do firebase em array
+              const arr = Object.keys(snapshotVal.hotspots);
+
+              // copia o array atual
+              const oldData = [...dados];
+
+              // verifica se os ids atuais já foram visitados de acordo com o firebase
+              const newData = oldData.map(thumb => {
+                let newThumb = {}
+                const found = arr.filter(id => id === thumb.id);
+                
+                if(found.length > 0) {
+                  newThumb = {
+                    ...thumb,
+                    visited: true
+                  }
+                } else {
+                  newThumb = {...thumb}
+                }
+
+                return newThumb
+              } )
+
+              // Popula o novo array com o visited = true
+              setDados(newData);
+
+            }
+
+            setFirebaseRed(true);
+          } catch (error) {
+            console.log("useEffect timeline error " , error)
+          }
+          
+        })
+      } catch (error) {
+        
+      }
     }
-    
-  }, [currentUser])
+
+  }, [currentUser, readData])
 
   return (
     <div className={`timeline__wrapper ${isOpen ? '' : 'timeline-close'}`} >
@@ -173,8 +227,7 @@ const TimelineComponent = () => {
           dados.map((button, index) => {
             const _class = currentThumb === button.id ? 'active' : '';
             const activeScale = currentThumb === button.id ? .8 : 1;
-            // const hasVisitedTour = visitedTour.includes(button.id);
-               const hasVisitedTour = button.active;
+           const hasVisitedTour = button?.visited === true;
         
             const _classImage = hasVisitedTour ? 'image-container visit' : 'image-container'
             let _classBullet = 'first';
