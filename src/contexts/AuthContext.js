@@ -16,6 +16,7 @@ export function AuthProvider({ children }) {
   const [loading, setLoading] = useState(true)
   const [activeEmail, setActiveEmail] = useState(null);
   const [activePassword, setActivePassword] = useState(false);
+  const [activePreRegisterPassword, setActivePreRegisterPassword] = useState(false);
   const [activeUserEmail, setActiveUserEmail] = useState(false);
 
   const history = useHistory()
@@ -28,6 +29,35 @@ export function AuthProvider({ children }) {
 
   function signup(email, password) {
     return auth.createUserWithEmailAndPassword(email, password)
+  }
+
+
+  function checkEmailparticipant(email) {
+    try {
+         db
+         .database()
+         .ref('user_pre_register')
+         .orderByChild("email")
+         .once("value", snapshot => {
+           
+          //  console.log(' snapshot.val() ALL DATA USER PRE REGISTER ', snapshot.val())
+           snapshot.forEach(function (child) {
+            if(child.val().email == email ){
+              setActiveEmail(email);
+              console.log(child.key + ": " + child.val().email , child.val().passwordCreated);
+            }else{
+              console.log("false")
+              setActiveEmail(false)
+            }
+            setActivePreRegisterPassword(child.val().passwordCreated);
+          });
+       }) 
+    } catch (e) {
+      // Error! oh no
+    } finally {
+      console.log("done verify email")
+    }
+ 
   }
 
   function checkEmail(email) {
@@ -55,13 +85,14 @@ export function AuthProvider({ children }) {
     return auth.signInWithEmailAndPassword(email, password).then(() => {
       localStorage.setItem('@Twitter:ActiveEmail',true)
       localStorage.setItem('@Twitter:email', email)
+      
     })
   }
 
   function logout() {
     return auth.signOut().then(() => {
-      localStorage.removeItem('@Twitter:ActiveEmail');
-      localStorage.removeItem('@Twitter:email');
+      // localStorage.removeItem('@Twitter:ActiveEmail');
+      // localStorage.removeItem('@Twitter:email');
       setCurrentUser(null);
       setStoreCurrentUser(null);
       history.push("/login")
@@ -85,10 +116,13 @@ export function AuthProvider({ children }) {
         passwordCreated: true
       }).then(() => {
         setActivePassword(true)
+        db.database().ref(`user_pre_register`).child(currentUser.uid).update({
+          passwordCreated: true
+        })       
         console.log("updatePassword 3 ", currentUser.email)
         sendEmailVerification(currentUser.email);
+        
       })
-
     })
   }
 
@@ -96,9 +130,14 @@ export function AuthProvider({ children }) {
     console.log("updatePassword 4", email)
     return currentUser.sendEmailVerification().then(() => {
       console.log("updatePassword 5")
-      setCurrentUser(null);
+      // setActiveUserEmail(currentUser.emailVerified);
+     
       db.database().ref(`participantes`).child(currentUser.uid).update({
         sendEmailVerification: true
+      }).then(() => {
+         logout();
+        console.log("logout after sendEmailVerification")
+        setCurrentUser(null);
       })
     })
   }
@@ -116,17 +155,27 @@ export function AuthProvider({ children }) {
             console.log('STEP 1 PasswordCreated ______________', snapshot.val().passwordCreated)
             console.log('STEP 2 sendEmailVerification ________', snapshot.val().sendEmailVerification)
             console.log('STEP 3 EmailVerified ________________', user.emailVerified)
-            setActivePassword(snapshot.val().passwordCreated);
-            setActiveUserEmail(user.emailVerified);
-
+            console.log('STEP 4 setActiveUserEmail ________________', activeUserEmail)
+            // setActivePassword(snapshot.val().passwordCreated);
+            // setActiveUserEmail(user.emailVerified);
           } catch (error) {
             console.log(error)
           }
-
+        //  let interval =  setInterval(function() {
+        //     auth.currentUser.reload();
+        //     if (auth.currentUser.emailVerified) {
+        //         console.log("Email Verified!");
+        //         clearInterval(interval);
+        //         setActiveUserEmail(auth.currentUser.emailVerified);
+        //     }
+        //   }, 6000);
         })
     })
+
+     
+
     return unsubscribe
-  }, [setStoreCurrentUser])
+  }, [])
 
   const value = {
     currentUser,
@@ -137,8 +186,10 @@ export function AuthProvider({ children }) {
     updateEmail,
     updatePassword,
     checkEmail,
+    checkEmailparticipant,
     activeEmail,
     activePassword,
+    activePreRegisterPassword,
     activeUserEmail
   }
 
