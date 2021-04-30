@@ -42,7 +42,7 @@ export function AuthProvider({ children }) {
            
           //  console.log(' snapshot.val() ALL DATA USER PRE REGISTER ', snapshot.val())
            snapshot.forEach(function (child) {
-            if(child.val().email == email ){
+            if(child.val().email === email ){
               setActiveEmail(email);
               console.log(child.key + ": " + child.val().email , child.val().passwordCreated);
             }else{
@@ -96,6 +96,7 @@ export function AuthProvider({ children }) {
       setCurrentUser(null);
       setStoreCurrentUser(null);
       history.push("/login")
+      setActivePreRegisterPassword(false)
     })
   }
 

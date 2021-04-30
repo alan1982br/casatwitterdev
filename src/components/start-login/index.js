@@ -50,9 +50,9 @@ export default function Start() {
        history.push("/register");
     } else {
       if(typeof(activeEmail) === 'string') {
-        if(activePreRegisterPassword){
+        if(activePreRegisterPassword == true){
 
-          history.push("/login")
+          //  history.push("/login")
 
         }else{
 

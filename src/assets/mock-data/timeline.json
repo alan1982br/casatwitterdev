@@ -1,153 +1,191 @@
 [
   {
     "id": "1",
-    "title": "Twitter Trends",
+    "title": "Área externa com comunicação",
     "path": "https://cloud.3dvista.com/hosting/7086438/2/index.htm?media-index=1",
-    "type": "timeline",
-    "idRoom": "1",
-    "idHotspot": "hotspot name",
-    "image": "https://www.placecage.com/190/106"
+    "type": "bolha",
+    "image": ""
   },
   {
     "id": "2",
-    "title": "Twitter Trends",
+    "title": "Entrada",
     "path": "https://cloud.3dvista.com/hosting/7086438/2/index.htm?media-index=2",
-    "type": "timeline",
-    "idRoom": "1",
-    "idHotspot": "hotspot name",
-    "image": "https://www.placecage.com/190/107"
+    "type": "bolha",
+    "image": ""
   },
   {
     "id": "3",
-    "title": "Twitter Trends Long title",
+    "title": "Veja tudo de uma vez",
     "path": "https://cloud.3dvista.com/hosting/7086438/2/index.htm?media-index=3",
-    "type": "timeline",
-    "idRoom": "1",
-    "idHotspot": "hotspot name",
-    "image": "https://www.placecage.com/190/108"
+    "type": "bolha",
+    "image": ""
   },
   {
     "id": "4",
-    "title": "Twitter Trends very long title",
-    "path": "https://cloud.3dvista.com/hosting/7086438/2/index.htm?media-index=4",
+    "title": "Conteúdo completo",
+    "path": "https://cloud.3dvista.com/hosting/7086438/2/index.htm?media-index=3&trigger-overlay-name=btn_mainconteduo",
     "type": "timeline",
-    "idRoom": "1",
-    "idHotspot": "hotspot name",
+    "idRoom": "03_ veja_tudo_de_uma_vez",
+    "idHotspot": "btn_mainconteduo",
     "image": "https://www.placecage.com/190/109"
   },
   {
     "id": "5",
-    "title": "Twitter Trends",
-    "path": "https://cloud.3dvista.com/hosting/7086438/2/index.htm?media-index=5",
-    "type": "timeline",
-    "idRoom": "1",
-    "idHotspot": "hotspot name",
-    "image": "https://www.placecage.com/190/110"
+    "title": "O que você precisa saber",
+    "path": "https://cloud.3dvista.com/hosting/7086438/2/index.htm?media-index=4",
+    "type": "bolha",
+    "image": ""
   },
   {
     "id": "6",
-    "title": "Twitter Trends",
-    "path": "https://cloud.3dvista.com/hosting/7086438/2/index.htm?media-index=6",
+    "title": "Agenda",
+    "path": "https://cloud.3dvista.com/hosting/7086438/2/index.htm?media-index=4&trigger-overlay-name=btn_nossaagenda",
     "type": "timeline",
-    "idRoom": "1",
-    "idHotspot": "hotspot name",
+    "idRoom": "04_o_que_voce_precisa_saber",
+    "idHotspot": "btn_nossaagenda",
     "image": "https://www.placecage.com/190/111"
   },
   {
     "id": "7",
-    "title": "Twitter Trends",
-    "path": "https://cloud.3dvista.com/hosting/7086438/2/index.htm?media-index=7",
+    "title": "Visão do CEO do Twitter, Jack Dorsey",
+    "path": "https://cloud.3dvista.com/hosting/7086438/2/index.htm?media-index=4&trigger-overlay-name=btn_visaotwitter",
     "type": "timeline",
-    "idRoom": "1",
-    "idHotspot": "hotspot name",
+    "idRoom": "04_o_que_voce_precisa_saber",
+    "idHotspot": "btn_visaotwitter",
     "image": "https://www.placecage.com/190/112"
   },
   {
     "id": "8",
-    "title": "Twitter Trends",
-    "path": "https://cloud.3dvista.com/hosting/7086438/2/index.htm?media-index=8",
+    "title": "Para lembrar",
+    "path": "https://cloud.3dvista.com/hosting/7086438/2/index.htm?media-index=4&trigger-overlay-name=btn_tresmensagens",
     "type": "timeline",
-    "idRoom": "1",
-    "idHotspot": "hotspot name",
+    "idRoom": "04_o_que_voce_precisa_saber",
+    "idHotspot": "btn_tresmensagens",
     "image": "https://www.placecage.com/190/113"
   },
   {
     "id": "9",
-    "title": "Twitter Trends",
-    "path": "https://cloud.3dvista.com/hosting/7086438/2/index.htm?media-index=9",
-    "type": "timeline",
-    "idRoom": "1",
-    "idHotspot": "hotspot name",
-    "image": "https://www.placecage.com/190/114"
+    "title": "Conteúdo relevante, veja aqui!",
+    "path": "https://cloud.3dvista.com/hosting/7086438/2/index.htm?media-index=5",
+    "type": "bolha",
+    "image": ""
   },
   {
     "id": "10",
-    "title": "Twitter Trends",
-    "path": "https://cloud.3dvista.com/hosting/7086438/2/index.htm?media-index=10",
+    "title": "(Nathali Lima)Twitter + Tv: Parcerias de Conteúdo",
+    "path": "https://cloud.3dvista.com/hosting/7086438/2/index.htm?media-index=5&trigger-overlay-name=btn_twittertv",
     "type": "timeline",
-    "idRoom": "1",
-    "idHotspot": "hotspot name",
+    "idRoom": "05_conteudo_relevante",
+    "idHotspot": "btn_twittertv",
     "image": "https://www.placecage.com/190/115"
   },
   {
     "id": "11",
-    "title": "Twitter Trends",
-    "path": "https://cloud.3dvista.com/hosting/7086438/2/index.htm?media-index=11",
-    "type": "timeline",
-    "idRoom": "1",
-    "idHotspot": "hotspot name",
-    "image": "https://www.placecage.com/190/116"
+    "title": "Como fazer acontecer",
+    "path": "https://cloud.3dvista.com/hosting/7086438/2/index.htm?media-index=6",
+    "type": "bolha",
+    "image": ""
   },
   {
     "id": "12",
-    "title": "Twitter Trends",
-    "path": "https://cloud.3dvista.com/hosting/7086438/2/index.htm?media-index=12",
+    "title": "Crie conteúdo relevante com Twitter Arthouse",
+    "path": "https://cloud.3dvista.com/hosting/7086438/2/index.htm?media-index=6&trigger-overlay-name=btn_arthouse",
     "type": "timeline",
-    "idRoom": "1",
-    "idHotspot": "hotspot name",
+    "idRoom": "06_como_fazer_acontecer",
+    "idHotspot": "btn_arthouse",
     "image": "https://www.placecage.com/190/120"
   },
   {
     "id": "13",
-    "title": "Twitter Trends",
-    "path": "https://cloud.3dvista.com/hosting/7086438/2/index.htm?media-index=13",
+    "title": "Dá uma espiada",
+    "path": "https://cloud.3dvista.com/hosting/7086438/2/index.htm?media-index=6&trigger-overlay-name=btn_espiada",
     "type": "timeline",
-    "image": "https://www.placecage.com/190/121"
+    "idRoom": "06_como_fazer_acontecer",
+    "idHotspot": "btn_espiada",
+    "image": "https://www.placecage.com/190/120"
+  },
+  {
+    "id": "14",
+    "title": "Elabore estratégias que impulsionam sua marca com Twitter Next",
+    "path": "https://cloud.3dvista.com/hosting/7086438/2/index.htm?media-index=6&trigger-overlay-name=btn_twitternext",
+    "type": "timeline",
+    "idRoom": "06_como_fazer_acontecer",
+    "idHotspot": "btn_twitternext",
+    "image": "https://www.placecage.com/190/120"
+  },
+  {
+    "id": "15",
+    "title": "Tendências que você precisa saber",
+    "path": "https://cloud.3dvista.com/hosting/7086438/2/index.htm?media-index=7",
+    "type": "bolha",
+    "image": ""
+  },
+  {
+    "id": "16",
+    "title": "Estudo Twitter Trends",
+    "path": "https://cloud.3dvista.com/hosting/7086438/2/index.htm?media-index=7&trigger-overlay-name=btn_estudotwitter",
+    "type": "timeline",
+    "idRoom": "07_tendencias_que_voce_precisa_saber",
+    "idHotspot": "btn_estudotwitter",
+    "image": "https://www.placecage.com/190/120"
+  },
+  {
+    "id": "17",
+    "title": "Inspire-se: Marcas que brilham",
+    "path": "https://cloud.3dvista.com/hosting/7086438/2/index.htm?media-index=8",
+    "type": "bolha",
+    "image": ""
+  },
+  {
+    "id": "18",
+    "title": "Avon",
+    "path": "https://cloud.3dvista.com/hosting/7086438/2/index.htm?media-index=8&trigger-overlay-name=btn_avon",
+    "type": "timeline",
+    "idRoom": "08_ inspire_se_marcas_que_brilham",
+    "idHotspot": "btn_avon",
+    "image": "https://www.placecage.com/190/120"
+  },
+  {
+    "id": "19",
+    "title": "Samsung",
+    "path": "https://cloud.3dvista.com/hosting/7086438/2/index.htm?media-index=8&trigger-overlay-name=btn_samsung",
+    "type": "timeline",
+    "idRoom": "08_ inspire_se_marcas_que_brilham",
+    "idHotspot": "btn_samsung",
+    "image": "https://www.placecage.com/190/120"
   },
   {
     "id": "20",
-    "title": "Twitter Trends",
-    "path": "https://cloud.3dvista.com/hosting/7086438/2/index.html?media-index=2",
-    "type": "bolha",
-    "image": "https://www.placecage.com/190/121"
+    "title": "Natura",
+    "path": "https://cloud.3dvista.com/hosting/7086438/2/index.htm?media-index=8&trigger-overlay-name=btn_natura",
+    "type": "timeline",
+    "idRoom": "08_ inspire_se_marcas_que_brilham",
+    "idHotspot": "btn_natura",
+    "image": "https://www.placecage.com/190/120"
   },
   {
     "id": "21",
-    "title": "Twitter Trends",
-    "path": "https://cloud.3dvista.com/hosting/7086438/2/index.html?media-index=3",
-    "type": "bolha",
-    "image": "https://www.placecage.com/190/121"
+    "title": "O que vem por aí: Inovação de produto (Kayvon & Dantley)",
+    "path": "https://cloud.3dvista.com/hosting/7086438/2/index.htm?media-index=8&trigger-overlay-name=btn_inovacao",
+    "type": "timeline",
+    "idRoom": "08_ inspire_se_marcas_que_brilham",
+    "idHotspot": "btn_inovacao",
+    "image": "https://www.placecage.com/190/120"
   },
   {
     "id": "22",
-    "title": "Twitter Trends",
-    "path": "https://cloud.3dvista.com/hosting/7086438/2/index.html?media-index=4",
+    "title": "Final",
+    "path": "https://cloud.3dvista.com/hosting/7086438/2/index.htm?media-index=9",
     "type": "bolha",
-    "image": "https://www.placecage.com/190/121"
+    "image": ""
   },
   {
     "id": "23",
-    "title": "Twitter Trends",
-    "path": "https://cloud.3dvista.com/hosting/7086438/2/index.html?media-index=5",
-    "type": "bolha",
-    "image": "https://www.placecage.com/190/121"
-  }
-  ,
-  {
-    "id": "24",
-    "title": "Twitter Trends",
-    "path": "https://cloud.3dvista.com/hosting/7086438/2/index.html?media-index=6",
-    "type": "bolha",
-    "image": "https://www.placecage.com/190/121"
+    "title": "Estudo Twitter Trends (Camilla Guimaraes)",
+    "path": "https://cloud.3dvista.com/hosting/7086438/2/index.htm?media-index=9&trigger-overlay-name=btn_camillaguimaraes",
+    "type": "timeline",
+    "idRoom": "09_ final",
+    "idHotspot": "btn_camillaguimaraes",
+    "image": "https://www.placecage.com/190/120"
   }
 ]
