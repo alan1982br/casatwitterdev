@@ -61,9 +61,7 @@ const TermsOfUseComponent = () => {
                   </p>
                   <p>7. As Partes elegem o Foro Central da Comarca da Capital do Estado de São Paulo para dirimir as questões oriundas deste instrumento.
                   </p>
-                  <p className="text-center">São Paulo, 7 de maio de 2021.</p>
                   <p className="margin-black"><b>TWITTER DO BRASIL REDE DE INFORMAÇÃO LTDA</b></p>
-                  <p className="text-center"><b>XXXXX</b></p>
                   </Col>
                 </Row>
               </Col>

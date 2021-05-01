@@ -38,7 +38,7 @@ const HeaderComponent = () => {
           <>
             <MenuHeader />
             <div className="divisor" />
-            <p style={{marginRight: '60px'}}>Olá {' '}<b>{nome}</b></p>
+            <p style={{marginRight: '60px'}}>Olá, {' '}<b>{nome}</b>.</p>
             <ButtonLogout />
           </>
         }
