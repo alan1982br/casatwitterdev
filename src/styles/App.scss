@@ -151,6 +151,8 @@ p, span {
       height: 100%;
       max-height: calc(var(--height) - 150px);
     }
+
+    
   }
 
   .form-group {
@@ -316,6 +318,17 @@ p, span {
       margin-top: 20px;
     }
   }
+}
+
+.form .alert-danger {
+  font-family: 'Chirp Extended Bold', sans-serif !important;
+  color: #FA4233 !important;
+  background: #000 !important;
+  border: solid 2px #FA4233 !important;
+  padding: 12.5px 1.25rem !important;
+  border-radius: 8px !important;
+  text-align: center;
+  font-size: 14px;
 }
 
 textarea:focus, 
