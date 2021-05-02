@@ -16,6 +16,12 @@ export default function Register() {
     dispatch({ type: 'UPDATE_TERMS', payload: show });
   }
 
+  const handleLogout = () => {
+    localStorage.removeItem('@Twitter:ActiveEmail');
+    localStorage.removeItem('@Twitter:email');
+    history.push('/');
+  }
+
   const [ inputs, setAllInputs ] = useState({
     checked: false,
     nome: '',
@@ -116,6 +122,7 @@ export default function Register() {
               <div className={inputs.checked ? 'checked': ''} />
               <p>Aceito os <span className="termos">Termos de uso</span>.</p>
             </label>
+            <p className="text-center mt-3" onClick={handleLogout}>Não é voce? <span style={{textDecoration: 'underline', cursor: 'pointer'}}>Sair</span></p>
             {error && <Alert className="mt-4" variant="danger">{error}</Alert>}
             <p className="mt-4 text-center preencha">*Preencha todos os campos para continuar</p>
             <Button disabled={!inputs.checked} style={{opacity: inputs.checked ? 1 : .5 }} className="btn-form w-100 distance-top lighter" type="submit">
