@@ -46,7 +46,14 @@
       }
 
       @media (min-width: 768px) {
-        margin: 0 30px;
+
+        &:not(:last-child) {
+          margin: 0 15px;
+        }
+
+        &:last-child {
+          margin: 0 0 0 15px;
+        }
       }
 
       a {

@@ -208,8 +208,8 @@ const TimelineComponent = () => {
 
   return (
     <div className={`timeline__wrapper ${isOpen ? '' : 'timeline-close'}`} >
-      <AnimatePresence>
-      {isMobile && 
+      {/* <AnimatePresence>
+      {isMobile &&  */}
          <motion.div
           key="button-open-close"
           initial={{opacity: 0, y: 10}}
@@ -219,8 +219,8 @@ const TimelineComponent = () => {
           className={`controller ${isOpen ? 'open' : 'closed'} ${currentThumb === null ? '': 'has-open'}`}>
          <RiArrowDownSLine size={30} color="#FFF" />
         </motion.div>
-      }
-      </AnimatePresence>
+      {/* }
+      </AnimatePresence> */}
      
       <motion.div animate={{x: getMoveX(), opacity: getOpacityOpen(), transition: { ease: 'easeOut', duration: getDuration()}}} drag="x" dragConstraints={{ left: sobra, right: paddingDrag }} ref={containerButtonRef} className="buttons-container">
         { dados.length > 0 &&
