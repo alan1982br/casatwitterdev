@@ -70,6 +70,31 @@ p, span {
 *::-webkit-scrollbar { width: 1px; height: 1px } *::-webkit-scrollbar-track { background: transparent } *::-webkit-scrollbar-thumb { background: transparent }
 * { scrollbar-color: transparent; scrollbar-width: thin; }
 
+
+* ::-webkit-scrollbar { 
+  @media (min-width: 768px) {
+    width: 2px !important; 
+    height: 1px !important; 
+  }
+} 
+::-webkit-scrollbar-track { 
+  @media (min-width: 768px) {
+    background: #c4c4c4 !important; 
+  }
+} 
+::-webkit-scrollbar-thumb { 
+  @media (min-width: 768px) {
+    background: #15202b !important; 
+  }
+}
+
+* { 
+  @media (min-width: 768px) {
+    scrollbar-color: #15202b !important ;
+    scrollbar-width: thin !important;
+  }
+};
+
 .debug {
   border: solid 1px red;
 
@@ -145,6 +170,7 @@ p, span {
     height: 100%;
     max-height: calc(var(--height) - 200px);
     padding-bottom: 30px;
+    
     @media (max-width: 767px) {
       overflow-y: auto;
       overflow-x: hidden;
@@ -152,7 +178,11 @@ p, span {
       max-height: calc(var(--height) - 150px);
     }
 
-    
+    @media (min-width: 768px) {
+      &.register {
+        padding-right: 16px;
+      }
+    }
   }
 
   .form-group {

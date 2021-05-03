@@ -72,7 +72,7 @@ export default function Start() {
       }
     }
     
-  }, [activeEmail, history, login])
+  }, [activeEmail, activePreRegisterPassword, history, login])
 
   useEffect(() => {
     const email = localStorage.getItem('@Twitter:email');
@@ -88,7 +88,7 @@ export default function Start() {
           <p className="text-center mb-4">Para começar digite o seu email abaixo</p>
           <Form onSubmit={handleSubmit} className="distance-top higher" style={{minHeight: '340px'}}>
             <Form.Group id="email">
-              <Form.Control onChange={handleChange} type="email" name="email" id="txtEmail" autoComplete="off" className={inputs.email !== '' ? 'filled': 'empty'} />
+              <Form.Control onChange={handleChange} type="text" name="email" id="txtEmail" autoComplete="off" className={inputs.email !== '' ? 'filled': 'empty'} />
               <Form.Label className={inputs.email !== '' ? 'filled': 'empty'} htmlFor="txtEmail">Email</Form.Label>
               {inputs.email.length <= 0 && <Required />}
             </Form.Group>
