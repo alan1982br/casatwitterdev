@@ -36,6 +36,12 @@ export default function Login() {
     setLoading(false)
   }
 
+  const handleLogout = () => {
+    localStorage.removeItem('@Twitter:ActiveEmail');
+    localStorage.removeItem('@Twitter:email');
+    history.push('/');
+  }
+
   const validateEmail = (email) => {
     const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(String(email).toLowerCase());
@@ -46,7 +52,7 @@ export default function Login() {
           <h2 className="text-center mb-4">LOGO</h2>
           <Form onSubmit={handleSubmit} style={{minHeight: '600px'}}>
             <Form.Group id="email">
-              <Form.Control onChange={handleChange} type="email" name="email" id="txtEmail" autoComplete="off" className={inputs.email !== '' ? 'filled': 'empty'} />
+              <Form.Control onChange={handleChange} type="text" name="email" id="txtEmail" autoComplete="off" className={inputs.email !== '' ? 'filled': 'empty'} />
               <Form.Label className={inputs.email !== '' ? 'filled': 'empty'} htmlFor="txtEmail">Email</Form.Label>
               {inputs.email.length <= 0 && <Required />}
             </Form.Group>
@@ -58,6 +64,7 @@ export default function Login() {
             <div className="w-100 text-center distance-top">
               <Link to="/forgot-password">Esqueci minha senha</Link>
             </div>
+            <p className="text-center mt-3" onClick={handleLogout}>Não é você? <span style={{textDecoration: 'underline', cursor: 'pointer'}}>Sair</span></p>
             {error && <Alert variant="danger mt-4">{error}</Alert>}
             <Button disabled={loading} className="btn-form w-100 distance-top" type="submit">
               Entrar
