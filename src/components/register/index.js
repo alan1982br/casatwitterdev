@@ -6,7 +6,7 @@ import { useHistory } from "react-router-dom"
 import { Required } from '..'
 
 export default function Register() {
-  const { signup, activeEmail, updatePassword } = useAuth()
+  const { signup, activeEmail, updatePassword , activePreRegisterPassword } = useAuth()
   const [error, setError] = useState("")
   const [userEmail, setUserEmail] = useState('');
   const history = useHistory();
@@ -74,11 +74,18 @@ export default function Register() {
 
   useEffect(() => {
     const email = localStorage.getItem('@Twitter:email');
-    if(email !== null) {
-      setUserEmail(email);
-    } else {
-       history.push("/start")
-    }
+   
+    if(activePreRegisterPassword === true){
+      history.push("/login")
+
+      }else{
+        if(email !== null) {
+          setUserEmail(email);
+        } else {
+           history.push("/start")
+        }
+      }
+   
   }, [history])
 
   return (

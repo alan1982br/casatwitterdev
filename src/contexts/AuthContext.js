@@ -157,6 +157,7 @@ export function AuthProvider({ children }) {
             console.log('STEP 2 sendEmailVerification ________', snapshot.val().sendEmailVerification)
             console.log('STEP 3 EmailVerified ________________', user.emailVerified)
             console.log('STEP 4 setActiveUserEmail ________________', activeUserEmail)
+            localStorage.setItem('@Twitter:uid', user.uid)
             // setActivePassword(snapshot.val().passwordCreated);
             // setActiveUserEmail(user.emailVerified);
           } catch (error) {
