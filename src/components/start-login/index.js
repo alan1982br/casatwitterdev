@@ -50,12 +50,9 @@ export default function Start() {
        history.push("/register");
     } else {
       if(typeof(activeEmail) === 'string') {
-        if(activePreRegisterPassword == true){
-
-          //  history.push("/login")
-
-        }else{
-
+        if(activePreRegisterPassword === true){
+            history.push("/login")
+          }else{
           doLogin()
          
           // adicionar email ao localStorage
@@ -72,15 +69,15 @@ export default function Start() {
       }
     }
     
-  }, [activeEmail, history, login])
+  }, [activeEmail, history, activePreRegisterPassword, login])
 
   useEffect(() => {
     const email = localStorage.getItem('@Twitter:email');
     if(email !== null) {
        history.push("/register")
     }
-    console.log('activePassword ', activePassword)
-  }, [activePassword, history])
+    console.log('activePassword ', activePreRegisterPassword)
+  }, [history])
 
 
   return (
