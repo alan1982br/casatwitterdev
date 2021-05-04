@@ -16,16 +16,16 @@ export default function Start() {
 
   async function handleSubmit(e) {
     e.preventDefault()
-
+    console.log("handleSubmit")
     if(validateEmail(inputs.email) !== true) return setError("Informe um e-mail válido.")
 
     // history.push("/register")
     // return ;
     try {
       setError("")
-      // await login(emailRef.current.value, passwordRef.current.value)
-    //  await checkEmail(inputs.email)
-     await checkEmailparticipant(inputs.email);
+       
+              await checkEmail(inputs.email)
+          //  await checkEmailparticipant(inputs.email);
       // history.push("/register")
     } catch {
       setError("O email digitado não consta em nosso sistema")
@@ -39,7 +39,11 @@ export default function Start() {
  
   useEffect(() => {
     // const hasEmail = localStorage.getItem('@Twitter:ActiveEmail');
-     
+
+    console.log("ENTER PAGE START_________________")
+    const activePassword = localStorage.getItem('@Twitter:passwordCreated');
+    console.log("ENTER PAGE REGISTER activePassword _________________" , activePassword)
+    
     const doLogin = async () => {
       console.log("REACT_APP_PASSWORD_USER_FIRST ", process.env.REACT_APP_PASSWORD_USER_FIRST)
       await login(activeEmail, process.env.REACT_APP_PASSWORD_USER_FIRST)
@@ -47,36 +51,35 @@ export default function Start() {
     }
     
     if(localStorage.getItem('@Twitter:ActiveEmail') === true){
-       history.push("/register");
+      //  history.push("/register");
     } else {
       if(typeof(activeEmail) === 'string') {
-        if(activePreRegisterPassword === true){
+        console.log("activePreRegisterPassword " , activePreRegisterPassword);
+        if(activePassword === true){
+          console.log("step1")
             history.push("/login")
           }else{
           doLogin()
-         
+         console.log("step2")
           // adicionar email ao localStorage
           localStorage.setItem('@Twitter:ActiveEmail',true)
-          localStorage.setItem('@Twitter:email', activeEmail)
-          
+          localStorage.setItem('@Twitter:email', activeEmail) 
           history.push("/register")
-
         }
-        
       } else if (activeEmail === false) {
         setError("O email digitado não consta em nosso sistema")
         history.push("/start")
       }
     }
-    
-  }, [activeEmail, history, activePreRegisterPassword, login])
+  //  }, [activeEmail, history, activePreRegisterPassword, login])
+   }, [activeEmail])
 
   useEffect(() => {
     const email = localStorage.getItem('@Twitter:email');
     if(email !== null) {
        history.push("/register")
     }
-    console.log('activePassword ', activePreRegisterPassword)
+    
   }, [history])
 
 

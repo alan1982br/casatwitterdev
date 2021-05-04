@@ -10,8 +10,13 @@ const ButtonLogoutComponent = () => {
  const handleLogout = () => {
 
     if(currentUser) {
-       logout();      
-    }
+        logout(`start`);
+        localStorage.removeItem('@Twitter:ActiveEmail');
+        localStorage.removeItem('@Twitter:email');
+        localStorage.removeItem('@Twitter:uid');
+        localStorage.removeItem('@Twitter:passwordCreated');
+       }
+   
   }
 
   useEffect(() => {
