@@ -1,11 +1,10 @@
 .button-navigation {
     width: 77px;
     height: 76px;
-    transform-origin: center;
-    transform: scale(.8);
+    // transform-origin: center;
+    transform: scale(.6);
 
     @media (min-width: 768px) {
       cursor: pointer;
-      transform: scale(1);
     }
 }
