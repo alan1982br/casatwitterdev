@@ -1,6 +1,7 @@
 import React, { useRef, useState, useEffect} from 'react'
-import { Document, Page } from 'react-pdf/dist/umd/entry.webpack';
-import { useResize } from '../../hooks'
+import pdfjsWorker from 'pdfjs-dist/build/pdf.worker.entry'; 
+import { Document, Page, pdfjs } from 'react-pdf';
+import { useResize } from '../../hooks';
 import { motion, AnimatePresence } from 'framer-motion';
 // import { saveAs } from 'file-saver';
 import { useDispatch } from 'react-redux';
@@ -11,6 +12,8 @@ import { ThumbVideo } from '..'
 import './style.scss'
 
 import pdfFile from '../../assets/files/twitter-trends-report-pt.pdf';
+
+pdfjs.GlobalWorkerOptions.workerSrc = pdfjsWorker;
 
 const options = {
   cMapUrl: 'cmaps/',
