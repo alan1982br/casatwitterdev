@@ -46,16 +46,26 @@
 
     .prev {
       position: absolute;
-      left: 15px;
-      bottom: 15px;
+      left: 0;
+      top: 50%;
+      transform: scale(.6) translateY(-50%);
       z-index: 1;
+
+      @media (min-width: 768px) {
+        left: 15px;
+      }
     }
 
     .next {
       position: absolute;
-      right: 15px;
-      bottom: 15px;
+      right: 0;
+      top: 50%;
+      transform: scale(.6) translateY(-50%);
       z-index: 1;
+
+      @media (min-width: 768px) {
+        right: 15px;
+      }
     }
   }
 
