@@ -100,7 +100,7 @@ export function AuthProvider({ children }) {
       setCurrentUser(null);
       setStoreCurrentUser(null);
       // path == "/start" ? history.push("/start") : history.push("/login");
-      history.push("/"+ path)
+      history.push("/login")
       setActivePreRegisterPassword(false)
     })
   }
@@ -142,6 +142,7 @@ export function AuthProvider({ children }) {
         sendEmailVerification: true
       }).then(() => {
          logout('confirme-email');
+         history.push("/confirme-email")
         console.log("logout after sendEmailVerification")
         setCurrentUser(null);
       })
