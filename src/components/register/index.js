@@ -6,7 +6,7 @@ import { useHistory } from "react-router-dom"
 import { Required } from '..'
 
 export default function Register() {
-  const { signup, activeEmail, updatePassword , activePreRegisterPassword } = useAuth()
+  const { signup, activeEmail, updatePassword , activePreRegisterPassword , checkEmailparticipant } = useAuth()
   const [error, setError] = useState("")
   const [userEmail, setUserEmail] = useState('');
   const history = useHistory();
@@ -73,11 +73,16 @@ export default function Register() {
   }
 
   useEffect(() => {
-    const email = localStorage.getItem('@Twitter:email');
    
-    if(activePreRegisterPassword === true){
+    console.log("ENTER PAGE REGISTER_________________" , activePreRegisterPassword)
+   
+    const email = localStorage.getItem('@Twitter:email');
+    const activePassword = localStorage.getItem('@Twitter:passwordCreated');
+   
+    console.log("ENTER PAGE REGISTER activePassword _________________" , activePassword)
+    
+    if(activePassword === 'true'){
       history.push("/login")
-
       }else{
         if(email !== null) {
           setUserEmail(email);
@@ -87,6 +92,7 @@ export default function Register() {
       }
    
   }, [history])
+
 
   return (
     <Container className="form">
