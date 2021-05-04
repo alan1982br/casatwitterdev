@@ -12,6 +12,6 @@ export const getFile = (file) => {
   if(file.includes("http")){
     return file;
   } else {
-    return require("../assets/files/twitter.pdf");
+    return require(`../assets/files/${file}`);
   }
 }

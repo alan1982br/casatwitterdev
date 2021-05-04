@@ -1,7 +1,9 @@
 import React, { useRef, useState, useEffect} from 'react'
-import { useResize } from '../../hooks'
-import { motion } from 'framer-motion';
-import { saveAs } from 'file-saver';
+import pdfjsWorker from 'pdfjs-dist/build/pdf.worker.entry'; 
+import { Document, Page, pdfjs } from 'react-pdf';
+import { useResize } from '../../hooks';
+import { motion, AnimatePresence } from 'framer-motion';
+// import { saveAs } from 'file-saver';
 import { useDispatch } from 'react-redux';
 import { Col, Row } from 'react-bootstrap';
 import { IoCloseSharp } from 'react-icons/all';
@@ -9,9 +11,22 @@ import { getFile } from '../../utils'
 import { ThumbVideo } from '..'
 import './style.scss'
 
+import pdfFile from '../../assets/files/twitter-trends-report-pt.pdf';
+
+pdfjs.GlobalWorkerOptions.workerSrc = pdfjsWorker;
+
+const options = {
+  cMapUrl: 'cmaps/',
+  cMapPacked: true,
+};
+
 const  TrendsComponent = () => {
 
+  // const [file, setFile] = useState(pdfFile);
+  const [numPages, setNumPages] = useState(null);
+
   const { isMobile, height } = useResize();
+  const [ iFileActive, setFileActive ] = useState(null);
   const [ containerTextHeight, setContainerTextHeight ] = useState('40vh')
   const titleRef = useRef(null);
   const termsRef = useRef(null);
@@ -25,12 +40,25 @@ const  TrendsComponent = () => {
     showHideTerms(false);
   }
 
-  const saveFile = (url) => {
-    /// The file must be in assets/file folder
-    saveAs(
-      getFile(url),
-      url
-    );
+  // function onFileChange(event) {
+  //   setFile(event.target.files[0]);
+  // }
+
+  function onDocumentLoadSuccess({ numPages: nextNumPages }) {
+    console.log("loaded", "pages", nextNumPages)
+    setNumPages(nextNumPages);
+  }
+
+  // const saveFile = (url) => {
+  //   saveAs(
+  //     getFile(url),
+  //     url
+  //   );
+  // }
+
+  const setFile = (url) => {
+    setFileActive(getFile(url));
+    // setFileActive(pdfFile);
   }
 
   useEffect(() => {
@@ -53,6 +81,40 @@ const  TrendsComponent = () => {
                   </Col>
               </Col>
               <Col className="col-11 col-md-6 terms-container" ref={termsRef}>
+              <AnimatePresence>
+                  { iFileActive !== null && 
+                    <motion.div
+                    key="iframe"
+                    initial={{opacity: 0}}
+                    animate={{opacity: 1, transition: {delay: .15, ease: 'easeInOut', duration: .5}}} 
+                    exit={{opacity: 0, transition: { duration: .3}}} 
+                    className='file-container'>
+                      <Document
+                        file={iFileActive}
+                        loading="Carregando documento"
+                        onLoadSuccess={onDocumentLoadSuccess}
+                        // options={options}
+                        
+                      >
+                         {/* <Page
+                            key={`page_`}
+                            pageNumber={1}
+                          /> */}
+                        {
+                          Array.from(
+                            new Array(numPages),
+                            (el, index) => (
+                              <Page
+                                key={`page_${index + 1}`}
+                                pageNumber={index + 1}
+                              />
+                            ),
+                          )
+                        }
+                      </Document>
+                    </motion.div>
+                  }
+                </AnimatePresence>
                 <Row className="title__container" ref={titleRef}>
                   <Col className="col-12 d-flex align-items-center justify-content-center mt-4">
                     <h1>Trends</h1>
@@ -67,11 +129,11 @@ const  TrendsComponent = () => {
                                    />
                       <ThumbVideo image="https://www.placecage.com/500/408" 
                                   title="Download PDF - 01"
-                                  handleClick={() => saveFile('twitter.pdf')}
+                                  handleClick={() => setFile('twitter-trends-report-pt.pdf')}
                                    />
                       <ThumbVideo image="https://www.placecage.com/500/407" 
                                   title="Download PDF - 02"
-                                  handleClick={() => saveFile('twitter.pdf')}
+                                  handleClick={() => setFile('twitter.pdf')}
                                    />
                       </Row>
                   </Col>
