@@ -32,26 +32,29 @@ export function AuthProvider({ children }) {
   }
 
 
-  function checkEmailparticipant(email) {
+    function checkEmailparticipant(email) {
     try {
-         db
+          db
          .database()
          .ref('user_pre_register')
          .orderByChild("email")
-         .once("value", snapshot => {
+         .on("value", snapshot => {
            
           //  console.log(' snapshot.val() ALL DATA USER PRE REGISTER ', snapshot.val())
            snapshot.forEach(function (child) {
             if(child.val().email === email ){
               setActiveEmail(email);
               console.log(child.key + ": " + child.val().email , child.val().passwordCreated);
+              setActivePreRegisterPassword(child.val().passwordCreated);
+              localStorage.setItem('@Twitter:passwordCreated', child.val().passwordCreated)
+              return true;
             }else{
-              console.log("false")
-              setActiveEmail(false)
+              //  console.log("false")
+             
             }
-            setActivePreRegisterPassword(child.val().passwordCreated);
+           
           });
-       }) 
+       })
     } catch (e) {
       // Error! oh no
     } finally {
@@ -60,9 +63,9 @@ export function AuthProvider({ children }) {
  
   }
 
-  function checkEmail(email) {
+  async function checkEmail(email) {
 
-    auth.fetchSignInMethodsForEmail(email).then((methods) => {
+    await auth.fetchSignInMethodsForEmail(email).then((methods) => {
 
       // console.log(methods, methods[0]);
       if (methods[0] !== 'password') {
@@ -70,7 +73,8 @@ export function AuthProvider({ children }) {
         setActiveEmail(false);
       } else {
         console.log("fetchSignInMethodsForEmail true ", methods)
-        setActiveEmail(email);
+         checkEmailparticipant(email);
+        //  setActiveEmail(email);  
       }
 
     }).catch((error) => {
@@ -89,13 +93,13 @@ export function AuthProvider({ children }) {
     })
   }
 
-  function logout() {
+  function logout(path = null) {
     return auth.signOut().then(() => {
       // localStorage.removeItem('@Twitter:ActiveEmail');
       // localStorage.removeItem('@Twitter:email');
       setCurrentUser(null);
       setStoreCurrentUser(null);
-      history.push("/login")
+      path == "/start" ? history.push("/start") : history.push("/login");
       setActivePreRegisterPassword(false)
     })
   }

@@ -23,15 +23,16 @@ const renderComponent = (props) => {
           // if()
           console.log("activePassword______________________", activePassword)
           if(!currentUser) <Redirect to="/start" />
-          if(activePassword ==+ true) return <Redirect to="/confirme-email" />
+          if(activePassword === true) return <Redirect to="/confirme-email" />
           else return <TemplateDashboard component={Component} />
         }
         case '/confirme-email': 
         {
           console.log("activeUserEmail______________________", activeUserEmail)
-          if(!currentUser) <Redirect to="/start" />
+          // if(!currentUser) <Redirect to="/start" />
           // if(activeUserEmail ==+ true) return <Redirect to="/login" />
-          else return <TemplateDashboard component={Component} />
+          // else return <TemplateDashboard component={Component} />
+             return <TemplateDashboard component={Component} />
         }
         case '/login': 
         {
