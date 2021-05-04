@@ -75,9 +75,8 @@ function App() {
                   <Route path="/register-fake">
                     <TemplateDashboard component={Register}/>
                   </Route>
-                  <PrivateRoute path="/register" component={Register} />
                   <PrivateRoute path="/confirme-email" component={ConfirmeEmail} />
-                 
+                  <PrivateRoute path="/register" component={Register} />
                   <Route path="/start">
                     <TemplateDashboard component={Start} />
                   </Route>

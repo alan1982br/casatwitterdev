@@ -99,7 +99,8 @@ export function AuthProvider({ children }) {
       // localStorage.removeItem('@Twitter:email');
       setCurrentUser(null);
       setStoreCurrentUser(null);
-      path == "/start" ? history.push("/start") : history.push("/login");
+      // path == "/start" ? history.push("/start") : history.push("/login");
+      history.push("/"+ path)
       setActivePreRegisterPassword(false)
     })
   }
@@ -140,7 +141,7 @@ export function AuthProvider({ children }) {
       db.database().ref(`participantes`).child(currentUser.uid).update({
         sendEmailVerification: true
       }).then(() => {
-         logout();
+         logout('confirme-email');
         console.log("logout after sendEmailVerification")
         setCurrentUser(null);
       })
@@ -163,7 +164,7 @@ export function AuthProvider({ children }) {
             console.log('STEP 4 setActiveUserEmail ________________', activeUserEmail)
             localStorage.setItem('@Twitter:uid', user.uid)
             // setActivePassword(snapshot.val().passwordCreated);
-            // setActiveUserEmail(user.emailVerified);
+               setActiveUserEmail(user.emailVerified);
           } catch (error) {
             console.log(error)
           }

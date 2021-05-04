@@ -29,8 +29,8 @@ const renderComponent = (props) => {
         case '/confirme-email': 
         {
           console.log("activeUserEmail______________________", activeUserEmail)
-          // if(!currentUser) <Redirect to="/start" />
-          // if(activeUserEmail ==+ true) return <Redirect to="/login" />
+           if(!currentUser) <Redirect to="/start" />
+          //  if(activeUserEmail === true) return <Redirect to="/login" />
           // else return <TemplateDashboard component={Component} />
              return <TemplateDashboard component={Component} />
         }
