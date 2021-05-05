@@ -59,6 +59,13 @@ const TimelineComponent = () => {
 
   const onClick = (e) => {
 
+    window.parent.postMessage({
+      'hotspot_id': '01',
+      'hotspot_name': '01',
+      'id_room': '01',
+      'room_name': '01',
+    }, "*");
+
     // Se o usuário não está logado ou se ainda não leu o firebase, não aciona o click
     if(currentUser === null || !fireBaseRead) return;
 

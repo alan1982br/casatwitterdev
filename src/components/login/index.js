@@ -64,7 +64,7 @@ export default function Login() {
             <div className="w-100 text-center distance-top">
               <Link to="/forgot-password">Esqueci minha senha</Link>
             </div>
-            <p className="text-center mt-3" onClick={handleLogout}>Não é você? <span style={{textDecoration: 'underline', cursor: 'pointer'}}>Sair</span></p>
+            {/* <p className="text-center mt-3" onClick={handleLogout}>Não é você? <span style={{textDecoration: 'underline', cursor: 'pointer'}}>Sair</span></p> */}
             {error && <Alert variant="danger mt-4">{error}</Alert>}
             <Button disabled={loading} className="btn-form w-100 distance-top" type="submit">
               Entrar

@@ -2,7 +2,8 @@
 import React from "react"
 import { Route, Redirect } from "react-router-dom"
 import { useAuth } from "../../contexts/AuthContext"
-import { TemplateDashboard } from '..'
+import { TemplateDashboard  } from '..'
+import { VirtualTour  } from '../../pages'
 import { auth } from "../../firebase"
 
 export default function PrivateRoute({ component: Component, ...rest }) {
@@ -18,7 +19,7 @@ const renderComponent = (props) => {
      console.log("pathName " , pathName)
  
     switch(pathName) {
-      case '/register': 
+      case '/register':
         {
           // if()
           console.log("activePassword______________________", activePassword)
@@ -42,38 +43,22 @@ const renderComponent = (props) => {
           // if(activePassword === true) return  <TemplateDashboard component={Component} />
          
         }
+        case '/virtual-tour':
+          {
+             
+            console.log("activeUserEmail", activeUserEmail)
+            if(!currentUser) return <Redirect to="/login" />
+            if(currentUser.emailVerified === false) return <Redirect to="/confirme-email" />
+            else return  <Route exact path="/virtual-tour" component={VirtualTour} /> 
+          }
         
       default:
         return <h1>404 private</h1>
         // if logado
         // <TemplateDashboard component={Component} />
     }
-
-    //
-    // const route = props.path;
-
-    // switch(route) {
-    //   case '/register':
-    //     return <TemplateDashboard component={Register} />
-    //   default:
-    //     return <h1>Olá</h1>
-    // }
-
-    // return <h1>teste</h1>
-
-    // return <h1>sei lá</h1>
-    // switch (currentUser) {
-    //   case currentUser && forcedashboard:
-    //     return <Redirect to="/login" />;
-    //   case currentUser.emailVerified  === true:
-    //     return <Redirect to="/virtual-tour" />;
-    //   case activePassword === true:
-        // return <Redirect to="/confirme-email" />;
-    //   case currentUser :
-    //     return <Component {...props} />;
-    //   default: 
-    //     return <Redirect to="/start" />;
-    // }
+ 
+ 
   }
 
   return (
