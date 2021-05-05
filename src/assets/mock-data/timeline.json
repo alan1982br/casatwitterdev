@@ -27,7 +27,7 @@
     "type": "timeline",
     "idRoom": "03_ veja_tudo_de_uma_vez",
     "idHotspot": "btn_mainconteduo",
-    "image": "https://www.placecage.com/190/109"
+    "image": "thumb_agendaIntroducao.jpg"
   },
   {
     "id": "5",
@@ -43,7 +43,7 @@
     "type": "timeline",
     "idRoom": "04_o_que_voce_precisa_saber",
     "idHotspot": "btn_nossaagenda",
-    "image": "https://www.placecage.com/190/111"
+    "image": "thumb_arthouse.jpg"
   },
   {
     "id": "7",
@@ -52,7 +52,7 @@
     "type": "timeline",
     "idRoom": "04_o_que_voce_precisa_saber",
     "idHotspot": "btn_visaotwitter",
-    "image": "https://www.placecage.com/190/112"
+    "image": "thumb_avon.jpg"
   },
   {
     "id": "8",
@@ -61,7 +61,7 @@
     "type": "timeline",
     "idRoom": "04_o_que_voce_precisa_saber",
     "idHotspot": "btn_tresmensagens",
-    "image": "https://www.placecage.com/190/113"
+    "image": "thumb_conteudoCompleto.jpg"
   },
   {
     "id": "9",
@@ -77,7 +77,7 @@
     "type": "timeline",
     "idRoom": "05_conteudo_relevante",
     "idHotspot": "btn_twittertv",
-    "image": "https://www.placecage.com/190/115"
+    "image": "thumb_daUmaEspiada.jpg"
   },
   {
     "id": "11",
@@ -93,7 +93,7 @@
     "type": "timeline",
     "idRoom": "06_como_fazer_acontecer",
     "idHotspot": "btn_arthouse",
-    "image": "https://www.placecage.com/190/120"
+    "image": "thumb_inovacaoProduto.jpg"
   },
   {
     "id": "13",
@@ -102,7 +102,7 @@
     "type": "timeline",
     "idRoom": "06_como_fazer_acontecer",
     "idHotspot": "btn_espiada",
-    "image": "https://www.placecage.com/190/120"
+    "image": "thumb_maisAqui.jpg"
   },
   {
     "id": "14",
@@ -111,7 +111,7 @@
     "type": "timeline",
     "idRoom": "06_como_fazer_acontecer",
     "idHotspot": "btn_twitternext",
-    "image": "https://www.placecage.com/190/120"
+    "image": "thumb_natura.jpg"
   },
   {
     "id": "15",
@@ -127,7 +127,7 @@
     "type": "timeline",
     "idRoom": "07_tendencias_que_voce_precisa_saber",
     "idHotspot": "btn_estudotwitter",
-    "image": "https://www.placecage.com/190/120"
+    "image": "thumb_next.jpg"
   },
   {
     "id": "17",
@@ -143,7 +143,7 @@
     "type": "timeline",
     "idRoom": "08_ inspire_se_marcas_que_brilham",
     "idHotspot": "btn_avon",
-    "image": "https://www.placecage.com/190/120"
+    "image": "thumb_paraLembrar.jpg"
   },
   {
     "id": "19",
@@ -152,7 +152,7 @@
     "type": "timeline",
     "idRoom": "08_ inspire_se_marcas_que_brilham",
     "idHotspot": "btn_samsung",
-    "image": "https://www.placecage.com/190/120"
+    "image": "thumb_samsung.jpg"
   },
   {
     "id": "20",
@@ -161,7 +161,7 @@
     "type": "timeline",
     "idRoom": "08_ inspire_se_marcas_que_brilham",
     "idHotspot": "btn_natura",
-    "image": "https://www.placecage.com/190/120"
+    "image": "thumb_twitterTrends.jpg"
   },
   {
     "id": "21",
@@ -170,7 +170,7 @@
     "type": "timeline",
     "idRoom": "08_ inspire_se_marcas_que_brilham",
     "idHotspot": "btn_inovacao",
-    "image": "https://www.placecage.com/190/120"
+    "image": "thumb_twitterTV.jpg"
   },
   {
     "id": "22",
@@ -186,6 +186,6 @@
     "type": "timeline",
     "idRoom": "09_ final",
     "idHotspot": "btn_camillaguimaraes",
-    "image": "https://www.placecage.com/190/120"
+    "image": "thumb_visaoCEO.jpg"
   }
 ]

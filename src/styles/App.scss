@@ -109,7 +109,9 @@ p, span {
   height: 100vh;
   top: 0;
   left: 0;
-  background: rgba(0,0,0,.7);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
   z-index: 1001;
   display: flex;
   flex-direction: column;
@@ -138,7 +140,7 @@ p, span {
   }
 
   p, h2 {
-    color: #D9D9D9;
+    color: #000000;
     font-size: 18px;
     margin-bottom: 0;
   }
@@ -227,7 +229,7 @@ p, span {
         outline: none;
         border: solid 2px #D9D9D9;
         border-radius: 8px;
-        background: #000000;
+        background: #FFFFFF;
         letter-spacing: 1.28px;
 
         @media (min-width: 768px) {
@@ -257,9 +259,9 @@ p, span {
     margin: 0;
     padding: 0;
     height: 70px;
-    border: solid 2px #CFD9DE;
+    border: solid 2px #15202B;
     border-radius: 8px;
-    background: #000;
+    background: #FFF;
     color: #D9D9D9;
     font-size: 22px;
     padding: 0 24px;
@@ -267,12 +269,12 @@ p, span {
     outline: none;
 
     &:focus, &:focus-within, &.filled {
-      background: #000;
-      color: #D9D9D9;
+      background: #FFF;
+      color: #15202B;
       // color: rgba(#D9D9D9, .3);
       ~ label {
         transform: translateY(-10%)  scale(.6);
-        color:#fff;
+        color:#15202B;
         opacity: .8;
         top: 0px;
         cursor: default;
@@ -280,7 +282,7 @@ p, span {
     }
 
     &:disabled {
-      background: #000;
+      background: #FFF;
       color: rgba(#D9D9D9, .3);
       border: solid 2px rgba(#D9D9D9, .3);
       user-select: none;
@@ -295,7 +297,7 @@ p, span {
     position: absolute;
     top: 50%;
     left: 25px;
-    color: #D9D9D9;
+    color: #15202B;
     font-size: 22px;
     transform-origin: left;
     transform: translateY(-50%) scale(1);
@@ -309,14 +311,14 @@ p, span {
       transform: translateY(-10%)  scale(.6);
       opacity: .8;
       top: 0;
-      color:#fff;
+      color:#15202B;
       cursor: default;
     }
   }
 
   .btn-form {
     height: 70px;
-    background: #000;
+    background: #FFF;
     color: #1D9BF0;
     border: solid 2px #1D9BF0;
     border-radius: 8px;
@@ -374,5 +376,5 @@ input[type=number]:focus,
 [type=tel].form-control:focus, 
 [contenteditable].form-control:focus {
   box-shadow: none;
-  border-color: #CFD9DE;
+  border-color: #15202B;
 }
