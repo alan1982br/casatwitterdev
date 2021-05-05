@@ -9,6 +9,7 @@ import { Col, Row } from 'react-bootstrap';
 import { IoCloseSharp } from 'react-icons/all';
 import { getFile } from '../../utils'
 import { ThumbVideo, ButtonNavigation } from '..'
+import { BgInstrucoes } from '../../assets'
 import './style.scss'
 
 pdfjs.GlobalWorkerOptions.workerSrc = pdfjsWorker;
@@ -113,7 +114,8 @@ const  TrendsComponent = () => {
             initial={{opacity: 0}}
             animate={{opacity: 1, transition: {delay: .15, ease: 'easeInOut', duration: .5}}} 
             exit={{opacity: 0, transition: { duration: .3}}}
-            className="modal-wrapper">
+            className="modal-wrapper"
+            style={{backgroundImage: `url(${BgInstrucoes})`}}>
               <Col className="col-11 col-md-6 d-flex align-items-center justify-content-center button-container">
                   <Col className="col-12 d-flex align-items-end justify-content-end">
                     <IoCloseSharp style={{cursor: 'pointer'}} size={50} color="#FFF" onClick={() => showHideTerms(false)} />
