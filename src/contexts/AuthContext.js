@@ -17,7 +17,7 @@ export function AuthProvider({ children }) {
   const [activeEmail, setActiveEmail] = useState(null);
   const [activePassword, setActivePassword] = useState(false);
   const [activePreRegisterPassword, setActivePreRegisterPassword] = useState(false);
-  const [activeUserEmail, setActiveUserEmail] = useState(false);
+  const [activeUserEmail, setActiveUserEmail] = useState(null);
 
   const history = useHistory()
 
@@ -100,7 +100,17 @@ export function AuthProvider({ children }) {
       setCurrentUser(null);
       setStoreCurrentUser(null);
       // path == "/start" ? history.push("/start") : history.push("/login");
-      history.push("/"+ path)
+      history.push('/login');
+      setActivePreRegisterPassword(false)
+    })
+  }
+
+
+  function logoutConfirmEmail(path = null) {
+    return auth.signOut().then(() => {
+      setCurrentUser(null);
+      setStoreCurrentUser(null);
+      history.push("/confirme-email")
       setActivePreRegisterPassword(false)
     })
   }
@@ -141,7 +151,8 @@ export function AuthProvider({ children }) {
       db.database().ref(`participantes`).child(currentUser.uid).update({
         sendEmailVerification: true
       }).then(() => {
-         logout('confirme-email');
+         logoutConfirmEmail();
+        //  history.push("/confirme-email")
         console.log("logout after sendEmailVerification")
         setCurrentUser(null);
       })
@@ -153,29 +164,27 @@ export function AuthProvider({ children }) {
       setCurrentUser(user)
       setStoreCurrentUser(user);
       setLoading(false)
+      localStorage.setItem('@Twitter:uid', user.uid)
+
+    
 
       if (user != null)
         db.database().ref('participantes').child(user.uid).on("value", snapshot => {
           try {
+            // setActiveUserEmail(user.emailVerified);
+
             console.log(' snapshot.val() ALL DATA PARTICIPANTE ', snapshot.val())
             console.log('STEP 1 PasswordCreated ______________', snapshot.val().passwordCreated)
             console.log('STEP 2 sendEmailVerification ________', snapshot.val().sendEmailVerification)
             console.log('STEP 3 EmailVerified ________________', user.emailVerified)
             console.log('STEP 4 setActiveUserEmail ________________', activeUserEmail)
-            localStorage.setItem('@Twitter:uid', user.uid)
+           
             // setActivePassword(snapshot.val().passwordCreated);
-               setActiveUserEmail(user.emailVerified);
+             
           } catch (error) {
             console.log(error)
           }
-        //  let interval =  setInterval(function() {
-        //     auth.currentUser.reload();
-        //     if (auth.currentUser.emailVerified) {
-        //         console.log("Email Verified!");
-        //         clearInterval(interval);
-        //         setActiveUserEmail(auth.currentUser.emailVerified);
-        //     }
-        //   }, 6000);
+      
         })
     })
 

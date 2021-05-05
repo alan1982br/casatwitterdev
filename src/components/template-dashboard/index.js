@@ -5,6 +5,13 @@ import { ImageLoginHome } from '../../assets'
 import { Logo } from '..'
 import './style.scss'
 
+window.addEventListener('message', function(e) {
+  console.log(e.origin); // outputs "http://www.example.com/"
+  console.log("receive from layer 3dvista" , e.data); // outputs "works!"
+}, false);
+
+
+
 const TemplateDashboard = ({ component: Component, ...rest }) => {
 
   const { isMobile } = useResize();

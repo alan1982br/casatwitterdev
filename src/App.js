@@ -75,7 +75,10 @@ function App() {
                   <Route path="/register-fake">
                     <TemplateDashboard component={Register}/>
                   </Route>
-                  <PrivateRoute path="/confirme-email" component={ConfirmeEmail} />
+                  {/* <PrivateRoute path="/confirme-email" component={ConfirmeEmail} /> */}
+                  <Route path="/confirme-email">
+                    <TemplateDashboard component={ConfirmeEmail} />
+                  </Route>
                   <PrivateRoute path="/register" component={Register} />
                   <Route path="/start">
                     <TemplateDashboard component={Start} />
@@ -85,7 +88,8 @@ function App() {
                     <TemplateDashboard component={ForgotPassword} />
                   </Route>
                   <Route exact path="/testing" component={TestingPage} />
-                  <Route exact path="/virtual-tour" component={VirtualTour} />
+                  <PrivateRoute exact path="/virtual-tour" component={VirtualTour} />
+                  {/* <Route exact path="/virtual-tour" component={VirtualTour} /> */}
                 </Switch>
               </AuthProvider>
             </Router>
