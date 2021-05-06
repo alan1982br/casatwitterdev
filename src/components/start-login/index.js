@@ -12,7 +12,7 @@ export default function Start() {
   const [ inputs, setAllInputs ] = useState({
     email: ''
   });
-  const handleChange = (e) => setAllInputs({...inputs, [e.target.name]: e.target.value})
+  const handleChange = (e) => setAllInputs({...inputs, [e.target.name]: e.target.value.toLowerCase()})
 
   async function handleSubmit(e) {
     e.preventDefault()
@@ -24,7 +24,7 @@ export default function Start() {
     try {
       setError("")
        
-              await checkEmail(inputs.email)
+              await checkEmail(inputs.email.toLowerCase())
           //  await checkEmailparticipant(inputs.email);
       // history.push("/register")
     } catch {
@@ -72,7 +72,7 @@ export default function Start() {
       }
     }
   //  }, [activeEmail, history, activePreRegisterPassword, login])
-   }, [activeEmail])
+   }, [activeEmail, activePreRegisterPassword, history, login])
 
   useEffect(() => {
     const email = localStorage.getItem('@Twitter:email');

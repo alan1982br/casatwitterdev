@@ -2,6 +2,10 @@
   background: #FFF;
   max-height: 85vh;
 
+  @media (min-width: 768px){
+    min-height: 70vh;
+  }
+
   .react-pdf__Document {
     // max-width: 100%;
     height: 100%;
