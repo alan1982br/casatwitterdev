@@ -27,7 +27,7 @@ export default function ForgotPassword() {
       setMessage("")
       setError("")
       setLoading(true)
-      await resetPassword(inputs.email)
+      await resetPassword(inputs.email.toLowerCase())
       history.push('/email-enviado')
       // setMessage("Check your inbox for further instructions")
     } catch {
@@ -46,7 +46,7 @@ export default function ForgotPassword() {
         <p className="text-center mb-4">Para começar digite o seu email abaixo</p>
           <Form onSubmit={handleSubmit} className="distance-top higher" style={{minHeight: '480px'}}>
             <Form.Group id="email">
-              <Form.Control onChange={handleChange} type="email" name="email" id="txtEmail" autoComplete="off" className={inputs.email !== '' ? 'filled': 'empty'} />
+              <Form.Control style={{textTransform: 'lowercase'}} onChange={handleChange} type="email" name="email" id="txtEmail" autoComplete="off" className={inputs.email !== '' ? 'filled': 'empty'} />
               <Form.Label className={inputs.email !== '' ? 'filled': 'empty'} htmlFor="txtEmail">Email</Form.Label>
               {inputs.email.length <= 0 && <Required />}
             </Form.Group>

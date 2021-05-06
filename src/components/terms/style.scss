@@ -2,6 +2,10 @@
   background: #FFF;
   max-height: 85vh;
 
+  @media (min-width: 768px){
+    min-height: 70vh;
+  }
+
   h1 {
       font-family: 'Chirp Extended Bold', sans-serif !important;
       font-size: 1.75rem;

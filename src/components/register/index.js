@@ -4,11 +4,13 @@ import { useDispatch } from 'react-redux';
 import { useAuth } from "../../contexts/AuthContext"
 import { useHistory } from "react-router-dom"
 import { Required } from '..'
+import { RiEyeFill, RiEyeOffFill } from 'react-icons/all'
 
 export default function Register() {
   const { signup, activeEmail, updatePassword , activePreRegisterPassword , checkEmailparticipant } = useAuth()
   const [error, setError] = useState("")
   const [userEmail, setUserEmail] = useState('');
+  const [ typePassword, setTypePassword ] = useState('password');
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -55,6 +57,8 @@ export default function Register() {
 
     if(inputs.password.length < 1) return setError("O campo Senha deve ser preenchido.")
 
+    if(inputs.password.length < 8) return setError("O campo Senha deve ser pelo menos 8 caracteres.")
+
     if(inputs.passwordConfirm.length < 1) return setError("O campo Confirmar Senha deve ser preenchido.")
 
     console.log(inputs.password.length, inputs.passwordConfirm.length)
@@ -69,6 +73,35 @@ export default function Register() {
       history.push("/confirme-email")
     } catch {
       setError("erro ao tentar conectar com o servidor")
+    }
+  }
+
+  const changeIconPassword = () => {
+    if(typePassword === 'password') setTypePassword('text');
+    else setTypePassword('password');
+  }
+
+  const getIconVisibleEmail = (str) => {
+    if(str === 'passwordConfirm') {
+      if(inputs.passwordConfirm.length > 0){
+        if(typePassword === 'password') {
+          return <RiEyeOffFill className="icon-required cursor-pointer" color="#1D9BF0" style={{cursor: 'pointer'}} onClick={changeIconPassword} />
+        }
+        if(typePassword === 'text') {
+          return <RiEyeFill className="icon-required" style={{cursor: 'pointer'}} color="#1D9BF0" onClick={changeIconPassword} />
+        }
+      }
+    }
+
+    if(str === 'password') {
+      if(inputs.password.length > 0){
+        if(typePassword === 'password') {
+          return <RiEyeOffFill className="icon-required cursor-pointer" color="#1D9BF0" style={{cursor: 'pointer'}} onClick={changeIconPassword} />
+        }
+        if(typePassword === 'text') {
+          return <RiEyeFill className="icon-required cursor-pointer" color="#1D9BF0" style={{cursor: 'pointer'}} onClick={changeIconPassword} />
+        }
+      }
     }
   }
 
@@ -91,14 +124,14 @@ export default function Register() {
         }
       }
    
-  }, [history])
+  }, [activePreRegisterPassword, history])
 
 
   return (
     <Container className="form">
           <Form onSubmit={handleSubmit} className="register">
             <Form.Group id="email">
-              <Form.Control disabled type="text" name="email" value={userEmail} />
+              <Form.Control disabled type="text" name="email" value={userEmail} style={{textTransform: 'lowercase'}} />
               <Form.Label>Email</Form.Label>
             </Form.Group>
             <Form.Group id="nome" className="distance-top lighter">
@@ -122,14 +155,16 @@ export default function Register() {
               {inputs.user_twitter.length <= 0 && <Required />}
             </Form.Group>
             <Form.Group id="password" className="distance-top lighter">
-              <Form.Control onChange={handleChange} name="password" type="password" autoComplete="off" className={inputs.password !== '' ? 'filled': 'empty'} />
+              <Form.Control onChange={handleChange} name="password" type={typePassword} autoComplete="off" className={inputs.password !== '' ? 'filled': 'empty'} />
               <Form.Label>Senha</Form.Label>
               {inputs.password.length <= 0 && <Required />}
+              {getIconVisibleEmail("password")}
             </Form.Group>
             <Form.Group id="password-confirm" className="distance-top lighter">
-              <Form.Control onChange={handleChange} name="passwordConfirm"  type="password" autoComplete="off" className={inputs.passwordConfirm !== '' ? 'filled': 'empty'} />
+              <Form.Control onChange={handleChange} name="passwordConfirm"  type={typePassword} autoComplete="off" className={inputs.passwordConfirm !== '' ? 'filled': 'empty'} />
               <Form.Label>Confirmar senha</Form.Label>
               {inputs.passwordConfirm.length <= 0 && <Required />}
+              {getIconVisibleEmail("passwordConfirm")}
             </Form.Group>
             <label className={inputs.checked !== false ? 'checkbox filled distance-top lighter': 'checkbox empty distance-top lighter'} onClick={handleChangeCheckbox}>
               <div className={inputs.checked ? 'checked': ''} />
