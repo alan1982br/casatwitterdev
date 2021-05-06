@@ -6,7 +6,8 @@ export default function ConfirmeEmailComponent() {
   const history = useHistory();
 
   const goToLogin = () => {
-    history.push("/login");
+       history.push("/login");
+    // window.location.href = window.location + "/login";
   }
   
   return (

@@ -123,11 +123,24 @@ export function AuthProvider({ children }) {
     return currentUser.updateEmail(email)
   }
 
-  function updatePassword(password, name, idTwitter) {
+  function updatePassword(nome,empresa,cargo,user_twitter,password) {
     console.log("updatePassword 1")
     currentUser.updatePassword(password).then(() => {
       console.log("updatePassword 2")
+
+      currentUser.updateProfile({
+        displayName: nome,
+      }).then(function() {
+        console.log('Update successful profile name')  
+      }).catch(function(error) {
+        // An error happened.
+      });
+
       db.database().ref(`participantes`).child(currentUser.uid).update({
+        name: nome,
+        empresa: empresa,
+        cargo: cargo,
+        user_twitter : user_twitter,
         password: password,
         passwordCreated: true
       }).then(() => {
