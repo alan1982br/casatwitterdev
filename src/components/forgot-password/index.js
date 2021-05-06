@@ -43,7 +43,7 @@ export default function ForgotPassword() {
 
   return (
     <Container className="form">
-        <p className="text-center mb-4">Para começar digite o seu email abaixo</p>
+        <p className="text-center mb-4">Digite seu email.</p>
           <Form onSubmit={handleSubmit} className="distance-top higher" style={{minHeight: '480px'}}>
             <Form.Group id="email">
               <Form.Control style={{textTransform: 'lowercase'}} onChange={handleChange} type="email" name="email" id="txtEmail" autoComplete="off" className={inputs.email !== '' ? 'filled': 'empty'} />

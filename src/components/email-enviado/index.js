@@ -13,7 +13,7 @@ export default function EmailEnviado() {
 
   return (
     <Container className="form">
-          <h2 className="mb-4">E-mail enviado.</h2>
+          <h2 className="mb-4">E-mail enviado</h2>
           <p className="text-center mb-4">Por segurança, pedimos que você confirme seu email na caixa de entrada.</p>
           <Form onSubmit={handleSubmit} className="distance-top" style={{minHeight: '340px'}}>
             <Button className="btn-form w-100 distance-top" type="submit">
