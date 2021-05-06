@@ -3,6 +3,10 @@
   background: #FFF;
   max-height: 85vh;
 
+  @media (min-width: 768px){
+    min-height: 70vh;
+  }
+
   .iframe-container {
     position: absolute;
     top: 0;

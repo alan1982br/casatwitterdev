@@ -90,6 +90,9 @@ function App() {
                   <Route exact path="/testing" component={TestingPage} />
                   <PrivateRoute exact path="/virtual-tour" component={VirtualTour} />
                   {/* <Route exact path="/virtual-tour" component={VirtualTour} /> */}
+                  <Route path="/">
+                    <TemplateDashboard component={Start} />
+                  </Route>
                 </Switch>
               </AuthProvider>
             </Router>

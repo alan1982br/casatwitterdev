@@ -27,6 +27,7 @@
     border-radius: 20px;
     cursor: pointer;
     pointer-events: all;
+    z-index: 1;
 
     &.closed {
       svg {
