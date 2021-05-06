@@ -223,8 +223,8 @@ const TimelineComponent = () => {
           animate={{opacity: 1, y: 0, x: '-50%', transition: { ease: 'easeInOut', duration: .3}}} 
           exit={{opacity: 0, transition: { duration: .3}}}
           onClick={openCloseTimeline}
-          className={`controller ${isOpen ? 'open' : 'closed'}`}>
-          {/* className={`controller ${isOpen ? 'open' : 'closed'} ${currentThumb === null ? '': 'has-open'}`}> */}
+          // className={`controller ${isOpen ? 'open' : 'closed'}`}>
+          className={`controller ${isOpen ? 'open' : 'closed'} ${currentThumb === null ? '': 'has-open'}`}>
          <RiArrowDownSLine size={30} color="#FFF" />
         </motion.div>
       {/* }
@@ -252,7 +252,7 @@ const TimelineComponent = () => {
                 onMouseUp={_class !== 'active' ? onClick : () => { }}
                 onMouseDown={_class !== 'active' ? setDown : () => { }}
               >
-                  {/* <AnimatePresence>
+                  <AnimatePresence>
                     {_class === 'active' && 
                       <motion.div 
                       className="timeline__title"
@@ -263,7 +263,7 @@ const TimelineComponent = () => {
                         <p>{button?.title}</p>
                       </motion.div>
                     }
-                  </AnimatePresence> */}
+                  </AnimatePresence>
                   
                 <div className={_classImage} >
                   <div className="image" style={{ backgroundImage: `url(${getImage(button.image)})` }} />
