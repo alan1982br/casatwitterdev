@@ -2,7 +2,7 @@ import { createStore } from 'redux';
 
 const INITIAL_STATE = {
   showterms: false,
-  currentTour: "1",
+  currentTour: "15",
   visitedTour: [],
   currentUser: [],
   showDepoimentos: false,

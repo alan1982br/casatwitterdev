@@ -40,9 +40,17 @@
       cursor: pointer;
       color: #FFF;
       line-height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
       &:hover {
         text-decoration: underline;
+      }
+
+      svg {
+        margin-right: 10px;
+        margin-bottom: 3px;
       }
 
       @media (min-width: 768px) {

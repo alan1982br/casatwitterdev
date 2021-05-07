@@ -3,7 +3,7 @@ import pdfjsWorker from 'pdfjs-dist/build/pdf.worker.entry';
 import { Document, Page, pdfjs } from 'react-pdf';
 import { useResize } from '../../hooks';
 import { motion, AnimatePresence } from 'framer-motion';
-// import { saveAs } from 'file-saver';
+import { saveAs } from 'file-saver';
 import { useDispatch } from 'react-redux';
 import { Col, Row } from 'react-bootstrap';
 import { IoCloseSharp } from 'react-icons/all';
@@ -51,12 +51,12 @@ const  TrendsComponent = () => {
     setNumPages(nextNumPages);
   }
 
-  // const saveFile = (url) => {
-  //   saveAs(
-  //     getFile(url),
-  //     url
-  //   );
-  // }
+  const saveFile = (url) => {
+    saveAs(
+      getFile(url),
+      url
+    );
+  }
 
   const setFile = (url) => {
     setCurrentPage(1);
@@ -183,11 +183,13 @@ const  TrendsComponent = () => {
                                   handleClick={() => setCurrentTour('20')}
                                    />
                       <ThumbVideo image="https://www.placecage.com/500/408" 
-                                  title="Download PDF - 01"
+                                  title="Visualizar PDF - 01"
+                                  handleClickDownload={() => saveFile('twitter-trends-report-pt.pdf')}
                                   handleClick={() => setFile('twitter-trends-report-pt.pdf')}
                                    />
                       <ThumbVideo image="https://www.placecage.com/500/407" 
-                                  title="Download PDF - 02"
+                                  title="Visualizar PDF - 02"
+                                  handleClickDownload={() => saveFile('twitter.pdf')}
                                   handleClick={() => setFile('twitter.pdf')}
                                    />
                       </Row>
