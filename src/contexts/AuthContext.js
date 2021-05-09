@@ -110,7 +110,7 @@ export function AuthProvider({ children }) {
     return auth.signOut().then(() => {
       setCurrentUser(null);
       setStoreCurrentUser(null);
-      history.push("/confirme-email")
+      history.push(path)
       setActivePreRegisterPassword(false)
     })
   }
@@ -164,7 +164,7 @@ export function AuthProvider({ children }) {
       db.database().ref(`participantes`).child(currentUser.uid).update({
         sendEmailVerification: true
       }).then(() => {
-         logoutConfirmEmail();
+         logoutConfirmEmail("/confirme-email");
         //  history.push("/confirme-email")
         console.log("logout after sendEmailVerification")
         setCurrentUser(null);
@@ -184,7 +184,7 @@ export function AuthProvider({ children }) {
       if (user != null)
         db.database().ref('participantes').child(user.uid).on("value", snapshot => {
           try {
-            // setActiveUserEmail(user.emailVerified);
+            setActiveUserEmail(user.emailVerified);
 
             console.log(' snapshot.val() ALL DATA PARTICIPANTE ', snapshot.val())
             console.log('STEP 1 PasswordCreated ______________', snapshot.val().passwordCreated)
@@ -216,6 +216,7 @@ export function AuthProvider({ children }) {
     updatePassword,
     checkEmail,
     checkEmailparticipant,
+    logoutConfirmEmail,
     activeEmail,
     activePassword,
     activePreRegisterPassword,
