@@ -53,7 +53,7 @@ export default function Register() {
 
     if (inputs.cargo === '') return setError("O campo Cargo deve ser preenchido.")
 
-    if (inputs.user_twitter === '') return setError("O campo @user deve ser preenchido.")
+    // if (inputs.user_twitter === '') return setError("O campo @user deve ser preenchido.")
 
     if (inputs.password.length < 1) return setError("O campo Senha deve ser preenchido.")
 
@@ -152,8 +152,7 @@ export default function Register() {
         </Form.Group>
         <Form.Group id="user_twitter" className="distance-top lighter">
           <Form.Control type="text" onChange={handleChange} value={inputs.user_twitter} name="user_twitter" autoComplete="off" className={inputs.user_twitter !== '' ? 'filled' : 'empty'} />
-          <Form.Label>@user</Form.Label>
-          {inputs.user_twitter.length <= 0 && <Required />}
+          <Form.Label>@perfil no Twitter</Form.Label>
         </Form.Group>
         <Form.Group id="password" className="distance-top lighter">
           <Form.Control onChange={handleChange} name="password" type={typePassword} autoComplete="off" className={inputs.password !== '' ? 'filled' : 'empty'} />
