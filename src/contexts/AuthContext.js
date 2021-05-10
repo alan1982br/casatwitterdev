@@ -124,7 +124,7 @@ export function AuthProvider({ children }) {
   }
 
   function updatePassword(nome,empresa,cargo,user_twitter,password) {
-    console.log("updatePassword 1")
+    console.log("updatePassword 1", currentUser)
     currentUser.updatePassword(password).then(() => {
       console.log("updatePassword 2")
 

@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-expressions */
-import React from "react"
+import React, { useEffect, useState } from "react"
 import { Route, Redirect } from "react-router-dom"
 import { useAuth } from "../../contexts/AuthContext"
 import { TemplateDashboard  } from '..'
@@ -7,11 +7,22 @@ import { VirtualTour  } from '../../pages'
 import { auth } from "../../firebase"
 
 export default function PrivateRoute({ component: Component, ...rest }) {
+  const [ hasLocalStorage, setHasLocalStorage ] = useState(false);
   const { currentUser , activePassword , activeUserEmail } = useAuth();
 
   const { path } = {...rest};
 
   // const children = {...rest};
+
+  useEffect(() => {
+    try {
+      localStorage.getItem('@Twitter:email');
+      setHasLocalStorage(true);
+    } catch {
+      
+    }
+    
+  }, [])
 
 const renderComponent = (props) => {
   
@@ -46,9 +57,11 @@ const renderComponent = (props) => {
         }
         case '/virtual-tour':
           {
-             
             console.log("activeUserEmail", activeUserEmail)
-            if(!currentUser) return <Redirect to="/login" />
+            if(!currentUser) {
+              if(hasLocalStorage) return <Redirect to="/login" />
+              else return <Redirect to="/" />
+            } 
             if(currentUser.emailVerified === false) return <Redirect to="/confirme-email" />
             else return  <Route exact path="/virtual-tour" component={VirtualTour} /> 
           }
