@@ -49,7 +49,7 @@ export default function Login() {
     setTimeout(() => {
       history.push('/');
 
-    }, 700)
+    }, 1200)
 
   }
 

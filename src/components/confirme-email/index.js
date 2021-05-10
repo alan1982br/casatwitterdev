@@ -29,11 +29,14 @@ export default function ConfirmeEmailComponent() {
 
   useEffect(() => {
     try {
-      const email = currentUser.email;
-      setEmail(email);
+      const email = localStorage.getItem('@Twitter:email');
+      setEmail(email); 
+      if (email === null) {
+        history.push('/');
+      }
     } catch {
       // Redireciona para a home caso o user não esteja no local storage
-      history.push('/');
+      
       return;
     }
     // eslint-disable-next-line
