@@ -15,7 +15,7 @@ const ThumbVideoComponent = ({image = '', title = '', handleClick = () => {}, ha
         <p className="text-center">{title}</p>
       </div>
       {handleClickDownload !== null &&
-          <div onClick={handleClickDownload} className="file-download">Baixar <MdFileDownload size={20} color="#1D9BF0"/></div>
+          <div onClick={handleClickDownload} className="file-download">Download <MdFileDownload size={20} color="#1D9BF0"/></div>
         }
     </Col>
   )

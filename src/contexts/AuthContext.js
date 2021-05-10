@@ -177,7 +177,7 @@ export function AuthProvider({ children }) {
       setCurrentUser(user)
       setStoreCurrentUser(user);
       setLoading(false)
-      localStorage.setItem('@Twitter:uid', user.uid)
+      localStorage.setItem('@Twitter:uid', user?.uid)
 
     
 
@@ -204,7 +204,7 @@ export function AuthProvider({ children }) {
      
 
     return unsubscribe
-  }, [])
+  }, [activeUserEmail, setStoreCurrentUser])
 
   const value = {
     currentUser,
@@ -215,6 +215,7 @@ export function AuthProvider({ children }) {
     updateEmail,
     updatePassword,
     checkEmail,
+    sendEmailVerification,
     checkEmailparticipant,
     logoutConfirmEmail,
     activeEmail,
