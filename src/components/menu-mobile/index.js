@@ -27,7 +27,7 @@ const MenuMobileComponent = ({ closeMenuMobile, user }) => {
         exit={{ opacity: 0, x: '110vw', transition: { duration: 0.35 } }}
         transition={{ delay: 0 }}
       >
-        <IoCloseSharp size={50} color="#FFF" onClick={closeMobile} />
+        <IoCloseSharp size={50} color="#FFF" onClick={closeMobile} style={{cursor: 'pointer'}} />
         <nav>
           <div className="menu__mobile-menu">
             <p>Olá <b>{user}</b></p>

@@ -16,6 +16,7 @@ const useResize = () => {
     width: 0,
     height: 0,
     isMobile: false,
+    isTablet: false,
     bsBreakPoint: getBSbreakPoint(),
     vhMobile: window.innerHeight * 0.01
   });
@@ -25,6 +26,7 @@ const useResize = () => {
       width: window.innerWidth,
       height: window.innerHeight,
       isMobile: window.innerWidth < 768,
+      isTablet: window.innerWidth < 1050,
       bsBreakPoint: getBSbreakPoint(),
       vhMobile: window.innerHeight * 0.01
     });

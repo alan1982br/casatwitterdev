@@ -6,10 +6,10 @@ import './styles.scss'
 
 const MenuHeaderComponent = ({closeMenuMobile = () => {}}) => {
   const dispatch = useDispatch();
-  const { isMobile } = useResize();
+  const { isTablet } = useResize();
 
   const showHideDepoimentos = () => {
-    isMobile && closeMenuMobile();
+    isTablet && closeMenuMobile();
     dispatch({ type: 'UPDATE_DEPOIMENTOS', payload: true })
   };
   const showHideTrends = () => {

@@ -13,15 +13,15 @@ const HeaderComponent = () => {
   const [openMenu, setMenuOpen] = useState(false);
   const { currentUser } = useAuth();
   const [ nome, setNome ] = useState();
-  const { isMobile } = useResize();
+  const { isTablet } = useResize();
 
   useEffect(() => {
     setNome(currentUser?.displayName || 'Fulano')
   }, [currentUser])
 
   useEffect(() => {
-    if (!isMobile) setMenuOpen(false);
-  }, [isMobile]);
+    if (!isTablet) setMenuOpen(false);
+  }, [ isTablet ]);
 
   return (
     <div className="header">
@@ -34,7 +34,7 @@ const HeaderComponent = () => {
         <img src={LogoHeader} alt="Twitter" />
       </div>
       <div className="menu">
-        {!isMobile &&
+        {!isTablet &&
           <>
             <MenuHeader />
             <div className="divisor" />
@@ -42,7 +42,7 @@ const HeaderComponent = () => {
             <ButtonLogout />
           </>
         }
-        {isMobile && <IoMenu size={40} onClick={() => setMenuOpen(true)} />}
+        {isTablet && <IoMenu size={40} onClick={() => setMenuOpen(true)} style={{cursor: 'pointer'}} />}
       </div>
       
     </div>

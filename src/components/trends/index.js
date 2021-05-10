@@ -34,6 +34,10 @@ const  TrendsComponent = () => {
   const termsRef = useRef(null);
   const dispatch = useDispatch();
   const showHideTerms = (show) => {
+    if(iFileActive !== null) {
+      setFileActive(null);
+      return;
+    }
     dispatch({ type: 'UPDATE_TRENDS', payload: show });
   }
 

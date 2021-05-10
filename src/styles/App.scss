@@ -95,12 +95,10 @@ p, span {
   }
 };
 
-.debug {
-  border: solid 1px red;
-
-  &-blue {
-    border: solid 1px blue;
-  }
+.reenviar-email {
+  text-decoration: underline;
+  font-weight: bold;
+  cursor: pointer;
 }
 
 .modal-wrapper {
