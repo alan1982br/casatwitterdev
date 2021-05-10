@@ -41,15 +41,17 @@ export default function Login() {
   }
 
    const handleCadastrar = async() => {
-    await localStorage.removeItem('@Twitter:ActiveEmail');
-    await localStorage.removeItem('@Twitter:email');
-    await localStorage.removeItem('@Twitter:passwordCreated');
-    await localStorage.removeItem('@Twitter:uid');
+   
+    new Promise(function (resolve, reject) {
+      localStorage.removeItem('@Twitter:ActiveEmail');
+      localStorage.removeItem('@Twitter:email');
+      localStorage.removeItem('@Twitter:passwordCreated');
+      localStorage.removeItem('@Twitter:uid');
+      setTimeout(() => resolve(1), 1000);
+    }).then(
+      history.push('/start')
 
-    setTimeout(() => {
-      history.push('/');
-
-    }, 1200)
+    );
 
   }
 

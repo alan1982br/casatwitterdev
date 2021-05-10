@@ -18,10 +18,16 @@ export default function Register() {
     dispatch({ type: 'UPDATE_TERMS', payload: show });
   }
 
-  const handleLogout = () => {
-    localStorage.removeItem('@Twitter:ActiveEmail');
-    localStorage.removeItem('@Twitter:email');
-    history.push('/');
+  const handleLogout  = async() => {
+    await localStorage.removeItem('@Twitter:ActiveEmail');
+    await localStorage.removeItem('@Twitter:email');
+    await localStorage.removeItem('@Twitter:passwordCreated');
+    await localStorage.removeItem('@Twitter:uid');
+
+    // setTimeout(() => {
+    //   history.push('/start');
+
+    // }, 2500)
   }
 
   const [inputs, setAllInputs] = useState({
@@ -180,7 +186,7 @@ export default function Register() {
           <div className={inputs.checked ? 'checked' : ''} />
           <p>Aceito os <span className="termos">Termos de uso</span>.</p>
         </label>
-        {/* <p className="text-center mt-3" onClick={handleLogout}>Não é você? <span style={{textDecoration: 'underline', cursor: 'pointer'}}>Sair</span></p> */}
+        <p className="text-center mt-3" onClick={handleLogout}>Não é você? <span style={{textDecoration: 'underline', cursor: 'pointer'}}>Sair</span></p>
         {error && <Alert className="mt-4" variant="danger">{error}</Alert>}
         <p className="mt-4 text-center preencha">*Preencha todos os campos para continuar</p>
         <Button disabled={!inputs.checked} style={{ opacity: inputs.checked ? 1 : .5 }} className="btn-form w-100 distance-top lighter" type="submit">
