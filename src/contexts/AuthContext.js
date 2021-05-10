@@ -90,7 +90,11 @@ export function AuthProvider({ children }) {
       localStorage.setItem('@Twitter:ActiveEmail',true)
       localStorage.setItem('@Twitter:email', email)
       
-    })
+    }).then(() => {
+
+    }).catch(function(error) {
+       console.log(error)
+    });
   }
 
   function logout(path = null) {
@@ -104,8 +108,7 @@ export function AuthProvider({ children }) {
       setActivePreRegisterPassword(false)
     })
   }
-
-
+ 
   function logoutConfirmEmail(path = null) {
     return auth.signOut().then(() => {
       setCurrentUser(null);
@@ -165,7 +168,6 @@ export function AuthProvider({ children }) {
         sendEmailVerification: true
       }).then(() => {
          logoutConfirmEmail("/confirme-email");
-        //  history.push("/confirme-email")
         console.log("logout after sendEmailVerification")
         setCurrentUser(null);
       })
