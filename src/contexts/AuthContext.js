@@ -90,7 +90,11 @@ export function AuthProvider({ children }) {
       localStorage.setItem('@Twitter:ActiveEmail',true)
       localStorage.setItem('@Twitter:email', email)
       
-    })
+    }).then(() => {
+
+    }).catch(function(error) {
+       console.log(error)
+    });
   }
 
   function logout(path = null) {

@@ -7,7 +7,7 @@ import { Required } from '..'
 import { RiEyeFill, RiEyeOffFill } from 'react-icons/all'
 
 export default function Register() {
-  const { signup, activeEmail, updatePassword, activePreRegisterPassword, checkEmailparticipant } = useAuth()
+  const { login, signup, activeEmail, updatePassword, activePreRegisterPassword, checkEmailparticipant } = useAuth()
   const [error, setError] = useState("")
   const [userEmail, setUserEmail] = useState('');
   const [typePassword, setTypePassword] = useState('password');
@@ -71,7 +71,7 @@ export default function Register() {
       // console.log("nome", inputs.nome, "password", inputs.password)
       await updatePassword(inputs.nome, inputs.empresa, inputs.cargo,
                                 inputs.user_twitter, inputs.password);
-      history.push("/confirme-email")
+      // history.push("/confirme-email")
     } catch {
       setError("erro ao tentar conectar com o servidor")
     }
@@ -115,11 +115,21 @@ export default function Register() {
 
     console.log("ENTER PAGE REGISTER activePassword _________________", activePassword)
 
+    const doLogin = async (email) => {
+      console.log("REACT_APP_PASSWORD_USER_FIRST ", process.env.REACT_APP_PASSWORD_USER_FIRST)
+      await login(email, process.env.REACT_APP_PASSWORD_USER_FIRST)
+     
+    }
+
     if (activePassword === 'true') {
       history.push("/login")
     } else {
       if (email !== null) {
         setUserEmail(email);
+        if(activePassword === false){
+          doLogin(email);
+        }
+        
       } else {
         history.push("/start")
       }
