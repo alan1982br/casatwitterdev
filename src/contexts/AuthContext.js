@@ -180,6 +180,7 @@ export function AuthProvider({ children }) {
       setStoreCurrentUser(user);
       setLoading(false)
       localStorage.setItem('@Twitter:uid', user?.uid)
+      localStorage.setItem('@Twitter:displayName', user?.displayName)
 
     
 

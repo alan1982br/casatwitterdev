@@ -53,6 +53,17 @@ const TimelineComponent = () => {
     posMouse = e.clientX;
   }
 
+  function getDatetime(){
+    var currentDate = new Date();
+    var date = currentDate.getDate();
+    var month = currentDate.getMonth(); 
+    var year = currentDate.getFullYear();
+    var time = new Date().getTime();
+    var monthDateYear  = (month+1) + "/" + date + "/" + year + "/" + time;
+
+    return monthDateYear;
+  }
+
   const getOpacityOpen = () => {
     return isOpen ? 1 : 0;
   }
@@ -86,14 +97,24 @@ const TimelineComponent = () => {
 
       let objToFirebase = {
         ...dataObjToFirebase,
-        status_ckeckin : true
+        status_ckeckin : true,
+        name:localStorage.getItem('@Twitter:displayName')
       }
+
+      const timmestamp = getDatetime();
 
       console.log("hasSnapshot", hasSnapShot)
       hasSnapShot ? 
       db.database().ref('timeline_users').child(currentUser.uid+"/hotspots/" + id).update({...objToFirebase }):
       db.database().ref('timeline_users').child(currentUser.uid+"/hotspots/" + id).set({...objToFirebase })
-  }
+
+
+      let idkey = db.database().ref(`/'demo/timeline_users`).push().key;
+      hasSnapShot ? 
+      db.database().ref('demo/timeline_users').child( idkey).update({...objToFirebase, id:idkey , timmestamp }):
+      db.database().ref('demo/timeline_users').child( idkey ).set({...objToFirebase , id: idkey , timmestamp })
+
+    }
 
     if (currentThumb === id) {
       // desativa

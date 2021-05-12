@@ -47,7 +47,7 @@ export default function Login() {
       localStorage.removeItem('@Twitter:email');
       localStorage.removeItem('@Twitter:passwordCreated');
       localStorage.removeItem('@Twitter:uid');
-      setTimeout(() => resolve(1), 1000);
+      setTimeout(() => resolve(1), 3000);
     }).then(
       history.push('/start')
 
