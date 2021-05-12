@@ -11,7 +11,7 @@
   },
   {
     "id": "2",
-    "title": "O que você precisa saber",
+    "title": "Fique por dentro",
     "path": "https://cloud.3dvista.com/hosting/7086438/2/index.htm?media-index=3&trigger-overlay-name=btn_nossaagenda&focus-overlay-name=btn_nossaagenda",
     "type": "timeline",
     "idRoom": "03_o_que_voce_precisa_saber",
@@ -20,7 +20,7 @@
   },
   {
     "id": "3",
-    "title": "O que você precisa saber",
+    "title": "Fique por dentro",
     "path": "https://cloud.3dvista.com/hosting/7086438/2/index.htm?media-index=3&trigger-overlay-name=btn_visaotwitter&focus-overlay-name=btn_visaotwitter",
     "type": "timeline",
     "idRoom": "03_o_que_voce_precisa_saber",
@@ -29,7 +29,7 @@
   },
   {
     "id": "4",
-    "title": "O que você precisa saber",
+    "title": "Fique por dentro",
     "path": "https://cloud.3dvista.com/hosting/7086438/2/index.htm?media-index=3&trigger-overlay-name=btn_tresmensagens&focus-overlay-name=btn_tresmensagens",
     "type": "timeline",
     "idRoom": "03_o_que_voce_precisa_saber",
@@ -75,17 +75,17 @@
   {
     "id": "9",
     "title": "Inspire-se: Marcas que brilham",
-    "path": "https://cloud.3dvista.com/hosting/7086438/2/index.htm?media-index=7&trigger-overlay-name=btn_avon",
+    "path": "https://cloud.3dvista.com/hosting/7086438/2/index.htm?media-index=7",
     "type": "timeline",
     "idRoom": "07_ inspire_se_marcas_que_brilham",
     "idHotspot": "btn_avon",
-    "image": "thumb_avon.jpg"
+    "image": "thumb_marcasqueBrilham.jpg"
   },
   {
     "id": "10",
     "title": "Inspire-se: Marcas que brilham",
     "path": "https://cloud.3dvista.com/hosting/7086438/2/index.htm?media-index=7&trigger-overlay-name=btn_natura&focus-overlay-name=btn_natura",
-    "type": "timeline",
+    "type": "bolha",
     "idRoom": "07_ inspire_se_marcas_que_brilham",
     "idHotspot": "btn_natura",
     "image": "thumb_natura.jpg"
@@ -94,7 +94,7 @@
     "id": "11",
     "title": "Inspire-se: Marcas que brilham",
     "path": "https://cloud.3dvista.com/hosting/7086438/2/index.htm?media-index=7&trigger-overlay-name=btn_samsung",
-    "type": "timeline",
+    "type": "bolha",
     "idRoom": "07_ inspire_se_marcas_que_brilham",
     "idHotspot": "btn_samsung",
     "image": "thumb_samsung.jpg"
@@ -133,7 +133,7 @@
   },
   {
     "id": "17",
-    "title": "O que você precisa saber",
+    "title": "Fique por dentro",
     "path": "https://cloud.3dvista.com/hosting/7086438/2/index.htm?media-index=3",
     "type": "bolha",
     "image": ""
@@ -172,5 +172,21 @@
     "path": "https://cloud.3dvista.com/hosting/7086438/2/index.htm?media-index=8",
     "type": "bolha",
     "image": ""
+  },
+  {
+    "id": "100",
+    "title": "Final",
+    "path": "https://cloud.3dvista.com/hosting/7086438/2/index.htm?media-index=2&trigger-overlay-name=btn_mainconteudo",
+    "type": "bolha",
+    "image": ""
+  },
+  {
+    "id": "101",
+    "title": "Inspire-se: Marcas que brilham",
+    "path": "https://cloud.3dvista.com/hosting/7086438/2/index.htm?media-index=7&trigger-overlay-name=btn_avon",
+    "type": "bolha",
+    "idRoom": "07_ inspire_se_marcas_que_brilham",
+    "idHotspot": "btn_avon",
+    "image": "thumb_marcasqueBrilham.jpg"
   }
 ]

@@ -20,7 +20,7 @@ import { Dashboard,
   HeightMobile,
   EmailEnviado,
   TermsOfUse,
-  Depoimentos,
+  Conteudos,
   Trends,
   Cases } from './components'
   
@@ -28,7 +28,7 @@ import { Dashboard,
 function App() {
 
   const showterms = useSelector(state => state.showterms);
-  const showDepoimentos = useSelector(state => state.showDepoimentos);
+  const showConteudos = useSelector(state => state.showConteudos);
   const showTrends = useSelector(state => state.showTrends);
   const showCases = useSelector(state => state.showCases);
 
@@ -56,8 +56,8 @@ function App() {
           
         </AnimatePresence>
         <AnimatePresence>
-          {showDepoimentos && 
-            <Depoimentos key="depoimentos" />
+          {showConteudos && 
+            <Conteudos key="depoimentos" />
           }
         </AnimatePresence>
         <AnimatePresence>

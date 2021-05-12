@@ -16,12 +16,14 @@
     transform: translateY(-50%);
 
     img {
-      width: 68px;
-      height: 68px;
+      width: 110px;
+      height: auto;
+      cursor: pointer;
 
       @media (min-width: 768px) {
         width: initial;
         height: initial;
+        margin-top: 40px;
       }
     }
   }
