@@ -8,5 +8,16 @@ import ImageLoginHome from './images/loginHome.jpg'
 import BgInstrucoes from './images/bg_instrucoes.jpg'
 import LogoBlue from './images/LogoBlue.svg'
 import LogoWhite from './images/LogoWhite.svg'
+import ThumbCompleteContent from './images/thumb_conteudoCompleto-home.png'
 
-export { BackgroundFake, LogoHeader, LogoTwitter, IconRequired, IconNext, IconPrev, ImageLoginHome, BgInstrucoes, LogoBlue, LogoWhite };
+export { BackgroundFake, 
+  LogoHeader, 
+  LogoTwitter, 
+  IconRequired, 
+  IconNext, 
+  IconPrev, 
+  ImageLoginHome, 
+  BgInstrucoes, 
+  LogoBlue, 
+  LogoWhite, 
+  ThumbCompleteContent };

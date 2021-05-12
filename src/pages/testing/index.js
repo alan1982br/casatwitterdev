@@ -12,7 +12,7 @@ const TestingPage = () => {
     dispatch({ type: 'UPDATE_TERMS', payload: true });
   }
   const showHideDepoimentos = (show) => {
-    dispatch({ type: 'UPDATE_DEPOIMENTOS', payload: true });
+    dispatch({ type: 'UPDATE_CONTEUDOS', payload: true });
   }
 
   const showHideTrends = (show) => {

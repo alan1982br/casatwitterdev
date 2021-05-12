@@ -19,7 +19,7 @@ import MenuMobileComponent from './menu-mobile'
 import RequiredComponent from './required'
 import EmailEnviado from './email-enviado'
 import MenuHeaderComponent from './menu-header'
-import DepoimentosComponent from './depoimentos'
+import ConteudosComponent from './conteudos'
 import TrendsComponent from './trends'
 import CasesComponent from './cases'
 import ThumbVideoComponent from './thumb-video'
@@ -47,7 +47,7 @@ export { TemplateDashboard,
         RequiredComponent as Required,
         MenuHeaderComponent as MenuHeader,
         ConfirmeEmailComponent as ConfirmeEmail,
-        DepoimentosComponent as Depoimentos,
+        ConteudosComponent as Conteudos,
         TrendsComponent as Trends,
         CasesComponent as Cases,
         ThumbVideoComponent as ThumbVideo,

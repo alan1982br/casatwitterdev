@@ -31,8 +31,16 @@ export default function Login() {
     try {
       setError("")
       setLoading(true)
-         await login(inputs.email.toLowerCase(), inputs.password)
-         history.push("/virtual-tour")
+         const response = await login(inputs.email.toLowerCase(), inputs.password)
+        //  console.log("retorno", response)
+         if(response === 'auth/wrong-password') {
+           setLoading(false)
+           return setError("Email ou senha incorretos.");
+         } else if(response === 'auth/too-many-requests') {
+          setLoading(false)
+          return setError("Muitas tentativas incorretas, tente novamente mais tarde.");
+        }
+         
     } catch {
       setError("Erro no login")
     }

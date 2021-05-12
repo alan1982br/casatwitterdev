@@ -8,7 +8,7 @@ import { ThumbVideo } from '..'
 import { BgInstrucoes } from '../../assets'
 import './style.scss'
 
-const DepoimentosComponent = () => {
+const ConteudosComponent = () => {
 
   const { isMobile, height } = useResize();
   const [ containerTextHeight, setContainerTextHeight ] = useState('40vh')
@@ -17,7 +17,7 @@ const DepoimentosComponent = () => {
   const dispatch = useDispatch();
 
   const showHideTerms = (show) => {
-    dispatch({ type: 'UPDATE_DEPOIMENTOS', payload: show });
+    dispatch({ type: 'UPDATE_CONTEUDOS', payload: show });
   }
 
   const setCurrentTour = (tour) => {
@@ -48,28 +48,40 @@ const DepoimentosComponent = () => {
               <Col className="col-11 col-md-6 terms-container" ref={termsRef}>
                 <Row className="title__container" ref={titleRef}>
                   <Col className="col-12 d-flex align-items-center justify-content-center mt-4">
-                    <h1>Depoimentos</h1>
+                    <h1>Conteúdos</h1>
                   </Col>
                 </Row>
                 <Row className="text-container">
                   <Col style={{ maxHeight: containerTextHeight}} className="col-12 d-flex flex-column">
                     <Row>
-                      <ThumbVideo image="https://www.placecage.com/500/405" 
-                                  title="Título do vídeo 01"
-                                  handleClick={() => setCurrentTour('20')}
+                      <ThumbVideo image="thumb_visaoCEO.jpg" 
+                                  title="Fique por dentro"
+                                  handleClick={() => setCurrentTour('3')}
                                    />
-                      <ThumbVideo image="https://www.placecage.com/500/400" 
-                                  title="Título do vídeo 02"
-                                  handleClick={() => setCurrentTour('21')} />
-                      <ThumbVideo image="https://www.placecage.com/500/401" 
-                                  title="Título do vídeo 03"
-                                  handleClick={() => setCurrentTour('22')} />
-                      <ThumbVideo image="https://www.placecage.com/500/402" 
-                                  title="Título do vídeo 04"
-                                  handleClick={() => setCurrentTour('23')} />
-                      <ThumbVideo image="https://www.placecage.com/500/403" 
-                                  title="Título do vídeo 05"
-                                  handleClick={() => setCurrentTour('24')} />
+                      <ThumbVideo image="thumb_paraLembrar.jpg" 
+                                  title="Fique por dentro"
+                                  handleClick={() => setCurrentTour('4')} />
+                      <ThumbVideo image="thumb_agendaIntroducao.jpg" 
+                                  title="Fique por dentro"
+                                  handleClick={() => setCurrentTour('2')} />
+                      <ThumbVideo image="thumb_daUmaEspiada.jpg" 
+                                  title="Como fazer acontecer"
+                                  handleClick={() => setCurrentTour('8')} />
+                      <ThumbVideo image="thumb_twitterTV.jpg" 
+                                  title="Conteúdo relevante? Aqui ó:"
+                                  handleClick={() => setCurrentTour('5')} />
+                      <ThumbVideo image="thumb_next.jpg" 
+                                  title="Como fazer acontencer"
+                                  handleClick={() => setCurrentTour('7')} />
+                      <ThumbVideo image="thumb_twitterTrends.jpg" 
+                                  title="Tendências que você precisa saber"
+                                  handleClick={() => setCurrentTour('13')} />
+                      <ThumbVideo image="thumb_arthouse.jpg" 
+                                  title="Como fazer acontecer"
+                                  handleClick={() => setCurrentTour('6')} />
+                      <ThumbVideo image="thumb_inovacaoProduto.jpg" 
+                                  title="O que vem por aí: Inovação de Produto"
+                                  handleClick={() => setCurrentTour('12')} />
                     </Row>
                   </Col>
                 </Row>
@@ -78,4 +90,4 @@ const DepoimentosComponent = () => {
   )
 }
 
-export default DepoimentosComponent
+export default ConteudosComponent

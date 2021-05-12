@@ -93,7 +93,8 @@ export function AuthProvider({ children }) {
     }).then(() => {
 
     }).catch(function(error) {
-       console.log(error)
+      //  console.log("erro login", error)
+       return error.code;
     });
   }
 

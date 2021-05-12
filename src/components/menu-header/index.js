@@ -10,7 +10,7 @@ const MenuHeaderComponent = ({closeMenuMobile = () => {}}) => {
 
   const showHideDepoimentos = () => {
     isTablet && closeMenuMobile();
-    dispatch({ type: 'UPDATE_DEPOIMENTOS', payload: true })
+    dispatch({ type: 'UPDATE_CONTEUDOS', payload: true })
   };
   const showHideTrends = () => {
     closeMenuMobile();

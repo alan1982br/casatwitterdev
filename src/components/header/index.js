@@ -4,9 +4,10 @@ import {
 } from 'framer-motion';
 import { useResize } from '../../hooks'
 import { IoMenu } from 'react-icons/all' 
+import { useDispatch} from 'react-redux';
 import './styled.scss'
 import { ButtonLogout, MenuMobile, MenuHeader } from '..'
-import { LogoHeader } from '../../assets'
+import { ThumbCompleteContent } from '../../assets'
 import { useAuth } from "../../contexts/AuthContext"
 
 const HeaderComponent = () => {
@@ -14,6 +15,12 @@ const HeaderComponent = () => {
   const { currentUser } = useAuth();
   const [ nome, setNome ] = useState();
   const { isTablet } = useResize();
+  const dispatch = useDispatch()
+
+  const updateVisitedTour = () => {
+    dispatch({ type: 'UPDATE_TOUR', payload: '100' });
+  }
+
 
   useEffect(() => {
     setNome(currentUser?.displayName || 'Fulano')
@@ -31,14 +38,14 @@ const HeaderComponent = () => {
         )}
       </AnimatePresence>
       <div className="logo-container">
-        <img src={LogoHeader} alt="Twitter" />
+        <img src={ThumbCompleteContent} alt="Twitter" onClick={updateVisitedTour} />
       </div>
       <div className="menu">
         {!isTablet &&
           <>
             <MenuHeader />
             <div className="divisor" />
-            <p style={{marginRight: '60px'}}>Olá, {' '}<b>{nome}</b>.</p>
+            <p style={{marginRight: '40px'}}>Olá, {' '}<b>{nome}</b>.</p>
             <ButtonLogout />
           </>
         }

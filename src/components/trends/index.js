@@ -176,23 +176,23 @@ const  TrendsComponent = () => {
                 </AnimatePresence>
                 <Row className="title__container" ref={titleRef}>
                   <Col className="col-12 d-flex align-items-center justify-content-center mt-4">
-                    <h1>Trends</h1>
+                    <h1>Pesquisa</h1>
                   </Col>
                 </Row>
                 <Row className="text-container">
                   <Col style={{ maxHeight: containerTextHeight}} className="col-12 d-flex flex-column">
                     <Row>
-                      <ThumbVideo image="https://www.placecage.com/500/405" 
-                                  title="Título do vídeo 01"
-                                  handleClick={() => setCurrentTour('20')}
+                      <ThumbVideo image="thumb_twitterTrends.jpg" 
+                                  title="Tendências que você precisa saber"
+                                  handleClick={() => setCurrentTour('13')}
                                    />
-                      <ThumbVideo image="https://www.placecage.com/500/408" 
-                                  title="Visualizar PDF - 01"
+                      <ThumbVideo image="thumb_relatorioPesquisa.jpg" 
+                                  title="Relatório de pesquisa"
                                   handleClickDownload={() => saveFile('twitter-trends-report-pt.pdf')}
                                   handleClick={() => setFile('twitter-trends-report-pt.pdf')}
                                    />
-                      <ThumbVideo image="https://www.placecage.com/500/407" 
-                                  title="Visualizar PDF - 02"
+                      <ThumbVideo image="thumb_infografico.jpg" 
+                                  title="Infográfico"
                                   handleClickDownload={() => saveFile('twitter.pdf')}
                                   handleClick={() => setFile('twitter.pdf')}
                                    />
