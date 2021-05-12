@@ -7,7 +7,67 @@
     <meta name="theme-color" content="#000000" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
+
+    <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-functions.js"></script>
     <title>Tacontecendotanotwitter</title>
+   
+
+	<script>
+document.addEventListener('DOMContentLoaded', function() {
+ 
+  firebase.initializeApp({
+  apiKey: "AIzaSyA-kJ6FsSMg3eak2EzCwqExbBVUWaz62S8",
+  authDomain: "casatwitter-815ac.firebaseapp.com",
+  databaseURL: "https://casatwitter-815ac-default-rtdb.firebaseio.com",
+  projectId: "casatwitter-815ac",
+  storageBucket: "casatwitter-815ac.appspot.com",
+  messagingSenderId: "561846138709",
+  appId: "1:561846138709:web:91a89937138ffc698c21dc",
+  measurementId: "G-2BLC65WG5X"
+})
+  
+const analytics = firebase.analytics(); 
+
+async function starpageAction(){
+
+   const user = await firebase.auth().signInAnonymously().then((userCredential) => {
+  //  console.log('done' , userCredential)
+   analytics.logEvent('userCredentialPageHomeTemp', {userCredential})
+  })
+  .catch((error) => {
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    // ...
+  });
+
+  firebase.auth().onAuthStateChanged((user) => {
+  if (user) {
+    // User is signed in, see docs for a list of available properties
+    // https://firebase.google.com/docs/reference/js/firebase.User
+    var uid = user.uid;
+    console.log(uid)
+    
+     analytics.logEvent('StartPageHomeTemp', {user : user})
+     analytics.logEvent('StartPageHomeUID', {id: uid})
+     console.log("user " , user)
+    // ...
+  } else {
+    // User is signed out
+    // ...
+  }
+});
+  
+}
+
+starpageAction();
+
+}, false);
+</script>
+
+
   </head>
   <body>
     <div class="container-fluid vh-100">

@@ -24,10 +24,10 @@ export default function Register() {
     await localStorage.removeItem('@Twitter:passwordCreated');
     await localStorage.removeItem('@Twitter:uid');
 
-    // setTimeout(() => {
-    //   history.push('/start');
+    setTimeout(() => {
+      history.push('/start');
 
-    // }, 2500)
+    }, 2500)
   }
 
   const [inputs, setAllInputs] = useState({

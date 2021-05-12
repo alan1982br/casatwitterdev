@@ -1,11 +1,12 @@
-import React from "react"
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Container, Row, Col } from "react-bootstrap"
 import { AuthProvider } from "./contexts/AuthContext"
 import { AnimatePresence } from 'framer-motion'
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
+import { BrowserRouter as Router, Switch, Route, useLocation } from "react-router-dom"
 import { TestingPage, VirtualTour  } from './pages'
 import "./styles/App.scss"
+import firebase from './firebase';
 import { Dashboard, 
   ForgotPassword, 
   Login, 
@@ -22,6 +23,7 @@ import { Dashboard,
   Depoimentos,
   Trends,
   Cases } from './components'
+  
 
 function App() {
 
@@ -29,6 +31,19 @@ function App() {
   const showDepoimentos = useSelector(state => state.showDepoimentos);
   const showTrends = useSelector(state => state.showTrends);
   const showCases = useSelector(state => state.showCases);
+
+
+  const RoutesListener = () => {
+
+    const location = useLocation();
+
+    useEffect(() => {
+      firebase.analytics().setCurrentScreen(location.pathname);
+    }, [location]);
+
+    return <></>;
+  } 
+
 
   return (
       <Container fluid
@@ -58,6 +73,7 @@ function App() {
         <Row noGutters>
           <Col className="col">
             <Router>
+            <RoutesListener/>
               <AuthProvider>
                 <Switch>
                   <Route exact path="/">
