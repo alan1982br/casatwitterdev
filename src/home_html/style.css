@@ -1,3 +1,8 @@
+@font-face {
+  font-family: "Chirp Extended Black";
+  src: url("../fonts/chirp-extended-black.otf") format("opentype")
+}
+
 html, body {
   margin: 0;
   padding: 0;
@@ -5,11 +10,19 @@ html, body {
 }
 
 .container-fluid {
-  background-image: url('./images//bg_Html_Index.jpg');
+  background-image: url('./images/bg_Html_Index.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
 
+}
+
+h1 {
+  font-family: "Chirp Extended Black";
+  font-size: 1.5rem;
+  color: #FFF; 
+  margin-top: 15px;
+  text-align: center;
 }
 
 .logo {
