@@ -18,6 +18,11 @@
   src: url("../assets/fonts/chirp-extended-bold.otf") format("opentype")
 }
 
+@font-face {
+  font-family: "Chirp Extended Black";
+  src: url("../assets/fonts/chirp-extended-black.otf") format("opentype")
+}
+
 :root {
   --height: 100px;
 }
