@@ -1,0 +1,85 @@
+.container-fluid.arthouse {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  padding: 0;
+  margin: 0;
+
+  h1 {
+    font-family: "Chirp Extended Black";
+    font-size: 20px;
+    color: #FFF; 
+    margin-top: 60px;
+    text-align: center;
+
+    @media (min-width: 768px) {
+      font-size: 27px;
+    }
+  }
+  
+  .logo {
+    position: absolute;
+    top: 60px;
+    right: initial;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 44px;
+    height: 54px;
+    z-index: 1;
+    @media (min-width: 768px) {
+      right: 60px;
+      left: initial;
+      width: 66px;
+      transform: initial;
+      height: 54px;
+    }
+  }
+  
+  .image-container {
+    min-height: 110px;
+  }
+  
+  .content-container {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @media (max-width: 767px) {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    @media (min-width: 768px) {
+      height: 100vh;
+    }
+  }
+  
+  .destaque-image {
+    position: absolute;
+    display: block;
+    width: 240px;
+    height: auto;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 40px;
+
+    @media (min-width: 768px) {
+      position: relative;
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  .video-container {
+    @media (max-width: 767px) {
+      padding-top: 30vh;
+      padding-bottom: 50px;
+    }
+  }
+}
+
