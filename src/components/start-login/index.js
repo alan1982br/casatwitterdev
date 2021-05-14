@@ -61,6 +61,7 @@ export default function Start() {
           } else {
             // Se verificou o email, manda para o login
             console.log('email existe, registro feito => /login')
+            localStorage.setItem('@Twitter:email', activeEmail)
             history.push('/login')
           }
         } else if(activeProfileEmail !== true) {
@@ -84,16 +85,16 @@ export default function Start() {
   }, [userStartStatus])
 
   useEffect(() => {
-    const tPassword = localStorage.getItem('@Twitter:passwordCreated');
-    const tActive = localStorage.getItem('@Twitter:ActiveEmail');
-    const tEmail = localStorage.getItem('@Twitter:email');
+    // const tPassword = localStorage.getItem('@Twitter:passwordCreated');
+    // const tActive = localStorage.getItem('@Twitter:ActiveEmail');
+    // const tEmail = localStorage.getItem('@Twitter:email');
 
-    console.log("T", tPassword, tActive, tEmail)
-    if(tPassword &&
-       tActive &&
-       tEmail !== undefined ){
-          history.push('/virtual-tour');
-        }
+    // console.log("T", tPassword, tActive, tEmail)
+    // if(tPassword &&
+    //    tActive &&
+    //    tEmail !== undefined ){
+    //       history.push('/virtual-tour');
+    //     }
     //eslint-disable-next-line
   },[])
 

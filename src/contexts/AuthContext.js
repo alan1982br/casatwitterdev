@@ -35,10 +35,10 @@ export function AuthProvider({ children }) {
     dispatch({ type: 'UPDATE_TOUR', payload: '15' });
   })
 
-  const clearUser = () => {
+  const clearUser = (full = false) => {
     setUserStartStatus(0);
     localStorage.removeItem('@Twitter:ActiveEmail');
-    localStorage.removeItem('@Twitter:email');
+    if(full) localStorage.removeItem('@Twitter:email');
     localStorage.removeItem('@Twitter:displayName');
     localStorage.removeItem('@Twitter:uid');
     localStorage.removeItem('@Twitter:passwordCreated');
@@ -139,7 +139,7 @@ export function AuthProvider({ children }) {
     return auth.signOut().then(() => {
       
       clearUser();
-      // path == "/start" ? history.push("/start") : history.push("/login");
+      // path === "/start" ? history.push("/start") : history.push("/login");
       // history.push('/login');
     })
   }

@@ -6,7 +6,7 @@ import { RiEyeFill, RiEyeOffFill } from 'react-icons/all'
 import { Required } from '..'
 
 export default function Login() {
-  const { login } = useAuth()
+  const { login, clearUser } = useAuth()
   const [ userEmail, setUserEmail] = useState(null);
   const [error, setError] = useState("")
   const [loading, setLoading] = useState(false)
@@ -50,18 +50,9 @@ export default function Login() {
   }
 
    const handleCadastrar = async() => {
-   
-    new Promise(function (resolve, reject) {
-      localStorage.removeItem('@Twitter:ActiveEmail');
-      localStorage.removeItem('@Twitter:email');
-      localStorage.removeItem('@Twitter:passwordCreated');
-      localStorage.removeItem('@Twitter:uid');
-      setTimeout(() => resolve(1), 3000);
-    }).then(
-      history.push('/start')
-
-    );
-
+      console.log("cadastrar");
+      clearUser(true);
+      history.push('/start');
   }
 
   const validateEmail = (email) => {
