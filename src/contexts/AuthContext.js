@@ -19,7 +19,7 @@ export function AuthProvider({ children }) {
   const [activeProfileEmail, setActiveProfileEmail] = useState(false);
   const [activePassword, setActivePassword] = useState(false);
   const [activePreRegisterPassword, setActivePreRegisterPassword] = useState(false);
-  
+
   const [activeUserEmail, setActiveUserEmail] = useState(null);
   const [userStartStatus, setUserStartStatus] = useState(0);
 
@@ -36,6 +36,13 @@ export function AuthProvider({ children }) {
   })
 
   const clearUser = () => {
+    setUserStartStatus(0);
+    localStorage.removeItem('@Twitter:ActiveEmail');
+    localStorage.removeItem('@Twitter:email');
+    localStorage.removeItem('@Twitter:displayName');
+    localStorage.removeItem('@Twitter:uid');
+    localStorage.removeItem('@Twitter:passwordCreated');
+
     setCurrentUser(null);
     setLoading(true);
     setActiveEmail(null);
@@ -43,7 +50,6 @@ export function AuthProvider({ children }) {
     setActivePreRegisterPassword(false);
     setActiveUserEmail(null);
     setActiveProfileEmail(false);
-    setUserStartStatus(0);
 
     // Zera o current tour para 15
     setStoreCurrentTour();
@@ -52,7 +58,6 @@ export function AuthProvider({ children }) {
   function signup(email, password) {
     return auth.createUserWithEmailAndPassword(email, password)
   }
-
 
   function checkEmailparticipant(email) {
 
@@ -129,17 +134,13 @@ export function AuthProvider({ children }) {
   }
 
   function logout(path = null) {
-    return auth.signOut().then(() => {
-      // Limpa o localStorage
-      localStorage.removeItem('@Twitter:ActiveEmail');
-      localStorage.removeItem('@Twitter:email');
-      localStorage.removeItem('@Twitter:uid');
-      localStorage.removeItem('@Twitter:passwordCreated');
 
+    // clearUser(); opção
+    return auth.signOut().then(() => {
       
       clearUser();
       // path == "/start" ? history.push("/start") : history.push("/login");
-      history.push('/login');
+      // history.push('/login');
     })
   }
  
@@ -257,6 +258,7 @@ export function AuthProvider({ children }) {
     checkEmailparticipant,
     logoutConfirmEmail,
     clearUser,
+    setUserStartStatus,
     activeEmail,
     activePassword,
     activePreRegisterPassword,

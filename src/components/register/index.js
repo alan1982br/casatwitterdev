@@ -7,7 +7,7 @@ import { Required } from '..'
 import { RiEyeFill, RiEyeOffFill } from 'react-icons/all'
 
 export default function Register() {
-  const { login, signup, activeEmail, updatePassword, activePreRegisterPassword, checkEmailparticipant } = useAuth()
+  const { login, signup, activeEmail, logout, clearUser, updatePassword, activePreRegisterPassword, checkEmailparticipant } = useAuth()
   const [error, setError] = useState("")
   const [userEmail, setUserEmail] = useState('');
   const [typePassword, setTypePassword] = useState('password');
@@ -19,15 +19,14 @@ export default function Register() {
   }
 
   const handleLogout  = async() => {
-    await localStorage.removeItem('@Twitter:ActiveEmail');
-    await localStorage.removeItem('@Twitter:email');
-    await localStorage.removeItem('@Twitter:passwordCreated');
-    await localStorage.removeItem('@Twitter:uid');
 
-    setTimeout(() => {
-      history.push('/start');
+    logout();
+    // history.push('/start');
 
-    }, 2500)
+    // setTimeout(() => {
+    //   history.push('/start');
+
+    // }, 2500)
   }
 
   const [inputs, setAllInputs] = useState({
@@ -118,6 +117,14 @@ export default function Register() {
 
     const email = localStorage.getItem('@Twitter:email');
     const activePassword = localStorage.getItem('@Twitter:passwordCreated');
+
+    // Se existe email, coloca no estado
+    if(email !== null) {
+      setUserEmail(email);
+    } else {
+      // Manda para o start se entrou pela rota sem passar pela home
+      history.push("/start")
+    }
 
     // console.log("ENTER PAGE REGISTER activePassword _________________", activePassword)
 

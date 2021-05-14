@@ -5,8 +5,9 @@ import { useHistory } from "react-router-dom"
 import { Required } from '..'
 
 export default function Start() {
-  const { login , checkEmail , activeEmail, clearUser, userStartStatus, activeProfileEmail, activePassword , activePreRegisterPassword ,  checkEmailparticipant} = useAuth()
+  const { login , checkEmail , activeEmail, setUserStartStatus, clearUser, userStartStatus, activeProfileEmail, activePassword , activePreRegisterPassword ,  checkEmailparticipant} = useAuth()
   const [error, setError] = useState("")
+  const [freeze, setFreeze] = useState(false);
   const history = useHistory()
 
   const [ inputs, setAllInputs ] = useState({
@@ -43,8 +44,11 @@ export default function Start() {
     //             "activeProfileEmail: ", activeProfileEmail)
     // TODO Verifcar se o usuário já confirmou email, para mandar para o login
     // activeProfileEmail verifica se o user já ativou a conta
-    if(userStartStatus !== 0) {
+    console.log("userStartStatus", userStartStatus)
+    if(userStartStatus !== 0 && !freeze) {
       // console.log("atualizou a chamada")
+
+      
       if(activeEmail !== null) {
         console.log("activeProfileEmail: ", activeProfileEmail)
   
@@ -60,23 +64,34 @@ export default function Start() {
         } else if(activeProfileEmail !== true) {
           console.log(activeEmail, activePreRegisterPassword, activeProfileEmail)
           // ainda não fez o registro, vai para o register
-          localStorage.setItem('@Twitter:email', activeEmail) 
-          // history.push('/register');
+          localStorage.setItem('@Twitter:email', activeEmail)
           console.log('registro pendente => /register')
+          setFreeze(true);
+          doLogin();
+          
         }
       }
     } else {
       // console.log("nao atualizou a chamada")
     }
+
+    //unMount
+    return () => setUserStartStatus(0);
     
     //eslint-disable-next-line
   }, [userStartStatus])
-  // }, [activePreRegisterPassword, activeProfileEmail])
-  // }, [activeEmail, activePreRegisterPassword, activeProfileEmail])
 
   const validateEmail = (email) => {
     const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(String(email).toLowerCase());
+  }
+
+  const doLogin = async () => {
+    // console.log("REACT_APP_PASSWORD_USER_FIRST ", process.env.REACT_APP_PASSWORD_USER_FIRST)
+    await login(activeEmail, process.env.REACT_APP_PASSWORD_USER_FIRST)
+    console.log('registro pendente => /register pelo doLogin')
+    history.push('/register');
+    
   }
  
   useEffect(() => {
@@ -93,11 +108,7 @@ export default function Start() {
     const activePassword = localStorage.getItem('@Twitter:passwordCreated');
     console.log("ENTER PAGE REGISTER activePassword _________________" , activePassword)
     
-    const doLogin = async () => {
-      console.log("REACT_APP_PASSWORD_USER_FIRST ", process.env.REACT_APP_PASSWORD_USER_FIRST)
-      await login(activeEmail, process.env.REACT_APP_PASSWORD_USER_FIRST)
-      
-    }
+    
     
     if(localStorage.getItem('@Twitter:ActiveEmail') === true){
       //  history.push("/register");
