@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { Form, Button, Container, Alert } from "react-bootstrap"
 import { useAuth } from "../../contexts/AuthContext"
 import { Link, useHistory } from "react-router-dom"
@@ -7,6 +7,7 @@ import { Required } from '..'
 
 export default function Login() {
   const { login } = useAuth()
+  const [ userEmail, setUserEmail] = useState(null);
   const [error, setError] = useState("")
   const [loading, setLoading] = useState(false)
   const [ typePassword, setTypePassword ] = useState('password');
@@ -97,11 +98,24 @@ export default function Login() {
     }
   }
 
+  useEffect(() => {
+    const emailLocal = localStorage.getItem('@Twitter:email');
+
+    // check if has localStorage
+    if(validateEmail(emailLocal)){
+      var oldInputs = {...inputs}
+      oldInputs.email = emailLocal;
+      setAllInputs(oldInputs);
+      setUserEmail(emailLocal);
+    } 
+    //eslint-disable-next-line
+  }, [])
+
   return (
     <Container className="form">
           <Form onSubmit={handleSubmit} style={{minHeight: '600px'}}>
             <Form.Group id="email">
-              <Form.Control onChange={handleChange} style={{textTransform: 'lowercase'}} type="text" name="email" id="txtEmail" autoComplete="off" className={inputs.email !== '' ? 'filled': 'empty'} />
+              <Form.Control disabled={userEmail !== null} onChange={handleChange} value={userEmail} style={{textTransform: 'lowercase'}} type="text" name="email" id="txtEmail" autoComplete="off" className={inputs.email !== '' ? 'filled': 'empty'} />
               <Form.Label className={inputs.email !== '' ? 'filled': 'empty'} htmlFor="txtEmail">Email</Form.Label>
               {inputs.email.length <= 0 && <Required />}
             </Form.Group>

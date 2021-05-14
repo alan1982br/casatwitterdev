@@ -6,7 +6,7 @@ const ArtHousePage = () => {
 
   useEffect(() => {
     document.body.style.backgroundColor = "#1D9BF0";
-    return document.body.style.backgroundColor = "#FFF";
+    return () => document.body.style.backgroundColor = "#FFF";
   }, [])
 
   return (
