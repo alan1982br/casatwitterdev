@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom"
 import { Required } from '..'
 
 export default function Start() {
-  const { login , checkEmail , activeEmail, setUserStartStatus, clearUser, userStartStatus, activeProfileEmail, activePassword , activePreRegisterPassword ,  checkEmailparticipant} = useAuth()
+  const { login, currentUser, checkEmail, activeEmail, setUserStartStatus, clearUser, userStartStatus, activeProfileEmail, activePassword , activePreRegisterPassword ,  checkEmailparticipant} = useAuth()
   const [error, setError] = useState("")
   const [freeze, setFreeze] = useState(false);
   const history = useHistory()
@@ -57,9 +57,11 @@ export default function Start() {
           if(activeProfileEmail === false) {
             // Se não verificou o email, manda para o confirme-email
             console.log('email existe, registro pendente => /confirme-email')
+            history.push('/confirme-email');
           } else {
             // Se verificou o email, manda para o login
             console.log('email existe, registro feito => /login')
+            history.push('/login')
           }
         } else if(activeProfileEmail !== true) {
           console.log(activeEmail, activePreRegisterPassword, activeProfileEmail)
@@ -80,6 +82,20 @@ export default function Start() {
     
     //eslint-disable-next-line
   }, [userStartStatus])
+
+  useEffect(() => {
+    const tPassword = localStorage.getItem('@Twitter:passwordCreated');
+    const tActive = localStorage.getItem('@Twitter:ActiveEmail');
+    const tEmail = localStorage.getItem('@Twitter:email');
+
+    console.log("T", tPassword, tActive, tEmail)
+    if(tPassword &&
+       tActive &&
+       tEmail !== undefined ){
+          history.push('/virtual-tour');
+        }
+    //eslint-disable-next-line
+  },[])
 
   const validateEmail = (email) => {
     const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
