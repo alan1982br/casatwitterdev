@@ -119,27 +119,27 @@ export default function Register() {
     const email = localStorage.getItem('@Twitter:email');
     const activePassword = localStorage.getItem('@Twitter:passwordCreated');
 
-    console.log("ENTER PAGE REGISTER activePassword _________________", activePassword)
+    // console.log("ENTER PAGE REGISTER activePassword _________________", activePassword)
 
-    const doLogin = async (email) => {
-      console.log("REACT_APP_PASSWORD_USER_FIRST ", process.env.REACT_APP_PASSWORD_USER_FIRST)
-      await login(email, process.env.REACT_APP_PASSWORD_USER_FIRST)
+    // const doLogin = async (email) => {
+    //   console.log("REACT_APP_PASSWORD_USER_FIRST ", process.env.REACT_APP_PASSWORD_USER_FIRST)
+    //   await login(email, process.env.REACT_APP_PASSWORD_USER_FIRST)
      
-    }
+    // }
 
-    if (activePassword === 'true') {
-      history.push("/login")
-    } else {
-      if (email !== null) {
-        setUserEmail(email);
-        if(activePassword === false){
-          doLogin(email);
-        }
+    // if (activePassword === 'true') {
+    //   history.push("/login")
+    // } else {
+    //   if (email !== null) {
+    //     setUserEmail(email);
+    //     if(activePassword === false){
+    //       doLogin(email);
+    //     }
         
-      } else {
-        history.push("/start")
-      }
-    }
+    //   } else {
+    //     history.push("/start")
+    //   }
+    // }
 
   }, [activePreRegisterPassword, history])
 

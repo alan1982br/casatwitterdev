@@ -12,12 +12,16 @@ export function useAuth() {
 }
 
 export function AuthProvider({ children }) {
-  const [currentUser, setCurrentUser] = useState()
+  const [currentUser, setCurrentUser] = useState(null);
   const [loading, setLoading] = useState(true)
   const [activeEmail, setActiveEmail] = useState(null);
+
+  const [activeProfileEmail, setActiveProfileEmail] = useState(false);
   const [activePassword, setActivePassword] = useState(false);
   const [activePreRegisterPassword, setActivePreRegisterPassword] = useState(false);
+  
   const [activeUserEmail, setActiveUserEmail] = useState(null);
+  const [userStartStatus, setUserStartStatus] = useState(0);
 
   const history = useHistory()
 
@@ -27,12 +31,31 @@ export function AuthProvider({ children }) {
     dispatch({ type: 'SET_CURRENT_USER', payload: user });
   })
 
+  const setStoreCurrentTour = useCallback(() => {
+    dispatch({ type: 'UPDATE_TOUR', payload: '15' });
+  })
+
+  const clearUser = () => {
+    setCurrentUser(null);
+    setLoading(true);
+    setActiveEmail(null);
+    setActivePassword(false);
+    setActivePreRegisterPassword(false);
+    setActiveUserEmail(null);
+    setActiveProfileEmail(false);
+    setUserStartStatus(0);
+
+    // Zera o current tour para 15
+    setStoreCurrentTour();
+  }
+
   function signup(email, password) {
     return auth.createUserWithEmailAndPassword(email, password)
   }
 
 
-    function checkEmailparticipant(email) {
+  function checkEmailparticipant(email) {
+
     try {
           db
          .database()
@@ -40,13 +63,16 @@ export function AuthProvider({ children }) {
          .orderByChild("email")
          .on("value", snapshot => {
            
-          //  console.log(' snapshot.val() ALL DATA USER PRE REGISTER ', snapshot.val())
+           console.log(' snapshot.val() ALL DATA USER PRE REGISTER ', snapshot.val())
            snapshot.forEach(function (child) {
             if(child.val().email === email ){
-              setActiveEmail(email);
+              // setActiveEmail(email);
+              setActiveProfileEmail(child.val().activeProfileEmail);
               console.log(child.key + ": " + child.val().email , child.val().passwordCreated);
               setActivePreRegisterPassword(child.val().passwordCreated);
               localStorage.setItem('@Twitter:passwordCreated', child.val().passwordCreated)
+              // Retorna true para a start/handleSubmit
+              setUserStartStatus(() => userStartStatus + 1);
               return true;
             }else{
               //  console.log("false")
@@ -69,18 +95,22 @@ export function AuthProvider({ children }) {
 
       // console.log(methods, methods[0]);
       if (methods[0] !== 'password') {
-        console.log("fetchSignInMethodsForEmail false ", methods)
-        setActiveEmail(false);
+        // console.log("fetchSignInMethodsForEmail false ", methods)
+        // setActiveEmail(false);
+        throw {message: 'user_not_found'}
       } else {
         console.log("fetchSignInMethodsForEmail true ", methods)
-         checkEmailparticipant(email);
-        //  setActiveEmail(email);  
+        setActiveEmail(email);  
+        checkEmailparticipant(email);
       }
 
     }).catch((error) => {
-      // var errorCode = error.code;
       var errorMessage = error.message;
-      console.log(errorMessage)
+      if(errorMessage === 'user_not_found') {
+        throw {message: 'user_not_found'}
+      }
+
+      throw {message: 'error_network'}
       // ...
     });
   }
@@ -100,22 +130,26 @@ export function AuthProvider({ children }) {
 
   function logout(path = null) {
     return auth.signOut().then(() => {
-      // localStorage.removeItem('@Twitter:ActiveEmail');
-      // localStorage.removeItem('@Twitter:email');
-      setCurrentUser(null);
-      setStoreCurrentUser(null);
+      // Limpa o localStorage
+      localStorage.removeItem('@Twitter:ActiveEmail');
+      localStorage.removeItem('@Twitter:email');
+      localStorage.removeItem('@Twitter:uid');
+      localStorage.removeItem('@Twitter:passwordCreated');
+
+      
+      clearUser();
       // path == "/start" ? history.push("/start") : history.push("/login");
       history.push('/login');
-      setActivePreRegisterPassword(false)
     })
   }
  
   function logoutConfirmEmail(path = null) {
     return auth.signOut().then(() => {
-      setCurrentUser(null);
-      setStoreCurrentUser(null);
+      // setCurrentUser(null);
+      // setStoreCurrentUser(null);
+      clearUser();
       history.push(path)
-      setActivePreRegisterPassword(false)
+      // setActivePreRegisterPassword(false)
     })
   }
 
@@ -222,10 +256,13 @@ export function AuthProvider({ children }) {
     sendEmailVerification,
     checkEmailparticipant,
     logoutConfirmEmail,
+    clearUser,
     activeEmail,
     activePassword,
     activePreRegisterPassword,
-    activeUserEmail
+    activeUserEmail,
+    activeProfileEmail,
+    userStartStatus
   }
 
   return (
