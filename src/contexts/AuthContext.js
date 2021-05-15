@@ -2,7 +2,7 @@
 import React, { useContext, useState, useEffect, useCallback } from "react"
 import { auth } from "../firebase"
 import { db } from "../firebase";
-import { useHistory } from "react-router"
+import { useHistory , useLocation } from "react-router"
 import { useDispatch } from 'react-redux';
 
 const AuthContext = React.createContext()
@@ -97,7 +97,7 @@ export function AuthProvider({ children }) {
         .database()
         .ref('user_pre_register')
         .orderByChild("email")
-        .on("value", snapshot => {
+        .once("value", snapshot => {
 
           
           snapshot.forEach(function (child) {
@@ -112,8 +112,29 @@ export function AuthProvider({ children }) {
                 console.log(child.key + ": " + child.val().email, child.val().passwordCreated);
                 setActivePreRegisterPassword(child.val().passwordCreated);
                 localStorage.setItem('@Twitter:passwordCreated', child.val().passwordCreated)
+                localStorage.setItem('@Twitter:uid', child.key)
+                
                 // Retorna true para a start/handleSubmit
                 setUserStartStatus(() => userStartStatus + 1);
+
+                let uidLocal = localStorage.getItem('@Twitter:uid');
+                console.log("uid ", uidLocal)
+                db.database()
+                  .ref('user_pre_register').child(uidLocal)
+                  .on("value", snapshot => {
+
+                    if(history.location.pathname ==='/confirme-email'){
+                      console.log(snapshot.val().activeProfileEmail)
+                       if(snapshot.val().activeProfileEmail===true)
+                           history.push('/login')
+
+                    }
+                       
+                   
+                  })
+
+
+
                 return true;
 
               })
@@ -126,7 +147,7 @@ export function AuthProvider({ children }) {
           });
         })
 
-
+     
 
 
 
@@ -243,6 +264,7 @@ export function AuthProvider({ children }) {
   }
 
   useEffect(() => {
+ 
     const unsubscribe = auth.onAuthStateChanged(user => {
       setCurrentUser(user)
       setStoreCurrentUser(user);
@@ -253,7 +275,7 @@ export function AuthProvider({ children }) {
       if (user != null)
         db.database().ref('participantes').child(user.uid).on("value", snapshot => {
           try {
-            setActiveUserEmail(user.emailVerified);
+             setActiveUserEmail(user.emailVerified);
 
             console.log(' snapshot.val() ALL DATA PARTICIPANTE ', snapshot.val())
             console.log('STEP 1 PasswordCreated ______________', snapshot.val().passwordCreated)
