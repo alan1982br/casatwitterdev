@@ -38,7 +38,7 @@ export function AuthProvider({ children }) {
   const clearUser = (full = false) => {
     setUserStartStatus(0);
     localStorage.removeItem('@Twitter:ActiveEmail');
-    if(full) localStorage.removeItem('@Twitter:email');
+    if (full) localStorage.removeItem('@Twitter:email');
     localStorage.removeItem('@Twitter:displayName');
     localStorage.removeItem('@Twitter:uid');
     localStorage.removeItem('@Twitter:passwordCreated');
@@ -59,40 +59,7 @@ export function AuthProvider({ children }) {
     return auth.createUserWithEmailAndPassword(email, password)
   }
 
-  function checkEmailparticipant(email) {
 
-    try {
-          db
-         .database()
-         .ref('user_pre_register')
-         .orderByChild("email")
-         .on("value", snapshot => {
-           
-           console.log(' snapshot.val() ALL DATA USER PRE REGISTER ', snapshot.val())
-           snapshot.forEach(function (child) {
-            if(child.val().email === email ){
-              // setActiveEmail(email);
-              setActiveProfileEmail(child.val().activeProfileEmail);
-              console.log(child.key + ": " + child.val().email , child.val().passwordCreated);
-              setActivePreRegisterPassword(child.val().passwordCreated);
-              localStorage.setItem('@Twitter:passwordCreated', child.val().passwordCreated)
-              // Retorna true para a start/handleSubmit
-              setUserStartStatus(() => userStartStatus + 1);
-              return true;
-            }else{
-              //  console.log("false")
-             
-            }
-           
-          });
-       })
-    } catch (e) {
-      // Error! oh no
-    } finally {
-      console.log("done verify email")
-    }
- 
-  }
 
   async function checkEmail(email) {
 
@@ -102,34 +69,85 @@ export function AuthProvider({ children }) {
       if (methods[0] !== 'password') {
         // console.log("fetchSignInMethodsForEmail false ", methods)
         // setActiveEmail(false);
-        throw {message: 'user_not_found'}
+        throw { message: 'user_not_found' }
       } else {
         console.log("fetchSignInMethodsForEmail true ", methods)
-        setActiveEmail(email);  
+        setActiveEmail(email);
         checkEmailparticipant(email);
       }
 
     }).catch((error) => {
       var errorMessage = error.message;
-      if(errorMessage === 'user_not_found') {
-        throw {message: 'user_not_found'}
+      if (errorMessage === 'user_not_found') {
+        throw { message: 'user_not_found' }
       }
 
-      throw {message: 'error_network'}
+      throw { message: 'error_network' }
       // ...
     });
   }
 
+  async function checkEmailparticipant(email) {
+    let dataTime = await getDate();
+
+    try {
+
+
+      db
+        .database()
+        .ref('user_pre_register')
+        .orderByChild("email")
+        .on("value", snapshot => {
+
+          
+          snapshot.forEach(function (child) {
+            if (child.val().email === email) {
+              console.log(' snapshot.val() ALL DATA USER PRE REGISTER ', child.key)
+              db.database().ref(`user_pre_register`).child(child.key).update({
+           
+                updateDate: dataTime
+
+              }).then((snap) => {
+                setActiveProfileEmail(child.val().activeProfileEmail);
+                console.log(child.key + ": " + child.val().email, child.val().passwordCreated);
+                setActivePreRegisterPassword(child.val().passwordCreated);
+                localStorage.setItem('@Twitter:passwordCreated', child.val().passwordCreated)
+                // Retorna true para a start/handleSubmit
+                setUserStartStatus(() => userStartStatus + 1);
+                return true;
+
+              })
+
+            } else {
+              // console.log("false")
+
+            }
+
+          });
+        })
+
+
+
+
+
+    } catch (e) {
+      // Error! oh no
+    } finally {
+      console.log("done verify email")
+    }
+
+  }
+
   function login(email, password) {
     return auth.signInWithEmailAndPassword(email, password).then(() => {
-      localStorage.setItem('@Twitter:ActiveEmail',true)
+      localStorage.setItem('@Twitter:ActiveEmail', true)
       localStorage.setItem('@Twitter:email', email)
-      
+
     }).then(() => {
 
-    }).catch(function(error) {
+    }).catch(function (error) {
       //  console.log("erro login", error)
-       return error.code;
+      return error.code;
     });
   }
 
@@ -137,13 +155,13 @@ export function AuthProvider({ children }) {
 
     // clearUser(); opção
     return auth.signOut().then(() => {
-      
+
       clearUser();
       // path === "/start" ? history.push("/start") : history.push("/login");
       // history.push('/login');
     })
   }
- 
+
   function logoutConfirmEmail(path = null) {
     return auth.signOut().then(() => {
       // setCurrentUser(null);
@@ -162,16 +180,16 @@ export function AuthProvider({ children }) {
     return currentUser.updateEmail(email)
   }
 
-  function updatePassword(nome,empresa,cargo,user_twitter,password) {
+  function updatePassword(nome, empresa, cargo, user_twitter, password) {
     console.log("updatePassword 1", currentUser)
     currentUser.updatePassword(password).then(() => {
       console.log("updatePassword 2")
 
       currentUser.updateProfile({
         displayName: nome,
-      }).then(function() {
-        console.log('Update successful profile name')  
-      }).catch(function(error) {
+      }).then(function () {
+        console.log('Update successful profile name')
+      }).catch(function (error) {
         // An error happened.
       });
 
@@ -179,17 +197,20 @@ export function AuthProvider({ children }) {
         name: nome,
         empresa: empresa,
         cargo: cargo,
-        user_twitter : user_twitter,
+        user_twitter: user_twitter,
         password: password,
         passwordCreated: true
       }).then(() => {
         setActivePassword(true)
         db.database().ref(`user_pre_register`).child(currentUser.uid).update({
           passwordCreated: true
-        })       
+        }).then((snap) => {
+
+
+        })
         console.log("updatePassword 3 ", currentUser.email)
         sendEmailVerification(currentUser.email);
-        
+
       })
     })
   }
@@ -199,15 +220,26 @@ export function AuthProvider({ children }) {
     return currentUser.sendEmailVerification().then(() => {
       console.log("updatePassword 5")
       // setActiveUserEmail(currentUser.emailVerified);
-     
+
       db.database().ref(`participantes`).child(currentUser.uid).update({
         sendEmailVerification: true
       }).then(() => {
-         logoutConfirmEmail("/confirme-email");
+        logoutConfirmEmail("/confirme-email");
         console.log("logout after sendEmailVerification")
         setCurrentUser(null);
       })
     })
+  }
+
+  async function getDate() {
+    var currentDate = new Date();
+    var date = currentDate.getDate();
+    var month = currentDate.getMonth();
+    var year = currentDate.getFullYear();
+    var time = new Date().getTime();
+    var monthDateYear = (month + 1) + "/" + date + "/" + year + "/" + time;
+
+    return monthDateYear;
   }
 
   useEffect(() => {
@@ -217,9 +249,7 @@ export function AuthProvider({ children }) {
       setLoading(false)
       localStorage.setItem('@Twitter:uid', user?.uid)
       localStorage.setItem('@Twitter:displayName', user?.displayName)
-
-    
-
+ 
       if (user != null)
         db.database().ref('participantes').child(user.uid).on("value", snapshot => {
           try {
@@ -230,17 +260,17 @@ export function AuthProvider({ children }) {
             console.log('STEP 2 sendEmailVerification ________', snapshot.val().sendEmailVerification)
             console.log('STEP 3 EmailVerified ________________', user.emailVerified)
             console.log('STEP 4 setActiveUserEmail ________________', activeUserEmail)
-           
+
             // setActivePassword(snapshot.val().passwordCreated);
-             
+
           } catch (error) {
             console.log(error)
           }
-      
+
         })
     })
 
-     
+
 
     return unsubscribe
   }, [activeUserEmail, setStoreCurrentUser])
