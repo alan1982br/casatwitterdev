@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { Form, Button, Container, Alert } from "react-bootstrap"
 import { useAuth } from "../../contexts/AuthContext"
 import { Link, useHistory } from "react-router-dom"
@@ -6,7 +6,8 @@ import { RiEyeFill, RiEyeOffFill } from 'react-icons/all'
 import { Required } from '..'
 
 export default function Login() {
-  const { login } = useAuth()
+  const { login, clearUser } = useAuth()
+  const [ userEmail, setUserEmail] = useState(null);
   const [error, setError] = useState("")
   const [loading, setLoading] = useState(false)
   const [ typePassword, setTypePassword ] = useState('password');
@@ -49,18 +50,9 @@ export default function Login() {
   }
 
    const handleCadastrar = async() => {
-   
-    new Promise(function (resolve, reject) {
-      localStorage.removeItem('@Twitter:ActiveEmail');
-      localStorage.removeItem('@Twitter:email');
-      localStorage.removeItem('@Twitter:passwordCreated');
-      localStorage.removeItem('@Twitter:uid');
-      setTimeout(() => resolve(1), 3000);
-    }).then(
-      history.push('/start')
-
-    );
-
+      console.log("cadastrar");
+      clearUser(true);
+      history.push('/start');
   }
 
   const validateEmail = (email) => {
@@ -97,11 +89,24 @@ export default function Login() {
     }
   }
 
+  useEffect(() => {
+    const emailLocal = localStorage.getItem('@Twitter:email');
+
+    // check if has localStorage
+    if(validateEmail(emailLocal)){
+      var oldInputs = {...inputs}
+      oldInputs.email = emailLocal;
+      setAllInputs(oldInputs);
+      setUserEmail(emailLocal);
+    } 
+    //eslint-disable-next-line
+  }, [])
+
   return (
     <Container className="form">
           <Form onSubmit={handleSubmit} style={{minHeight: '600px'}}>
             <Form.Group id="email">
-              <Form.Control onChange={handleChange} style={{textTransform: 'lowercase'}} type="text" name="email" id="txtEmail" autoComplete="off" className={inputs.email !== '' ? 'filled': 'empty'} />
+              <Form.Control disabled={userEmail !== null} onChange={handleChange} value={userEmail} style={{textTransform: 'lowercase'}} type="text" name="email" id="txtEmail" autoComplete="off" className={inputs.email !== '' ? 'filled': 'empty'} />
               <Form.Label className={inputs.email !== '' ? 'filled': 'empty'} htmlFor="txtEmail">Email</Form.Label>
               {inputs.email.length <= 0 && <Required />}
             </Form.Group>
@@ -114,7 +119,7 @@ export default function Login() {
             <div className="w-100 text-center distance-top">
               <Link to="/forgot-password">Esqueci minha senha</Link>
             </div>
-            <p className="text-center mt-3" onClick={handleCadastrar}>Ainda não é cadastrado? <span style={{textDecoration: 'underline', cursor: 'pointer'}}>Cadastrar</span></p>
+            {userEmail !== null && <p className="text-center mt-3">Não é você? <span onClick={handleCadastrar} style={{textDecoration: 'underline', cursor: 'pointer'}}>Alterar usuário.</span></p>}
             {error && <Alert variant="danger mt-4">{error}</Alert>}
             <Button disabled={loading} className="btn-form w-100 distance-top" type="submit">
               Entrar

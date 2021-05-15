@@ -31,9 +31,9 @@ export default function ConfirmeEmailComponent() {
     try {
       const email = localStorage.getItem('@Twitter:email');
       setEmail(email); 
-      if (email === null) {
-        history.push('/');
-      }
+      // if (email === null) {
+      //   history.push('/');
+      // }
     } catch {
       // Redireciona para a home caso o user não esteja no local storage
       
