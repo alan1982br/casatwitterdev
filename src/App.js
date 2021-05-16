@@ -22,7 +22,8 @@ import { Dashboard,
   TermsOfUse,
   Conteudos,
   Trends,
-  Cases } from './components'
+  Cases,
+  ModalPDF } from './components'
   
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
   const showConteudos = useSelector(state => state.showConteudos);
   const showTrends = useSelector(state => state.showTrends);
   const showCases = useSelector(state => state.showCases);
+  const showPdf = useSelector(state => state.showPdf);
 
 
   const RoutesListener = () => {
@@ -54,6 +56,11 @@ function App() {
             <TermsOfUse key="termsofuse" />
           }
           
+        </AnimatePresence>
+        <AnimatePresence>
+          {showPdf.visible && 
+            <ModalPDF key="termsofuse" />
+          }
         </AnimatePresence>
         <AnimatePresence>
           {showConteudos && 

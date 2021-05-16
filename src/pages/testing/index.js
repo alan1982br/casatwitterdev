@@ -22,6 +22,10 @@ const TestingPage = () => {
   const showHideCases = (show) => {
     dispatch({ type: 'UPDATE_CASES', payload: true });
   }
+
+  const showHidePdf = (objetct) => {
+    dispatch({ type: 'UPDATE_MODAL_PDF', payload: objetct });
+  }
   return (
     <Container fluid className="p-0 content-wrapper position-relative testing">
       <Row className="p-4">
@@ -42,6 +46,11 @@ const TestingPage = () => {
       <Row className="p-4">
         <Col>
         <div className="btn btn-success" onClick={() => showHideCases(true) }>Open Cases</div>
+        </Col>
+      </Row>
+      <Row className="p-4">
+        <Col>
+        <div className="btn btn-success" onClick={() => showHidePdf({pdf: 'twitter-trends-report-pt.pdf', visible: true }) }>Open PDF</div>
         </Col>
       </Row>
       <Row className="p-4" style={{background: '#000'}}>

@@ -24,6 +24,7 @@ import TrendsComponent from './trends'
 import CasesComponent from './cases'
 import ThumbVideoComponent from './thumb-video'
 import ButtonNavigationComponent from './button-navigation'
+import ModalPDFComponent from './modal-pdf'
 
 
 export { TemplateDashboard, 
@@ -51,5 +52,6 @@ export { TemplateDashboard,
         TrendsComponent as Trends,
         CasesComponent as Cases,
         ThumbVideoComponent as ThumbVideo,
-        ButtonNavigationComponent as ButtonNavigation
+        ButtonNavigationComponent as ButtonNavigation,
+        ModalPDFComponent as ModalPDF
 }

@@ -7,7 +7,8 @@ const INITIAL_STATE = {
   currentUser: [],
   showConteudos: false,
   showCases: false,
-  showTrends: false
+  showTrends: false,
+  showPdf: {pdf: 'twitter-trends-report-pt.pdf', visible: false }
 };
 
 const reducer = (state = INITIAL_STATE, action) => {
@@ -47,6 +48,11 @@ const reducer = (state = INITIAL_STATE, action) => {
         ...state,
         showCases: action.payload,
       };
+    case 'UPDATE_MODAL_PDF':
+        return {
+          ...state,
+          showPdf: action.payload,
+        };
     default:
       return state;
   }
