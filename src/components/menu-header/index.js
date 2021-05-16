@@ -20,12 +20,17 @@ const MenuHeaderComponent = ({closeMenuMobile = () => {}}) => {
     closeMenuMobile();
     dispatch({ type: 'UPDATE_CASES', payload: true });
   }
+  const handlePesquisa = () => {
+    closeMenuMobile();
+    dispatch({ type: 'UPDATE_TOUR', payload: '103' });
+  }
 
   return (
     <div className="menu__header">
       <ul>
+        <li onClick={() => handlePesquisa()}>Pesquisa</li>
         <li onClick={() => showHideDepoimentos()}>Conteúdos</li>
-        <li onClick={() => showHideTrends()}>Pesquisa</li>
+        <li onClick={() => showHideTrends()}>Trends</li>
         <li onClick={() => showHideCases()}>Cases</li>
         <li><a href="https://marketing.twitter.com/pt" rel="noopener noreferrer"
                target="_blank"><FaTwitter color="#1D9BF0" />

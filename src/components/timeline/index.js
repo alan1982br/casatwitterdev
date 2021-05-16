@@ -143,8 +143,16 @@ const TimelineComponent = () => {
     }
   }
 
+  const updateOutofTimeline = (currentTour) =>{
+    if(currentTour === '100') {
+      setCurrentThumb('1');
+      // updateVisitedTour('1')
+    }
+  }
+
   useEffect(() => {
     updateVisitedTour(currentTour);
+    updateOutofTimeline(currentTour)
   }, [currentTour])
 
   useEffect(() => {
