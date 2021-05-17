@@ -176,7 +176,7 @@ const  TrendsComponent = () => {
                 </AnimatePresence>
                 <Row className="title__container" ref={titleRef}>
                   <Col className="col-12 d-flex align-items-center justify-content-center mt-4">
-                    <h1>Pesquisa</h1>
+                    <h1>Trends</h1>
                   </Col>
                 </Row>
                 <Row className="text-container">
@@ -190,11 +190,6 @@ const  TrendsComponent = () => {
                                   title="Relatório de pesquisa"
                                   handleClickDownload={() => saveFile('twitter-trends-report-pt.pdf')}
                                   handleClick={() => setFile('twitter-trends-report-pt.pdf')}
-                                   />
-                      <ThumbVideo image="thumb_infografico.jpg" 
-                                  title="Infográfico"
-                                  handleClickDownload={() => saveFile('twitter.pdf')}
-                                  handleClick={() => setFile('twitter.pdf')}
                                    />
                       </Row>
                   </Col>

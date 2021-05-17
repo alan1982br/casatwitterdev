@@ -4,7 +4,7 @@ import { Container, Row, Col } from "react-bootstrap"
 import { AuthProvider } from "./contexts/AuthContext"
 import { AnimatePresence } from 'framer-motion'
 import { BrowserRouter as Router, Switch, Route, useLocation } from "react-router-dom"
-import { TestingPage, VirtualTour, ArtHouse  } from './pages'
+import { TestingPage, VirtualTour, ArtHouse, Pesquisa  } from './pages'
 import "./styles/App.scss"
 import firebase from './firebase';
 import { Dashboard, 
@@ -86,6 +86,7 @@ function App() {
                   <Route exact path="/">
                     <TemplateDashboard component={Start} />
                   </Route>
+                  <Route exact path="/Pesquisa" component={Pesquisa} />
                   <Route exact path="/arthouse" component={ArtHouse} />
                   {/* <PrivateRoute exact path="/dashboard">
                     <TemplateDashboard component={Dashboard} />

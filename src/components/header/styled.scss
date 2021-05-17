@@ -21,6 +21,12 @@
       cursor: pointer;
 
       @media (min-width: 768px) {
+        width: 140px;
+        height: initial;
+        margin-top: 10px;
+      }
+
+      @media (min-width: 1250px) {
         width: initial;
         height: initial;
         margin-top: 40px;

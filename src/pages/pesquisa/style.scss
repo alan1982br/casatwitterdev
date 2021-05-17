@@ -1,0 +1,100 @@
+.container-fluid.pesquisa {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  padding: 0;
+  margin: 0;
+
+  .iframe-wrapper {
+    min-height: calc(90vh - 85px);
+    height: 100%;
+    position: relative;
+
+    @media (min-width: 768px){
+      min-height: calc(80vh - 50px);
+    }
+  }
+  
+  .logo {
+    position: absolute;
+    top: 60px;
+    right: initial;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 44px;
+    height: 54px;
+    z-index: 1;
+    @media (min-width: 768px) {
+      right: 60px;
+      left: initial;
+      width: 66px;
+      transform: initial;
+      height: 54px;
+    }
+  }
+
+  .image-header {
+    width: 100%;
+  }
+
+  .iframe-container {
+    position: absolute; 
+    width: 100%;
+    min-height: inherit;
+    left:0; 
+    right:0; 
+    bottom:0; 
+    top:0; 
+    border:0;
+  }
+  
+  .image-container {
+    min-height: 110px;
+  }
+  
+  .content-container {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @media (max-width: 767px) {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    @media (min-width: 768px) {
+      height: 100vh;
+    }
+  }
+  
+  .destaque-image {
+    position: absolute;
+    display: block;
+    width: 240px;
+    height: auto;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 40px;
+
+    @media (min-width: 768px) {
+      position: relative;
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  .video-container {
+    background: #FFF;
+    padding: 2px 2px;
+    height: 100vh;
+    @media (max-width: 767px) {
+      padding-bottom: 50px;
+    }
+  }
+}
+
