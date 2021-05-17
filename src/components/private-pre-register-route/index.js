@@ -6,7 +6,7 @@ export default function PrivatePreRegisterRoute({ component: Component, ...rest 
   const { currentUser } = useAuth()
 
   if(currentUser)
-  console.log(" currentUser.emailVerified " , currentUser.emailVerified)
+  // console.log(" currentUser.emailVerified " , currentUser.emailVerified)
  
   return (
     <Route

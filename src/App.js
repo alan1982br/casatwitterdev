@@ -4,14 +4,13 @@ import { Container, Row, Col } from "react-bootstrap"
 import { AuthProvider } from "./contexts/AuthContext"
 import { AnimatePresence } from 'framer-motion'
 import { BrowserRouter as Router, Switch, Route, useLocation } from "react-router-dom"
-import { TestingPage, VirtualTour, ArtHouse, Pesquisa  } from './pages'
+import { VirtualTour, ArtHouse, Pesquisa  } from './pages'
 import "./styles/App.scss"
 import firebase from './firebase';
-import { Dashboard, 
+import { 
   ForgotPassword, 
   Login, 
   TemplateDashboard, 
-  SignUp, 
   PrivateRoute,
   UpdateProfile,
   ConfirmeEmail,
@@ -112,7 +111,7 @@ function App() {
                   <Route path="/forgot-password" component={ForgotPassword}>
                     <TemplateDashboard component={ForgotPassword} />
                   </Route>
-                  <Route exact path="/testing" component={TestingPage} />
+                  {/* <Route exact path="/testing" component={TestingPage} /> */}
                   <PrivateRoute exact path="/virtual-tour" component={VirtualTour} />
                   {/* <Route exact path="/virtual-tour" component={VirtualTour} /> */}
                   <Route path="/">

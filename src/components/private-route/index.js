@@ -4,7 +4,7 @@ import { Route, Redirect } from "react-router-dom"
 import { useAuth } from "../../contexts/AuthContext"
 import { TemplateDashboard  } from '..'
 import { VirtualTour  } from '../../pages'
-import { auth } from "../../firebase"
+// import { auth } from "../../firebase"
 
 export default function PrivateRoute({ component: Component, ...rest }) {
   const [ hasLocalStorage, setHasLocalStorage ] = useState(false);
@@ -27,13 +27,13 @@ export default function PrivateRoute({ component: Component, ...rest }) {
 const renderComponent = (props) => {
   
     const pathName = path;
-     console.log("pathName " , pathName)
+    //  console.log("pathName " , pathName)
  
     switch(pathName) {
       case '/register':
         {
           // if()
-          console.log("activePassword______________________", activePassword)
+          // console.log("activePassword______________________", activePassword)
           if(!currentUser) return <Redirect to="/start" />
           if(activeUserEmail === true) return <Redirect to="/login" />
           if(activePassword === true) return <Redirect to="/confirme-email" />
@@ -41,7 +41,7 @@ const renderComponent = (props) => {
         }
         case '/confirme-email': 
         {
-          console.log("activeUserEmail______________________", activeUserEmail)
+          // console.log("activeUserEmail______________________", activeUserEmail)
           //  if(!currentUser) <Redirect to="/start" />
           //  if(activeUserEmail === true) return <Redirect to="/login" />
           // else return <TemplateDashboard component={Component} />
@@ -49,13 +49,14 @@ const renderComponent = (props) => {
         }
         case '/login': 
         {
-          console.log("activeUserEmail______________________", activeUserEmail)
+          // console.log("activeUserEmail______________________", activeUserEmail)
           // TODO verificar se o user existe validado ou mandar para home
           if(!currentUser) return  <TemplateDashboard component={Component} />
           if(currentUser) return <Redirect to="/virtual-tour"/>
           // if(activePassword === true) return  <TemplateDashboard component={Component} />
-         
+          break;
         }
+        
         case '/virtual-tour':
           {
             if(!currentUser) {
@@ -64,17 +65,15 @@ const renderComponent = (props) => {
             } 
             if(currentUser.emailVerified === false) return <Redirect to="/confirme-email" />
             else return  <Route exact path="/virtual-tour" component={VirtualTour} /> 
-            
+            break;
           }
+          
       default:
         return <h1>404 private</h1>
         // if logado
         // <TemplateDashboard component={Component} />
     }
- 
- 
   }
-
   return (
     <Route
       {...rest}
@@ -82,17 +81,7 @@ const renderComponent = (props) => {
         props => {
           return renderComponent(props)
         }
-        // props => renderComponent(props)
-      //   (props) => {
-      //   return <Component {...props} />
-      // }
     }
     />
-    // <Route
-    //   {...rest}
-    //   render={props => {
-    //     return currentUser ? <TemplateDashboard component={Component} {...rest} />: <Redirect to="/start" />
-    //   }}
-    // ></Route>
   )
 }

@@ -1,8 +1,10 @@
-
+/* eslint-disable no-throw-literal */
+/* eslint-disable react-hooks/exhaustive-deps */
+/*eslint no-throw-literal: "error"*/
 import React, { useContext, useState, useEffect, useCallback } from "react"
 import { auth } from "../firebase"
 import { db } from "../firebase";
-import { useHistory , useLocation } from "react-router"
+import { useHistory } from "react-router"
 import { useDispatch } from 'react-redux';
 
 const AuthContext = React.createContext()
@@ -59,8 +61,6 @@ export function AuthProvider({ children }) {
     return auth.createUserWithEmailAndPassword(email, password)
   }
 
-
-
   async function checkEmail(email) {
 
     await auth.fetchSignInMethodsForEmail(email).then((methods) => {
@@ -71,7 +71,7 @@ export function AuthProvider({ children }) {
         // setActiveEmail(false);
         throw { message: 'user_not_found' }
       } else {
-        console.log("fetchSignInMethodsForEmail true ", methods)
+        // console.log("fetchSignInMethodsForEmail true ", methods)
         setActiveEmail(email);
         checkEmailparticipant(email);
       }
@@ -91,25 +91,22 @@ export function AuthProvider({ children }) {
     let dataTime = await getDate();
 
     try {
-
-
       db
         .database()
         .ref('user_pre_register')
         .orderByChild("email")
         .once("value", snapshot => {
-
           
           snapshot.forEach(function (child) {
             if (child.val().email === email) {
-              console.log(' snapshot.val() ALL DATA USER PRE REGISTER ', child.key)
+              // console.log(' snapshot.val() ALL DATA USER PRE REGISTER ', child.key)
               db.database().ref(`user_pre_register`).child(child.key).update({
            
                 updateDate: dataTime
 
               }).then((snap) => {
                 setActiveProfileEmail(child.val().activeProfileEmail);
-                console.log(child.key + ": " + child.val().email, child.val().passwordCreated);
+                // console.log(child.key + ": " + child.val().email, child.val().passwordCreated);
                 setActivePreRegisterPassword(child.val().passwordCreated);
                 localStorage.setItem('@Twitter:passwordCreated', child.val().passwordCreated)
                 localStorage.setItem('@Twitter:uid', child.key)
@@ -118,19 +115,16 @@ export function AuthProvider({ children }) {
                 setUserStartStatus(() => userStartStatus + 1);
 
                 let uidLocal = localStorage.getItem('@Twitter:uid');
-                console.log("uid ", uidLocal)
+                // console.log("uid ", uidLocal)
                 db.database()
                   .ref('user_pre_register').child(uidLocal)
                   .on("value", snapshot => {
-
-                    if(history.location.pathname ==='/confirme-email'){
-                      console.log(snapshot.val().activeProfileEmail)
+                    if(history.location.pathname === '/confirme-email'){
+                      // console.log(snapshot.val().activeProfileEmail)
                        if(snapshot.val().activeProfileEmail===true)
                            history.push('/login')
 
                     }
-                       
-                   
                   })
 
                   db.database().ref(`/demo/user_pre_register`).child(child.key).update({
@@ -140,7 +134,6 @@ export function AuthProvider({ children }) {
                   })
 
                 return true;
-
               })
 
             } else {
@@ -153,7 +146,7 @@ export function AuthProvider({ children }) {
     } catch (e) {
       // Error! oh no
     } finally {
-      console.log("done verify email")
+      // console.log("done verify email")
     }
   }
 
@@ -200,14 +193,14 @@ export function AuthProvider({ children }) {
   }
 
   function updatePassword(nome, empresa, cargo, user_twitter, password) {
-    console.log("updatePassword 1", currentUser)
+    // console.log("updatePassword 1", currentUser)
     currentUser.updatePassword(password).then(() => {
-      console.log("updatePassword 2")
+      // console.log("updatePassword 2")
 
       currentUser.updateProfile({
         displayName: nome,
       }).then(function () {
-        console.log('Update successful profile name')
+        // console.log('Update successful profile name')
       }).catch(function (error) {
         // An error happened.
       });
@@ -238,7 +231,7 @@ export function AuthProvider({ children }) {
    
 
         })
-        console.log("updatePassword 3 ", currentUser.email)
+        // console.log("updatePassword 3 ", currentUser.email)
         sendEmailVerification(currentUser.email);
 
       })
@@ -246,16 +239,16 @@ export function AuthProvider({ children }) {
   }
 
   function sendEmailVerification(email) {
-    console.log("updatePassword 4", email)
+    // console.log("updatePassword 4", email)
     return currentUser.sendEmailVerification().then(() => {
-      console.log("updatePassword 5")
+      // console.log("updatePassword 5")
       // setActiveUserEmail(currentUser.emailVerified);
 
       db.database().ref(`participantes`).child(currentUser.uid).update({
         sendEmailVerification: true
       }).then(() => {
         logoutConfirmEmail("/confirme-email");
-        console.log("logout after sendEmailVerification")
+        // console.log("logout after sendEmailVerification")
         setCurrentUser(null);
       })
     })
@@ -286,22 +279,20 @@ export function AuthProvider({ children }) {
           try {
              setActiveUserEmail(user.emailVerified);
 
-            console.log(' snapshot.val() ALL DATA PARTICIPANTE ', snapshot.val())
-            console.log('STEP 1 PasswordCreated ______________', snapshot.val().passwordCreated)
-            console.log('STEP 2 sendEmailVerification ________', snapshot.val().sendEmailVerification)
-            console.log('STEP 3 EmailVerified ________________', user.emailVerified)
-            console.log('STEP 4 setActiveUserEmail ________________', activeUserEmail)
+            // console.log(' snapshot.val() ALL DATA PARTICIPANTE ', snapshot.val())
+            // console.log('STEP 1 PasswordCreated ______________', snapshot.val().passwordCreated)
+            // console.log('STEP 2 sendEmailVerification ________', snapshot.val().sendEmailVerification)
+            // console.log('STEP 3 EmailVerified ________________', user.emailVerified)
+            // console.log('STEP 4 setActiveUserEmail ________________', activeUserEmail)
 
             // setActivePassword(snapshot.val().passwordCreated);
 
           } catch (error) {
-            console.log(error)
+            // console.log(error)
           }
 
         })
     })
-
-
 
     return unsubscribe
   }, [activeUserEmail, setStoreCurrentUser])

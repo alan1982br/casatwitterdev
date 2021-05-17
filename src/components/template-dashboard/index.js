@@ -1,9 +1,9 @@
-import React, { useEffect } from "react"
+import React from "react"
 import { Container, Row, Col } from 'react-bootstrap'
 import { useResize } from '../../hooks'
 import { ImageLoginHome } from '../../assets'
 import { Logo } from '..'
-import { useAuth } from "../../contexts/AuthContext"
+// import { useAuth } from "../../contexts/AuthContext"
 import './style.scss'
  
 
@@ -12,8 +12,8 @@ window.addEventListener('message', function(e) {
  let uid = localStorage.getItem('@Twitter:uid');
  let displayName = localStorage.getItem('@Twitter:displayName');
 
-  console.log(e.origin); // outputs "http://"
-  console.log("receive from layer 3dvista" , e.data); // outputs "works!"
+  // console.log(e.origin); // outputs "http://"
+  // console.log("receive from layer 3dvista" , e.data); // outputs "works!"
 
 
 if(e.data !== 'tourLoaded')
@@ -27,12 +27,9 @@ if(e.data !== 'tourLoaded')
 const TemplateDashboard = ({ component: Component, ...rest }) => {
 
   const { isMobile } = useResize();
-  const { currentUser  } = useAuth();
+  // const { currentUser  } = useAuth();
 
-  useEffect(() => {
   
-
-  }, [])
 
   return (
     <Container {...rest} fluid className="template__dashboard">
