@@ -50,7 +50,7 @@ export default function Login() {
   }
 
    const handleCadastrar = async() => {
-      console.log("cadastrar");
+      // console.log("cadastrar");
       clearUser(true);
       history.push('/start');
   }

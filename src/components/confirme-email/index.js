@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from "react"
-import { Button, Container, Alert } from "react-bootstrap"
-import { useHistory } from "react-router-dom"
+import { Button, Alert } from "react-bootstrap"
 import { useAuth } from "../../contexts/AuthContext"
+import { motion } from 'framer-motion';
 
 export default function ConfirmeEmailComponent() {
-  const history = useHistory();
   const [ email, setEmail ] = useState('');
   const [error, setError] = useState("")
   const [ emailReenviado, setEmailReenviado ] = useState(false)
 
-  const { logoutConfirmEmail, sendEmailVerification, currentUser } = useAuth()
+  const { logoutConfirmEmail, sendEmailVerification } = useAuth()
 
   const goToLogin = () => {
     logoutConfirmEmail("/login");
@@ -43,7 +42,7 @@ export default function ConfirmeEmailComponent() {
   }, [])
   
   return (
-    <Container className="form">
+    <motion.div initial={{opacity: 0}} animate={{opacity: 1, transition: {delay: 1.5, ease: 'easeInOut', duration: .05}}}  className="container form">
       <h2>Confirme seu email</h2>
       <p className="text-center mb-4 distance-top">Por segurança, pedimos que você confirme seu email na caixa de entrada.</p>
       <p className="text-center distance-top">Ainda não recebeu seu emai?</p>
@@ -55,6 +54,6 @@ export default function ConfirmeEmailComponent() {
           Já confirmado, continuar
         </Button>
       </div>
-    </Container>
+    </motion.div>
   )
 }

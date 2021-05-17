@@ -88,12 +88,12 @@ const TimelineComponent = () => {
     if (mouseMoved > 5) return;
 
     const { id, index } = e.currentTarget.dataset;
-    console.log(index)
+    // console.log(index)
 
     const dataObjToFirebase = dados.find(data => data.id === id);
 
     if(dataObjToFirebase !== null) {
-      console.log("manda para o firebase");
+      // console.log("manda para o firebase");
 
       let objToFirebase = {
         ...dataObjToFirebase,
@@ -103,7 +103,7 @@ const TimelineComponent = () => {
 
       const timmestamp = getDatetime();
 
-      console.log("hasSnapshot", hasSnapShot)
+      // console.log("hasSnapshot", hasSnapShot)
       hasSnapShot ? 
       db.database().ref('timeline_users').child(currentUser.uid+"/hotspots/" + id).update({...objToFirebase }):
       db.database().ref('timeline_users').child(currentUser.uid+"/hotspots/" + id).set({...objToFirebase })
@@ -189,17 +189,17 @@ const TimelineComponent = () => {
         db.database().ref('timeline_users').child(currentUser.uid).on("value", snapshot => {
           try {
             // console.log(' snapshot.val() ALL DATA timeline_users ', snapshot.val().room_1['hotspots'])
-            console.log(' snapshot.val() ALL DATA timeline_users ', snapshot.val())
+            // console.log(' snapshot.val() ALL DATA timeline_users ', snapshot.val())
             const snapshotVal = snapshot.val();
 
             // Se nenhum thumb ainda foi clicado pelo user 
             if(snapshotVal === null) {
-              console.log("não tem nenhum hotspot que já foi visitado");
+              // console.log("não tem nenhum hotspot que já foi visitado");
               
             } else { 
               setHasSnapShot(true);
-              console.log("tem hotspots visitados");
-              console.log("val", snapshotVal.hotspots)
+              // console.log("tem hotspots visitados");
+              // console.log("val", snapshotVal.hotspots)
 
               // converte os visitados do firebase em array
               const arr = Object.keys(snapshotVal.hotspots);
@@ -231,7 +231,7 @@ const TimelineComponent = () => {
 
             setFirebaseRed(true);
           } catch (error) {
-            console.log("useEffect timeline error " , error)
+            // console.log("useEffect timeline error " , error)
           }
           
         })

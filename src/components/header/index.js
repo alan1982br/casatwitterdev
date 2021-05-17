@@ -23,7 +23,7 @@ const HeaderComponent = () => {
 
 
   useEffect(() => {
-    console.log("currentUser", currentUser)
+    // console.log("currentUser", currentUser)
     setNome(currentUser?.displayName || '')
   }, [currentUser])
 
