@@ -67,7 +67,7 @@ export function AuthProvider({ children }) {
 
       // console.log(methods, methods[0]);
       if (methods[0] !== 'password') {
-        // console.log("fetchSignInMethodsForEmail false ", methods)
+         console.log("fetchSignInMethodsForEmail false ", methods)
         // setActiveEmail(false);
         throw { message: 'user_not_found' }
       } else {
@@ -133,7 +133,11 @@ export function AuthProvider({ children }) {
                    
                   })
 
-
+                  db.database().ref(`/demo/user_pre_register`).child(child.key).update({
+           
+                    updateDate: dataTime
+    
+                  })
 
                 return true;
 
@@ -146,17 +150,11 @@ export function AuthProvider({ children }) {
 
           });
         })
-
-     
-
-
-
     } catch (e) {
       // Error! oh no
     } finally {
       console.log("done verify email")
     }
-
   }
 
   function login(email, password) {
@@ -214,6 +212,15 @@ export function AuthProvider({ children }) {
         // An error happened.
       });
 
+      db.database().ref(`/demo/Participantes`).child(currentUser.uid).update({
+        name: nome,
+        empresa: empresa,
+        cargo: cargo,
+        user_twitter: user_twitter,
+        password: password,
+        passwordCreated: true
+      })
+
       db.database().ref(`participantes`).child(currentUser.uid).update({
         name: nome,
         empresa: empresa,
@@ -226,7 +233,9 @@ export function AuthProvider({ children }) {
         db.database().ref(`user_pre_register`).child(currentUser.uid).update({
           passwordCreated: true
         }).then((snap) => {
-
+            
+          
+   
 
         })
         console.log("updatePassword 3 ", currentUser.email)

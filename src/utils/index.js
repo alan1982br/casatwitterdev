@@ -13,3 +13,17 @@ export const getFile = (file) => {
     return require(`../assets/files/${file}`);
   }
 }
+
+export const getDate = () => {
+
+  var currentDate = new Date();
+  var date = currentDate.getDate();
+  var month = currentDate.getMonth();
+  var year = currentDate.getFullYear();
+  var time = new Date().getTime();
+  var monthDateYear = (month + 1) + "/" + date + "/" + year + "/" + time;
+
+  return monthDateYear;
+}
+
+
