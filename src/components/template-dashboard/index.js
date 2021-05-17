@@ -1,9 +1,9 @@
-import React, { useEffect } from "react"
+import React from "react"
 import { Container, Row, Col } from 'react-bootstrap'
 import { useResize } from '../../hooks'
 import { ImageLoginHome } from '../../assets'
 import { Logo } from '..'
-import { useAuth } from "../../contexts/AuthContext"
+// import { useAuth } from "../../contexts/AuthContext"
 import './style.scss'
  
 
@@ -12,8 +12,8 @@ window.addEventListener('message', function(e) {
  let uid = localStorage.getItem('@Twitter:uid');
  let displayName = localStorage.getItem('@Twitter:displayName');
 
-  console.log(e.origin); // outputs "http://"
-  console.log("receive from layer 3dvista" , e.data); // outputs "works!"
+  // console.log(e.origin); // outputs "http://"
+  // console.log("receive from layer 3dvista" , e.data); // outputs "works!"
 
   fetch('https://us-central1-casatwitter-815ac.cloudfunctions.net/api/messages?displayName='+displayName+'&uid='+uid+'&hotspot_id='+e.data.hotspot_id+'&hotspot_name='+e.data.hotspot_name+'&hotspot_title='+e.data.hotspot_title+'&id_room='+e.data.id_room+'&room_name='+e.data.room_name)
   .then(response => response.json())
@@ -25,12 +25,9 @@ window.addEventListener('message', function(e) {
 const TemplateDashboard = ({ component: Component, ...rest }) => {
 
   const { isMobile } = useResize();
-  const { currentUser  } = useAuth();
+  // const { currentUser  } = useAuth();
 
-  useEffect(() => {
   
-
-  }, [])
 
   return (
     <Container {...rest} fluid className="template__dashboard">
