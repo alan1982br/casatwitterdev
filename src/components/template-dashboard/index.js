@@ -15,6 +15,8 @@ window.addEventListener('message', function(e) {
   // console.log(e.origin); // outputs "http://"
   // console.log("receive from layer 3dvista" , e.data); // outputs "works!"
 
+
+if(e.data !== 'tourLoaded')
   fetch('https://us-central1-casatwitter-815ac.cloudfunctions.net/api/messages?displayName='+displayName+'&uid='+uid+'&hotspot_id='+e.data.hotspot_id+'&hotspot_name='+e.data.hotspot_name+'&hotspot_title='+e.data.hotspot_title+'&id_room='+e.data.id_room+'&room_name='+e.data.room_name)
   .then(response => response.json())
   .then(data => console.log(data));
