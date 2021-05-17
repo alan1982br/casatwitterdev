@@ -1,14 +1,4 @@
 [
-  
-  {
-    "id": "1",
-    "title": "Veja tudo de uma vez",
-    "path": "https://cloud.3dvista.com/hosting/7086438/2/index.htm?media-index=2&trigger-overlay-name=btn_mainconteudo",
-    "type": "timeline",
-    "idRoom": "02_ veja_tudo_de_uma_vez",
-    "idHotspot": "btn_mainconteduo",
-    "image": "thumb_conteudoCompleto.jpg"
-  },
   {
     "id": "2",
     "title": "Fique por dentro",
@@ -28,13 +18,13 @@
     "image": "thumb_visaoCEO.jpg"
   },
   {
-    "id": "4",
-    "title": "Fique por dentro",
-    "path": "https://cloud.3dvista.com/hosting/7086438/2/index.htm?media-index=3&trigger-overlay-name=btn_tresmensagens&focus-overlay-name=btn_tresmensagens",
+    "id": "12",
+    "title": "O que vem por aí: Inovação de produto",
+    "path": "https://cloud.3dvista.com/hosting/7086438/2/index.htm?media-index=7&trigger-overlay-name=btn_inovacao&focus-overlay-name=btn_inovacao",
     "type": "timeline",
-    "idRoom": "03_o_que_voce_precisa_saber",
-    "idHotspot": "btn_tresmensagens",
-    "image": "thumb_paraLembrar.jpg"
+    "idRoom": "07_ inspire_se_marcas_que_brilham",
+    "idHotspot": "btn_inovacao",
+    "image": "thumb_inovacaoProduto.jpg"
   },
   {
     "id": "13",
@@ -46,33 +36,6 @@
     "image": "thumb_twitterTrends.jpg"
   },
   {
-    "id": "5",
-    "title": "Conteúdo relevante? Aqui ó:",
-    "path": "https://cloud.3dvista.com/hosting/7086438/2/index.htm?media-index=4&trigger-overlay-name=btn_twittertv&focus-overlay-name=btn_twittertv",
-    "type": "timeline",
-    "idRoom": "04_conteudo_relevante",
-    "idHotspot": "btn_twittertv",
-    "image": "thumb_twitterTV.jpg"
-  },
-  {
-    "id": "9",
-    "title": "Inspire-se: Marcas que brilham",
-    "path": "https://cloud.3dvista.com/hosting/7086438/2/index.htm?media-index=7",
-    "type": "timeline",
-    "idRoom": "07_ inspire_se_marcas_que_brilham",
-    "idHotspot": "btn_avon",
-    "image": "thumb_marcasqueBrilham.jpg"
-  },
-  {
-    "id": "12",
-    "title": "O que vem por aí: Inovação de produto",
-    "path": "https://cloud.3dvista.com/hosting/7086438/2/index.htm?media-index=7&trigger-overlay-name=btn_inovacao&focus-overlay-name=btn_inovacao",
-    "type": "timeline",
-    "idRoom": "07_ inspire_se_marcas_que_brilham",
-    "idHotspot": "btn_inovacao",
-    "image": "thumb_inovacaoProduto.jpg"
-  },
-  {
     "id": "8",
     "title": "Como fazer acontecer",
     "path": "https://cloud.3dvista.com/hosting/7086438/2/index.htm?media-index=6&trigger-overlay-name=btn_espiada&focus-overlay-name=btn_espiada",
@@ -80,6 +43,15 @@
     "idRoom": "06_tendencias_que_voce_precisa_saber",
     "idHotspot": "btn_espiada",
     "image": "thumb_daUmaEspiada.jpg"
+  },
+  {
+    "id": "9",
+    "title": "Inspire-se: Marcas que brilham",
+    "path": "https://cloud.3dvista.com/hosting/7086438/2/index.htm?media-index=7&trigger-overlay-name=btn_avon&focus-overlay-name=btn_avon",
+    "type": "timeline",
+    "idRoom": "07_ inspire_se_marcas_que_brilham",
+    "idHotspot": "btn_avon",
+    "image": "thumb_marcasqueBrilham.jpg"
   },
   {
     "id": "6",
@@ -99,6 +71,25 @@
     "idHotspot": "btn_twitternext",
     "image": "thumb_next.jpg"
   },
+  {
+    "id": "5",
+    "title": "Conteúdo relevante? Aqui ó:",
+    "path": "https://cloud.3dvista.com/hosting/7086438/2/index.htm?media-index=4&trigger-overlay-name=btn_twittertv&focus-overlay-name=btn_twittertv",
+    "type": "timeline",
+    "idRoom": "04_conteudo_relevante",
+    "idHotspot": "btn_twittertv",
+    "image": "thumb_twitterTV.jpg"
+  },
+  {
+    "id": "4",
+    "title": "Fique por dentro",
+    "path": "https://cloud.3dvista.com/hosting/7086438/2/index.htm?media-index=3&trigger-overlay-name=btn_tresmensagens&focus-overlay-name=btn_tresmensagens",
+    "type": "timeline",
+    "idRoom": "03_o_que_voce_precisa_saber",
+    "idHotspot": "btn_tresmensagens",
+    "image": "thumb_paraLembrar.jpg"
+  },
+  
   {
     "id": "10",
     "title": "Inspire-se: Marcas que brilham",

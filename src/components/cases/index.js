@@ -105,6 +105,20 @@ const  CasesComponent = () => {
 
   }
 
+  const handleClick = (_link) => {
+    if(_link){
+      var link = document.createElementNS("http://www.w3.org/1999/xhtml", "a");
+      link.href = _link;
+      link.target = '_blank';
+      var event = new MouseEvent('click', {
+          'view': window,
+          'bubbles': false,
+          'cancelable': true
+      });
+      link.dispatchEvent(event);
+    }
+  }
+
   useEffect(() => {
     const WrapperHeight = termsRef?.current.clientHeight
     const titleHeight = titleRef?.current.clientHeight;
@@ -186,34 +200,28 @@ const  CasesComponent = () => {
                                     title="Inspire-se: Marcas que brilham"
                                     handleClick={() => setCurrentTour('101')}
                                     />
-                        <ThumbVideo image="thumb_natura.jpg" 
-                                    title="Inspire-se: Marcas que brilham"
-                                    handleClick={() => setCurrentTour('10')}
-                                    />
-                        <ThumbVideo image="thumb_samsung.jpg" 
-                                    title="Inspire-se: Marcas que brilham"
-                                    handleClick={() => setCurrentTour('11')}
-                                    />
-                        <ThumbVideo image="thumb_maisAqui.jpg" 
-                                    title="Inspire-se: Marcas que brilham"
-                                    handleClick={() => setCurrentTour('23')}
-                                    />
-                        <ThumbVideo image="thumb_lacta.jpg" 
-                                    title="Lacta + BBB"
-                                    handleClickDownload={() => saveFile('twitter.pdf')}
-                                    handleClick={() => setFile('twitter.pdf')}
-                                    />
-                        <ThumbVideo image="thumb_case99.jpg" 
-                                    title="Case 99"
-                                    handleClickDownload={() => saveFile('twitter.pdf')}
-                                    handleClick={() => setFile('twitter.pdf')}
-                                    />
-                        <ThumbVideo image="thumb_Doritos.jpg" 
-                                    title="Doritos"
-                                    handleClickDownload={() => saveFile('twitter.pdf')}
-                                    handleClick={() => setFile('twitter.pdf')}
-                                    />
-                      </Row>
+                      <ThumbVideo image="thumb_natura.jpg" 
+                                  title="Inspire-se: Marcas que brilham"
+                                  handleClick={() => setCurrentTour('10')}
+                                  />
+                      <ThumbVideo image="thumb_samsung.jpg" 
+                                  title="Inspire-se: Marcas que brilham"
+                                  handleClick={() => setCurrentTour('11')}
+                                  />
+                      <ThumbVideo image="thumb_lacta.jpg" 
+                                  title="Lacta + BBB"
+                                  handleClickDownload={() => saveFile('Case-Lacta.pdf')}
+                                  handleClick={() => setFile('Case-Lacta.pdf')}
+                                  />
+                      <ThumbVideo image="thumb_case99.jpg" 
+                                  title="Case 99"
+                                  handleClick={() => handleClick('https://marketing.twitter.com/pt/success-stories/99-usa-o-formato-carrossel')}
+                                  />
+                      <ThumbVideo image="thumb_Doritos.jpg" 
+                                  title="Doritos"
+                                  handleClick={() => handleClick('https://marketing.twitter.com/pt/success-stories/como-fazer-um-lancamento-poderoso-no-twitter')}
+                                  />
+                    </Row>
                   </Col>
                 </Row>
               </Col>

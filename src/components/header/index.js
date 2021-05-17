@@ -23,7 +23,8 @@ const HeaderComponent = () => {
 
 
   useEffect(() => {
-    setNome(currentUser?.displayName || 'Fulano')
+    console.log("currentUser", currentUser)
+    setNome(currentUser?.displayName || '')
   }, [currentUser])
 
   useEffect(() => {
@@ -45,7 +46,7 @@ const HeaderComponent = () => {
           <>
             <MenuHeader />
             <div className="divisor" />
-            <p style={{marginRight: '40px'}}>Olá, {' '}<b>{nome}</b>.</p>
+            <p style={{marginRight: '40px'}}>Olá, {' '}<b>{currentUser.displayName && `${nome}.`}</b></p>
             <ButtonLogout />
           </>
         }
