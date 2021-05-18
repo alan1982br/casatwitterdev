@@ -60,7 +60,8 @@ const TimelineComponent = () => {
     var month = currentDate.getMonth(); 
     var year = currentDate.getFullYear();
     var time = new Date().getTime();
-    var monthDateYear  = (month+1) + "/" + date + "/" + year + "/" + time;
+    // var monthDateYear  = (month+1) + "/" + date + "/" + year + "/" + time;
+    var monthDateYear  =  + date + "/" + (month+1) + "/" + year ;
 
     return monthDateYear;
   }
@@ -117,8 +118,8 @@ const TimelineComponent = () => {
         name:localStorage.getItem('@Twitter:displayName')
       }
 
-      const timmestamp = getDatetime();
-
+      const date = getDatetime();
+      const timmestamp = new Date().getTime(); 
       // console.log("hasSnapshot", hasSnapShot)
       hasSnapShot ? 
       db.database().ref('timeline_users').child(currentUser.uid+"/hotspots/" + id).update({...objToFirebase }):
@@ -127,8 +128,8 @@ const TimelineComponent = () => {
 
       let idkey = db.database().ref(`/'demo/timeline_users`).push().key;
       hasSnapShot ? 
-      db.database().ref('demo/timeline_users').child( idkey).update({...objToFirebase, id:idkey , timmestamp }):
-      db.database().ref('demo/timeline_users').child( idkey ).set({...objToFirebase , id: idkey , timmestamp })
+      db.database().ref('demo/timeline_users').child( idkey).update({...objToFirebase, id:idkey , date, timmestamp , uid: currentUser.uid , email: currentUser.email }):
+      db.database().ref('demo/timeline_users').child( idkey ).set({...objToFirebase , id: idkey , date, timmestamp , uid: currentUser.uid , email: currentUser.email })
 
     }
 
