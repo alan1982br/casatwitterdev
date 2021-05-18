@@ -71,7 +71,7 @@ const ConteudosComponent = () => {
                                   title="Conteúdo relevante? Aqui ó:"
                                   handleClick={() => setCurrentTour('5')} />
                       <ThumbVideo image="thumb_next.jpg" 
-                                  title="Como fazer acontencer"
+                                  title="Como fazer acontecer"
                                   handleClick={() => setCurrentTour('7')} />
                       <ThumbVideo image="thumb_twitterTrends.jpg" 
                                   title="Tendências que você precisa saber"
