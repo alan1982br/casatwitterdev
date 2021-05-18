@@ -8,6 +8,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import './style.scss'
 import data from '../../assets/mock-data/timeline.json'
 import { db } from "../../firebase";
+import { analyticsEvent } from '../../analytics';
 
 const TimelineComponent = () => {
 
@@ -77,6 +78,9 @@ const TimelineComponent = () => {
     //   'room_name': '01',
     // }, "*");
 
+
+    
+
     // Se o usuário não está logado ou se ainda não leu o firebase, não aciona o click
     if(currentUser === null || !fireBaseRead) return;
 
@@ -92,8 +96,20 @@ const TimelineComponent = () => {
 
     const dataObjToFirebase = dados.find(data => data.id === id);
 
+    //  console.log("dataObjToFirebase " , dataObjToFirebase);
+  
     if(dataObjToFirebase !== null) {
       // console.log("manda para o firebase");
+
+      analyticsEvent(dataObjToFirebase.idRoom,{
+        content_type: 'room',
+        content_id: dataObjToFirebase.idHotspot,
+        screen_name: dataObjToFirebase.title,
+        ITEM_ID : currentUser.uid,
+        character : currentUser.email,
+        nameUser: currentUser.displayName
+      });
+  
 
       let objToFirebase = {
         ...dataObjToFirebase,
