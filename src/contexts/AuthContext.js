@@ -131,7 +131,7 @@ export function AuthProvider({ children }) {
                     }
                   })
 
-                  db.database().ref(`/demo/user_pre_register`).child(child.key).update({
+                  db.database().ref(`user_pre_register`).child(child.key).update({
            
                     updateDate: dataTime
     
@@ -242,7 +242,7 @@ export function AuthProvider({ children }) {
         }).then((snap) => {
             
           
-   
+
 
         })
         // console.log("updatePassword 3 ", currentUser.email)
@@ -295,6 +295,7 @@ export function AuthProvider({ children }) {
           try {
              setActiveUserEmail(user.emailVerified);
              counterLogin++;
+
             //  console.log('counterLogin ', counterLogin)
             // console.log(' snapshot.val() ALL DATA PARTICIPANTE ', snapshot.val())
             // console.log('STEP 1 PasswordCreated ______________', snapshot.val().passwordCreated)
