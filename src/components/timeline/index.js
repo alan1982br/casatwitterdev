@@ -8,6 +8,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import './style.scss'
 import data from '../../assets/mock-data/timeline.json'
 import { db } from "../../firebase";
+import { analyticsEvent } from '../../analytics';
 
 const TimelineComponent = () => {
 
@@ -59,7 +60,8 @@ const TimelineComponent = () => {
     var month = currentDate.getMonth(); 
     var year = currentDate.getFullYear();
     var time = new Date().getTime();
-    var monthDateYear  = (month+1) + "/" + date + "/" + year + "/" + time;
+    // var monthDateYear  = (month+1) + "/" + date + "/" + year + "/" + time;
+    var monthDateYear  =  + date + "/" + (month+1) + "/" + year ;
 
     return monthDateYear;
   }
@@ -77,6 +79,9 @@ const TimelineComponent = () => {
     //   'room_name': '01',
     // }, "*");
 
+
+    
+
     // Se o usuário não está logado ou se ainda não leu o firebase, não aciona o click
     if(currentUser === null || !fireBaseRead) return;
 
@@ -92,8 +97,20 @@ const TimelineComponent = () => {
 
     const dataObjToFirebase = dados.find(data => data.id === id);
 
+    //  console.log("dataObjToFirebase " , dataObjToFirebase);
+  
     if(dataObjToFirebase !== null) {
       // console.log("manda para o firebase");
+
+      analyticsEvent(dataObjToFirebase.idRoom,{
+        content_type: 'room',
+        content_id: dataObjToFirebase.idHotspot,
+        screen_name: dataObjToFirebase.title,
+        ITEM_ID : currentUser.uid,
+        character : currentUser.email,
+        nameUser: currentUser.displayName
+      });
+  
 
       let objToFirebase = {
         ...dataObjToFirebase,
@@ -101,8 +118,8 @@ const TimelineComponent = () => {
         name:localStorage.getItem('@Twitter:displayName')
       }
 
-      const timmestamp = getDatetime();
-
+      const date = getDatetime();
+      const timmestamp = new Date().getTime(); 
       // console.log("hasSnapshot", hasSnapShot)
       hasSnapShot ? 
       db.database().ref('timeline_users').child(currentUser.uid+"/hotspots/" + id).update({...objToFirebase }):
@@ -111,8 +128,8 @@ const TimelineComponent = () => {
 
       let idkey = db.database().ref(`/'demo/timeline_users`).push().key;
       hasSnapShot ? 
-      db.database().ref('demo/timeline_users').child( idkey).update({...objToFirebase, id:idkey , timmestamp }):
-      db.database().ref('demo/timeline_users').child( idkey ).set({...objToFirebase , id: idkey , timmestamp })
+      db.database().ref('demo/timeline_users').child( idkey).update({...objToFirebase, id:idkey , date, timmestamp , uid: currentUser.uid , email: currentUser.email }):
+      db.database().ref('demo/timeline_users').child( idkey ).set({...objToFirebase , id: idkey , date, timmestamp , uid: currentUser.uid , email: currentUser.email })
 
     }
 

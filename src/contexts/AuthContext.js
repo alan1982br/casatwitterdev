@@ -9,6 +9,8 @@ import { useDispatch } from 'react-redux';
 
 const AuthContext = React.createContext()
 
+let counterLogin = 0;
+
 export function useAuth() {
   return useContext(AuthContext)
 }
@@ -28,6 +30,8 @@ export function AuthProvider({ children }) {
   const history = useHistory()
 
   const dispatch = useDispatch();
+
+  
 
   const setStoreCurrentUser = useCallback((user) => {
     dispatch({ type: 'SET_CURRENT_USER', payload: user });
@@ -67,7 +71,7 @@ export function AuthProvider({ children }) {
 
       // console.log(methods, methods[0]);
       if (methods[0] !== 'password') {
-         console.log("fetchSignInMethodsForEmail false ", methods)
+        //  console.log("fetchSignInMethodsForEmail false ", methods)
         // setActiveEmail(false);
         throw { message: 'user_not_found' }
       } else {
@@ -127,7 +131,7 @@ export function AuthProvider({ children }) {
                     }
                   })
 
-                  db.database().ref(`/demo/user_pre_register`).child(child.key).update({
+                  db.database().ref(`user_pre_register`).child(child.key).update({
            
                     updateDate: dataTime
     
@@ -163,10 +167,20 @@ export function AuthProvider({ children }) {
     });
   }
 
-  function logout(path = null) {
-
+  async function logout(path = null) {
+    let dataTimeLogout = await getDate();
     // clearUser(); opção
     return auth.signOut().then(() => {
+      counterLogin = 0 ;
+
+      let actualkey = db.database().ref(`/demo/userOnLogout`).push().key;
+      db.database().ref(`/demo/userOnLogout`).child(actualkey).update({
+        email: currentUser.email,
+        id: actualkey,
+        uid: currentUser.uid,
+        lastSignInTime : currentUser.metadata.lastSignInTime,
+        dataTimeLogout : dataTimeLogout
+      })
 
       clearUser();
       // path === "/start" ? history.push("/start") : history.push("/login");
@@ -228,7 +242,7 @@ export function AuthProvider({ children }) {
         }).then((snap) => {
             
           
-   
+
 
         })
         // console.log("updatePassword 3 ", currentUser.email)
@@ -266,19 +280,23 @@ export function AuthProvider({ children }) {
   }
 
   useEffect(() => {
- 
+   
+
     const unsubscribe = auth.onAuthStateChanged(user => {
       setCurrentUser(user)
       setStoreCurrentUser(user);
       setLoading(false)
       localStorage.setItem('@Twitter:uid', user?.uid)
       localStorage.setItem('@Twitter:displayName', user?.displayName)
+     
  
       if (user != null)
         db.database().ref('participantes').child(user.uid).on("value", snapshot => {
           try {
              setActiveUserEmail(user.emailVerified);
+             counterLogin++;
 
+            //  console.log('counterLogin ', counterLogin)
             // console.log(' snapshot.val() ALL DATA PARTICIPANTE ', snapshot.val())
             // console.log('STEP 1 PasswordCreated ______________', snapshot.val().passwordCreated)
             // console.log('STEP 2 sendEmailVerification ________', snapshot.val().sendEmailVerification)
@@ -286,12 +304,28 @@ export function AuthProvider({ children }) {
             // console.log('STEP 4 setActiveUserEmail ________________', activeUserEmail)
 
             // setActivePassword(snapshot.val().passwordCreated);
+            if(counterLogin==1){
+              let actualkey = db.database().ref(`/demo/userOnLogin`).push().key;
+             db.database().ref(`/demo/userOnLogin`).child(actualkey).update({
+               email: user.email,
+               name: snapshot.val().name,
+               empresa: snapshot.val().empresa,
+               cargo: snapshot.val().cargo,
+               user_twitter: snapshot.val().user_twitter,
+               id: actualkey,
+               uid: user.uid,
+               lastSignInTime : user.metadata.lastSignInTime,
+               creationTime : user.metadata.creationTime
+             })
+            }
 
           } catch (error) {
             // console.log(error)
           }
 
         })
+
+        
     })
 
     return unsubscribe
