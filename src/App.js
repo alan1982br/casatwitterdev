@@ -32,19 +32,19 @@ function App() {
   const showTrends = useSelector(state => state.showTrends);
   const showCases = useSelector(state => state.showCases);
   const showPdf = useSelector(state => state.showPdf);
-
-
+ 
   const RoutesListener = () => {
 
     const location = useLocation();
 
     useEffect(() => {
       firebase.analytics().setCurrentScreen(location.pathname);
+      firebase.analytics().logEvent('screen_view', { screen_name: location.pathname });
+          console.log('location.pathname ' , location.pathname);
     }, [location]);
 
     return <></>;
   } 
-
 
   return (
       <Container fluid
@@ -54,7 +54,7 @@ function App() {
           {showterms && 
             <TermsOfUse key="termsofuse" />
           }
-          
+         
         </AnimatePresence>
         <AnimatePresence>
           {showPdf.visible && 
