@@ -54,17 +54,17 @@ export default function Start() {
   
         // Se já registrou, verifica se verificou email ou não
         if(activePreRegisterPassword) {
-          if(activeProfileEmail === false) {
-            // Se não verificou o email, manda para o confirme-email
-            // console.log('email existe, registro pendente => /confirme-email')
-            history.push('/confirme-email');
-          } else {
+          // if(activeProfileEmail === false) {
+          //   // Se não verificou o email, manda para o confirme-email
+          //   // console.log('email existe, registro pendente => /confirme-email')
+          //   history.push('/confirme-email');
+          // } else {
             // Se verificou o email, manda para o login
             // console.log('email existe, registro feito => /login')
             localStorage.setItem('@Twitter:email', activeEmail)
             history.push('/login')
-          }
-        } else if(activeProfileEmail !== true) {
+          // }
+        } else  {
           // console.log(activeEmail, activePreRegisterPassword, activeProfileEmail)
           // ainda não fez o registro, vai para o register
           localStorage.setItem('@Twitter:email', activeEmail)
@@ -111,49 +111,7 @@ export default function Start() {
     
   }
  
-  useEffect(() => {
-    // const hasEmail = localStorage.getItem('@Twitter:ActiveEmail');
-
-    // 1o - Se a pessoa nunca logou - entrando pela primeira vez
-
-    // 2o - A pessoa já logou, mas quer entrar como outro usuário (talvez)
-
-    // 3o mais antigo - verifica se a pessoa ja logou e manda para o redirect
-
-    /*
-    console.log("ENTER PAGE START_________________")
-    const activePassword = localStorage.getItem('@Twitter:passwordCreated');
-    console.log("ENTER PAGE REGISTER activePassword _________________" , activePassword)
-    
-    
-    
-    if(localStorage.getItem('@Twitter:ActiveEmail') === true){
-      //  history.push("/register");
-      console.log("tem email verificado")
-    } else {
-      if(typeof(activeEmail) === 'string') {
-        console.log("activePreRegisterPassword " , activePreRegisterPassword);
-        if(activePassword === true){
-          console.log("step1")
-            history.push("/login")
-          }else{
-          doLogin()
-          console.log("step2")
-          // adicionar email ao localStorage
-          localStorage.setItem('@Twitter:ActiveEmail',true)
-          localStorage.setItem('@Twitter:email', activeEmail) 
-          history.push("/register")
-        }
-      } else if (activeEmail === false) {
-        setError("O email digitado não consta em nosso sistema")
-        // history.push("/start")
-      }
-    }
-    //  }, [activeEmail, history, activePreRegisterPassword, login])
-    */
-    // Não remover o eslint abaixo
-    //eslint-disable-next-line
-   }, []);
+ 
 
   useEffect(() => {
     const email = localStorage.getItem('@Twitter:email');
@@ -173,7 +131,7 @@ export default function Start() {
               {inputs.email.length <= 0 && <Required />}
             </Form.Group>
             {error && <Alert className="mt-4" variant="danger">{error}</Alert>}
-            <Button className="btn-form w-100 distance-top" type="submit">
+            <Button disabled={freeze} className="btn-form w-100 distance-top" type="submit">
               Entrar
             </Button>
           </Form>

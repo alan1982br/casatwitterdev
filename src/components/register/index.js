@@ -7,7 +7,7 @@ import { Required } from '..'
 import { RiEyeFill, RiEyeOffFill } from 'react-icons/all'
 
 export default function Register() {
-  const { logout, updatePassword, activePreRegisterPassword } = useAuth()
+  const { login, signup, activeEmail, logout, clearUser, updatePassword, activePreRegisterPassword, checkEmailparticipant } = useAuth()
   const [error, setError] = useState("")
   const [userEmail, setUserEmail] = useState('');
   const [typePassword, setTypePassword] = useState('password');
@@ -66,6 +66,7 @@ export default function Register() {
 
     if (inputs.passwordConfirm.length < 1) return setError("O campo Confirmar Senha deve ser preenchido.")
 
+    console.log(inputs.password.length, inputs.passwordConfirm.length)
     if (inputs.password !== inputs.passwordConfirm) {
       return setError("As senhas não são iguais")
     }
@@ -73,8 +74,10 @@ export default function Register() {
     try {
       setError("")
       // console.log("nome", inputs.nome, "password", inputs.password)
-      await updatePassword(inputs.nome, inputs.empresa, inputs.cargo,
+      
+     await updatePassword(inputs.nome, inputs.empresa, inputs.cargo,
                                 inputs.user_twitter, inputs.password);
+                                
       // history.push("/confirme-email")
     } catch {
       setError("erro ao tentar conectar com o servidor")
@@ -112,10 +115,10 @@ export default function Register() {
 
   useEffect(() => {
 
-    // console.log("ENTER PAGE REGISTER_________________", activePreRegisterPassword)
+    console.log("ENTER PAGE REGISTER_________________", activePreRegisterPassword)
 
     const email = localStorage.getItem('@Twitter:email');
-    // const activePassword = localStorage.getItem('@Twitter:passwordCreated');
+    const activePassword = localStorage.getItem('@Twitter:passwordCreated');
 
     // Se existe email, coloca no estado
     if(email !== null) {
@@ -124,6 +127,28 @@ export default function Register() {
       // Manda para o start se entrou pela rota sem passar pela home
       history.push("/start")
     }
+
+    // console.log("ENTER PAGE REGISTER activePassword _________________", activePassword)
+
+    // const doLogin = async (email) => {
+    //   console.log("REACT_APP_PASSWORD_USER_FIRST ", process.env.REACT_APP_PASSWORD_USER_FIRST)
+    //   await login(email, process.env.REACT_APP_PASSWORD_USER_FIRST)
+     
+    // }
+
+    // if (activePassword === 'true') {
+    //   history.push("/login")
+    // } else {
+    //   if (email !== null) {
+    //     setUserEmail(email);
+    //     if(activePassword === false){
+    //       doLogin(email);
+    //     }
+        
+    //   } else {
+    //     history.push("/start")
+    //   }
+    // }
 
   }, [activePreRegisterPassword, history])
 
