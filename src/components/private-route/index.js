@@ -8,7 +8,7 @@ import { VirtualTour  } from '../../pages'
 
 export default function PrivateRoute({ component: Component, ...rest }) {
   const [ hasLocalStorage, setHasLocalStorage ] = useState(false);
-  const { currentUser , activePassword , activeUserEmail } = useAuth();
+  const { currentUser , activePassword , activeEmail } = useAuth();
 
   const { path } = {...rest};
 
@@ -32,12 +32,9 @@ const renderComponent = (props) => {
     switch(pathName) {
       case '/register':
         {
-          // if()
-          // console.log("activePassword______________________", activePassword)
-          if(!currentUser) return <Redirect to="/start" />
-          if(activeUserEmail === true) return <Redirect to="/login" />
-          // if(activePassword === true) return <Redirect to="/confirme-email" />
-          else return <TemplateDashboard component={Component} />
+          
+          //  if(currentUser) return <Redirect to="/virtual-tour"/>
+         return <TemplateDashboard component={Component} />
         }
         case '/confirme-email': 
         {

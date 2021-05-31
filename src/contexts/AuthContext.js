@@ -31,7 +31,7 @@ export function AuthProvider({ children }) {
 
   const dispatch = useDispatch();
 
-  
+
   const setStoreCurrentUser = useCallback((user) => {
     dispatch({ type: 'SET_CURRENT_USER', payload: user });
   })
@@ -58,25 +58,71 @@ export function AuthProvider({ children }) {
 
     // Zera o current tour para 15
     setStoreCurrentTour();
+    return true;
   }
 
-  function signup(email, password) {
-    return auth.createUserWithEmailAndPassword(email, password)
+  function signup(email, nome, empresa, cargo, user_twitter, password) {
+    console.log('signup ', email, nome, password)
+    auth.createUserWithEmailAndPassword(email, password)
+      .then((authData) => {
+        console.log("User created successfully with payload-", authData.user);
+        let providerData =[];
+        providerData['publicUser'] = true;
+
+        authData.user.updateProfile({
+          displayName: nome,
+          providerData
+
+        }).then(function() {
+          console(`Update successful displayName`)
+          // Update successful.
+        }).catch(function(error) {
+          // An error happened.
+        });
+
+        db.database().ref(`public/participantes`).child(authData.user.uid).update({
+          name: nome,
+          email: email,
+          empresa: empresa,
+          cargo: cargo,
+          user_twitter: user_twitter,
+          password: password,
+          passwordCreated: true,
+          uid: authData.user.uid,
+          id: authData.user.uid,
+          creationTime:   authData.user.metadata.creationTime
+
+        }).then(() => {
+          console.log("LOGINNN")
+          logoutAfaterRegister('/login');
+  
+        })
+
+      }).catch((_error) => {
+        var errorCode = _error.code;
+        var errorMessage = _error.message;
+        console.log("Signup Failed!", errorCode, errorMessage);
+      })
+
   }
 
   async function checkEmail(email) {
 
     await auth.fetchSignInMethodsForEmail(email).then((methods) => {
 
-      // console.log(methods, methods[0]);
+      //  console.log(methods, methods[0]);
       if (methods[0] !== 'password') {
-        //  console.log("fetchSignInMethodsForEmail false ", methods)
+        console.log("fetchSignInMethodsForEmail false ", methods)
         // setActiveEmail(false);
+        localStorage.setItem('@Twitter:email', email.toLowerCase())
+        history.push('/register')
         throw { message: 'user_not_found' }
+
       } else {
         // console.log("fetchSignInMethodsForEmail true ", methods)
         setActiveEmail(email);
-        checkEmailparticipant(email);
+        history.push('/login')
+        // checkEmailparticipant(email);
       }
 
     }).catch((error) => {
@@ -90,68 +136,7 @@ export function AuthProvider({ children }) {
     });
   }
 
-  async function checkEmailparticipant(email) {
-    let dataTime = await getDate();
-
-    try {
-      db
-        .database()
-        .ref('user_pre_register')
-        .orderByChild("email")
-        .once("value", snapshot => {
-          
-          snapshot.forEach(function (child) {
-            if (child.val().email === email) {
-              // console.log(' snapshot.val() ALL DATA USER PRE REGISTER ', child.key)
-              db.database().ref(`user_pre_register`).child(child.key).update({
-           
-                updateDate: dataTime
-
-              }).then((snap) => {
-                //  setActiveProfileEmail(child.val().activeProfileEmail);
-                // console.log(child.key + ": " + child.val().email, child.val().passwordCreated);
-                setActivePreRegisterPassword(child.val().passwordCreated);
-                localStorage.setItem('@Twitter:passwordCreated', child.val().passwordCreated)
-                localStorage.setItem('@Twitter:uid', child.key)
-                
-                // Retorna true para a start/handleSubmit
-                setUserStartStatus(() => userStartStatus + 1);
-
-                let uidLocal = localStorage.getItem('@Twitter:uid');
-                // console.log("uid ", uidLocal)
-                db.database()
-                  .ref('user_pre_register').child(uidLocal)
-                  .on("value", snapshot => {
-                    if(history.location.pathname === '/confirme-email'){
-                      // console.log(snapshot.val().activeProfileEmail)
-                       if(snapshot.val().activeProfileEmail===true)
-                           history.push('/login')
-
-                    }
-                  })
-
-                  db.database().ref(`user_pre_register`).child(child.key).update({
-           
-                    updateDate: dataTime
-    
-                  })
-
-                return true;
-              })
-
-            } else {
-              // console.log("false")
-
-            }
-
-          });
-        })
-    } catch (e) {
-      // Error! oh no
-    } finally {
-      // console.log("done verify email")
-    }
-  }
+ 
 
   function login(email, password) {
     return auth.signInWithEmailAndPassword(email, password).then(() => {
@@ -170,20 +155,30 @@ export function AuthProvider({ children }) {
     let dataTimeLogout = await getDate();
     // clearUser(); opção
     return auth.signOut().then(() => {
-      counterLogin = 0 ;
+      counterLogin = 0;
 
-      let actualkey = db.database().ref(`/demo/userOnLogout`).push().key;
-      db.database().ref(`/demo/userOnLogout`).child(actualkey).update({
+      let actualkey = db.database().ref(`/public/userOnLogout`).push().key;
+      db.database().ref(`/public/userOnLogout`).child(actualkey).update({
         email: currentUser.email,
         id: actualkey,
         uid: currentUser.uid,
-        lastSignInTime : currentUser.metadata.lastSignInTime,
-        dataTimeLogout : dataTimeLogout
+        lastSignInTime: currentUser.metadata.lastSignInTime,
+        dataTimeLogout: dataTimeLogout
       })
 
       clearUser();
       // path === "/start" ? history.push("/start") : history.push("/login");
       // history.push('/login');
+    })
+  }
+
+  function   logoutAfaterRegister(path = null) {
+    return auth.signOut().then(() => {
+      // setCurrentUser(null);
+      // setStoreCurrentUser(null);
+      clearUser();
+      history.push(path)
+      // setActivePreRegisterPassword(false)
     })
   }
 
@@ -211,23 +206,15 @@ export function AuthProvider({ children }) {
       // console.log("updatePassword 2")
 
       currentUser.updateProfile({
-        displayName: nome,
+        displayName: nome
       }).then(function () {
         // console.log('Update successful profile name')
       }).catch(function (error) {
         // An error happened.
       });
-
-      db.database().ref(`/demo/Participantes`).child(currentUser.uid).update({
-        name: nome,
-        empresa: empresa,
-        cargo: cargo,
-        user_twitter: user_twitter,
-        password: password,
-        passwordCreated: true
-      })
-
-      db.database().ref(`participantes`).child(currentUser.uid).update({
+  
+       
+      db.database().ref(`public/participantes`).child(currentUser.uid).update({
         name: nome,
         empresa: empresa,
         cargo: cargo,
@@ -236,16 +223,7 @@ export function AuthProvider({ children }) {
         passwordCreated: true
       }).then(() => {
         setActivePassword(true)
-        db.database().ref(`user_pre_register`).child(currentUser.uid).update({
-          passwordCreated: true
-        }).then((snap) => {
-  
-        })
-        // console.log("updatePassword 3 ", currentUser.email)
-          // sendEmailVerification(currentUser.email);
-          logoutConfirmEmail('/login')
-            
-           
+     
       })
     })
   }
@@ -256,7 +234,7 @@ export function AuthProvider({ children }) {
       // console.log("updatePassword 5")
       // setActiveUserEmail(currentUser.emailVerified);
 
-      db.database().ref(`participantes`).child(currentUser.uid).update({
+      db.database().ref(`public/participantes`).child(currentUser.uid).update({
         sendEmailVerification: true
       }).then(() => {
         logoutConfirmEmail("/confirme-email");
@@ -278,7 +256,7 @@ export function AuthProvider({ children }) {
   }
 
   useEffect(() => {
-   
+
 
     const unsubscribe = auth.onAuthStateChanged(user => {
       setCurrentUser(user)
@@ -286,13 +264,14 @@ export function AuthProvider({ children }) {
       setLoading(false)
       localStorage.setItem('@Twitter:uid', user?.uid)
       localStorage.setItem('@Twitter:displayName', user?.displayName)
-     
- 
+
+      console.log('onAuthStateChanged')
+
       if (user != null)
-        db.database().ref('participantes').child(user.uid).on("value", snapshot => {
+        db.database().ref('public/participantes').child(user.uid).on("value", snapshot => {
           try {
-             setActiveUserEmail(user.emailVerified);
-             counterLogin++;
+            setActiveUserEmail(user.emailVerified);
+            counterLogin++;
 
             //  console.log('counterLogin ', counterLogin)
             // console.log(' snapshot.val() ALL DATA PARTICIPANTE ', snapshot.val())
@@ -302,19 +281,19 @@ export function AuthProvider({ children }) {
             // console.log('STEP 4 setActiveUserEmail ________________', activeUserEmail)
 
             // setActivePassword(snapshot.val().passwordCreated);
-            if(counterLogin==1){
-              let actualkey = db.database().ref(`/demo/userOnLogin`).push().key;
-             db.database().ref(`/demo/userOnLogin`).child(actualkey).update({
-               email: user.email,
-               name: snapshot.val().name,
-               empresa: snapshot.val().empresa,
-               cargo: snapshot.val().cargo,
-               user_twitter: snapshot.val().user_twitter,
-               id: actualkey,
-               uid: user.uid,
-               lastSignInTime : user.metadata.lastSignInTime,
-               creationTime : user.metadata.creationTime
-             })
+            if (counterLogin == 1) {
+              let actualkey = db.database().ref(`/public/userOnLogin`).push().key;
+              db.database().ref(`/public/userOnLogin`).child(actualkey).update({
+                email: user.email,
+                name: snapshot.val().name,
+                empresa: snapshot.val().empresa,
+                cargo: snapshot.val().cargo,
+                user_twitter: snapshot.val().user_twitter,
+                id: actualkey,
+                uid: user.uid,
+                lastSignInTime: user.metadata.lastSignInTime,
+                creationTime: user.metadata.creationTime
+              })
             }
 
           } catch (error) {
@@ -323,7 +302,7 @@ export function AuthProvider({ children }) {
 
         })
 
-        
+
     })
 
     return unsubscribe
@@ -339,7 +318,6 @@ export function AuthProvider({ children }) {
     updatePassword,
     checkEmail,
     sendEmailVerification,
-    checkEmailparticipant,
     logoutConfirmEmail,
     clearUser,
     setUserStartStatus,

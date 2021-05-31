@@ -19,14 +19,8 @@ export default function Register() {
   }
 
   const handleLogout  = async() => {
-
-    logout();
-    // history.push('/start');
-
-    // setTimeout(() => {
-    //   history.push('/start');
-
-    // }, 2500)
+       await clearUser(true);
+       history.push('/start');
   }
 
   const [inputs, setAllInputs] = useState({
@@ -75,10 +69,9 @@ export default function Register() {
       setError("")
       // console.log("nome", inputs.nome, "password", inputs.password)
       
-     await updatePassword(inputs.nome, inputs.empresa, inputs.cargo,
-                                inputs.user_twitter, inputs.password);
+     await signup(userEmail , inputs.nome, inputs.empresa, inputs.cargo,
+                                    inputs.user_twitter , inputs.password);
                                 
-      // history.push("/confirme-email")
     } catch {
       setError("erro ao tentar conectar com o servidor")
     }
@@ -118,39 +111,18 @@ export default function Register() {
     console.log("ENTER PAGE REGISTER_________________", activePreRegisterPassword)
 
     const email = localStorage.getItem('@Twitter:email');
-    const activePassword = localStorage.getItem('@Twitter:passwordCreated');
-
+    
     // Se existe email, coloca no estado
     if(email !== null) {
       setUserEmail(email);
     } else {
       // Manda para o start se entrou pela rota sem passar pela home
-      history.push("/start")
+         history.push("/start")
     }
 
-    // console.log("ENTER PAGE REGISTER activePassword _________________", activePassword)
+    
 
-    // const doLogin = async (email) => {
-    //   console.log("REACT_APP_PASSWORD_USER_FIRST ", process.env.REACT_APP_PASSWORD_USER_FIRST)
-    //   await login(email, process.env.REACT_APP_PASSWORD_USER_FIRST)
-     
-    // }
-
-    // if (activePassword === 'true') {
-    //   history.push("/login")
-    // } else {
-    //   if (email !== null) {
-    //     setUserEmail(email);
-    //     if(activePassword === false){
-    //       doLogin(email);
-    //     }
-        
-    //   } else {
-    //     history.push("/start")
-    //   }
-    // }
-
-  }, [activePreRegisterPassword, history])
+  }, [ history])
 
 
   return (

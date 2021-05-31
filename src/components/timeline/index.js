@@ -122,14 +122,14 @@ const TimelineComponent = () => {
       const timmestamp = new Date().getTime(); 
       // console.log("hasSnapshot", hasSnapShot)
       hasSnapShot ? 
-      db.database().ref('timeline_users').child(currentUser.uid+"/hotspots/" + id).update({...objToFirebase }):
-      db.database().ref('timeline_users').child(currentUser.uid+"/hotspots/" + id).set({...objToFirebase })
+      db.database().ref('public/timeline_users').child(currentUser.uid+"/hotspots/" + id).update({...objToFirebase }):
+      db.database().ref('public/timeline_users').child(currentUser.uid+"/hotspots/" + id).set({...objToFirebase })
 
 
-      let idkey = db.database().ref(`/'demo/timeline_users`).push().key;
+      let idkey = db.database().ref(`/'public/timeline_users`).push().key;
       hasSnapShot ? 
-      db.database().ref('demo/timeline_users').child( idkey).update({...objToFirebase, id:idkey , date, timmestamp , uid: currentUser.uid , email: currentUser.email }):
-      db.database().ref('demo/timeline_users').child( idkey ).set({...objToFirebase , id: idkey , date, timmestamp , uid: currentUser.uid , email: currentUser.email })
+      db.database().ref('public/timeline_users').child( idkey).update({...objToFirebase, id:idkey , date, timmestamp , uid: currentUser.uid , email: currentUser.email }):
+      db.database().ref('public/timeline_users').child( idkey ).set({...objToFirebase , id: idkey , date, timmestamp , uid: currentUser.uid , email: currentUser.email })
 
     }
 
