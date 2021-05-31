@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom"
 import { Required } from '..'
 
 export default function Start() {
-  const { login, checkEmail, activeEmail, setUserStartStatus, userStartStatus, activeProfileEmail, activePreRegisterPassword } = useAuth()
+  const { checkEmail } = useAuth()
   const [error, setError] = useState("")
   const [freeze, setFreeze] = useState(false);
   const history = useHistory()
@@ -16,6 +16,8 @@ export default function Start() {
   const handleChange = (e) => setAllInputs({...inputs, [e.target.name]: e.target.value.toLowerCase()})
 
   async function handleSubmit(e) {
+    if(!freeze) setFreeze(true);
+    else return;
     e.preventDefault()
     if(validateEmail(inputs.email) !== true) return setError("Informe um e-mail válido.")
 
@@ -24,14 +26,15 @@ export default function Start() {
     try {
       setError("")
         await checkEmail(inputs.email.toLowerCase())
-        
+        setFreeze(false);
     } catch (err) {
-      // console.log('err start login:', err)
+      console.log('err start login:', err)
 
       if(err.message === 'user_not_found') {
-
+        setFreeze(false)
         // setError("O email digitado não consta em nosso sistema");
       } else if(err.message === 'error_network') {
+        setFreeze(false)
         setError("Falha na comunicação com o sistema, tente novamente mais tarde.");
       }
     }

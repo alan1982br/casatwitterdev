@@ -7,7 +7,7 @@ import { Required } from '..'
 import { RiEyeFill, RiEyeOffFill } from 'react-icons/all'
 
 export default function Register() {
-  const { login, signup, activeEmail, logout, clearUser, updatePassword, activePreRegisterPassword, checkEmailparticipant } = useAuth()
+  const {  signup, clearUser, activePreRegisterPassword } = useAuth()
   const [error, setError] = useState("")
   const [userEmail, setUserEmail] = useState('');
   const [typePassword, setTypePassword] = useState('password');
@@ -122,7 +122,7 @@ export default function Register() {
 
     
 
-  }, [ history])
+  }, [activePreRegisterPassword, history])
 
 
   return (

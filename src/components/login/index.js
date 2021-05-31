@@ -120,6 +120,7 @@ export default function Login() {
               <Link to="/forgot-password">Esqueci minha senha</Link>
             </div>
             {userEmail !== null && <p className="text-center mt-3">Não é você? <span onClick={handleCadastrar} style={{textDecoration: 'underline', cursor: 'pointer'}}>Alterar usuário.</span></p>}
+            <p className="text-center mt-3">Não tem uma conta? <span onClick={handleCadastrar} style={{textDecoration: 'underline', cursor: 'pointer'}}>Cadastrar.</span></p>
             {error && <Alert variant="danger mt-4">{error}</Alert>}
             <Button disabled={loading} className="btn-form w-100 distance-top" type="submit">
               Entrar

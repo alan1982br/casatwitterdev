@@ -121,12 +121,14 @@ export function AuthProvider({ children }) {
       } else {
         // console.log("fetchSignInMethodsForEmail true ", methods)
         setActiveEmail(email);
-        history.push('/login')
-        // checkEmailparticipant(email);
+        localStorage.setItem('@Twitter:email', email.toLowerCase());
+        history.push('/login');
       }
 
     }).catch((error) => {
       var errorMessage = error.message;
+
+      console.log('errorMessage', errorMessage)
       if (errorMessage === 'user_not_found') {
         throw { message: 'user_not_found' }
       }
