@@ -32,7 +32,6 @@ export function AuthProvider({ children }) {
   const dispatch = useDispatch();
 
   
-
   const setStoreCurrentUser = useCallback((user) => {
     dispatch({ type: 'SET_CURRENT_USER', payload: user });
   })
@@ -109,7 +108,7 @@ export function AuthProvider({ children }) {
                 updateDate: dataTime
 
               }).then((snap) => {
-                setActiveProfileEmail(child.val().activeProfileEmail);
+                //  setActiveProfileEmail(child.val().activeProfileEmail);
                 // console.log(child.key + ": " + child.val().email, child.val().passwordCreated);
                 setActivePreRegisterPassword(child.val().passwordCreated);
                 localStorage.setItem('@Twitter:passwordCreated', child.val().passwordCreated)
@@ -240,14 +239,13 @@ export function AuthProvider({ children }) {
         db.database().ref(`user_pre_register`).child(currentUser.uid).update({
           passwordCreated: true
         }).then((snap) => {
-            
-          
-
-
+  
         })
         // console.log("updatePassword 3 ", currentUser.email)
-        sendEmailVerification(currentUser.email);
-
+          // sendEmailVerification(currentUser.email);
+          logoutConfirmEmail('/login')
+            
+           
       })
     })
   }

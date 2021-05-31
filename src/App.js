@@ -40,7 +40,7 @@ function App() {
     useEffect(() => {
       firebase.analytics().setCurrentScreen(location.pathname);
       firebase.analytics().logEvent('screen_view', { screen_name: location.pathname });
-          console.log('location.pathname ' , location.pathname);
+          // console.log('location.pathname ' , location.pathname);
     }, [location]);
 
     return <></>;

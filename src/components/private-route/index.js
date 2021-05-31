@@ -36,7 +36,7 @@ const renderComponent = (props) => {
           // console.log("activePassword______________________", activePassword)
           if(!currentUser) return <Redirect to="/start" />
           if(activeUserEmail === true) return <Redirect to="/login" />
-          if(activePassword === true) return <Redirect to="/confirme-email" />
+          // if(activePassword === true) return <Redirect to="/confirme-email" />
           else return <TemplateDashboard component={Component} />
         }
         case '/confirme-email': 
@@ -63,7 +63,7 @@ const renderComponent = (props) => {
               if(hasLocalStorage) return <Redirect to="/login" />
               else return <Redirect to="/" />
             } 
-            if(currentUser.emailVerified === false) return <Redirect to="/confirme-email" />
+            // if(currentUser.emailVerified === false) return <Redirect to="/confirme-email" />
             else return  <Route exact path="/virtual-tour" component={VirtualTour} /> 
             break;
           }
