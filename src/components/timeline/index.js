@@ -128,8 +128,8 @@ const TimelineComponent = () => {
 
       let idkey = db.database().ref(`/'public/timeline_users`).push().key;
       hasSnapShot ? 
-      db.database().ref('public/timeline_users').child( idkey).update({...objToFirebase, id:idkey , date, timmestamp , uid: currentUser.uid , email: currentUser.email }):
-      db.database().ref('public/timeline_users').child( idkey ).set({...objToFirebase , id: idkey , date, timmestamp , uid: currentUser.uid , email: currentUser.email })
+      db.database().ref('public/timeline_users_reports').child( idkey).update({...objToFirebase, id:idkey , date, timmestamp , uid: currentUser.uid , email: currentUser.email }):
+      db.database().ref('public/timeline_users_reports').child( idkey ).set({...objToFirebase , id: idkey , date, timmestamp , uid: currentUser.uid , email: currentUser.email })
 
     }
 
