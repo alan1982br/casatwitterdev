@@ -123,7 +123,7 @@ export default function Start() {
 
   return (
     <Container className="form">
-          <p className="text-center mb-4">Para começar digite o seu email abaixo</p>
+      <p className="text-center mb-4">Para começar digite o seu email abaixo<br />(utilize o mesmo email que recebeu o convite)</p>
           <Form onSubmit={handleSubmit} className="distance-top higher" style={{minHeight: '340px'}}>
             <Form.Group id="email">
               <Form.Control onChange={handleChange} type="text" name="email" id="txtEmail" autoComplete="off" className={inputs.email !== '' ? 'filled': 'empty'} />
