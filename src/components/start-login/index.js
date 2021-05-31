@@ -134,6 +134,7 @@ export default function Start() {
             <Button disabled={freeze} className="btn-form w-100 distance-top" type="submit">
               Entrar
             </Button>
+            
           </Form>
     </Container>
   )
