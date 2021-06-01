@@ -155,6 +155,7 @@ export function AuthProvider({ children }) {
 
   async function logout(path = null) {
     let dataTimeLogout = await getDate();
+    let timestamp = new Date().getTime();
     // clearUser(); opção
     return auth.signOut().then(() => {
       counterLogin = 0;
@@ -165,7 +166,8 @@ export function AuthProvider({ children }) {
         id: actualkey,
         uid: currentUser.uid,
         lastSignInTime: currentUser.metadata.lastSignInTime,
-        dataTimeLogout: dataTimeLogout
+        dataTimeLogout: dataTimeLogout,
+        timestamp : timestamp
       })
 
       clearUser();
@@ -252,7 +254,7 @@ export function AuthProvider({ children }) {
     var month = currentDate.getMonth();
     var year = currentDate.getFullYear();
     var time = new Date().getTime();
-    var monthDateYear = (month + 1) + "/" + date + "/" + year + "/" + time;
+    var monthDateYear =  date + "/" + (month + 1) + "/"+ year;
 
     return monthDateYear;
   }
@@ -276,13 +278,9 @@ export function AuthProvider({ children }) {
             counterLogin++;
 
             //  console.log('counterLogin ', counterLogin)
-            // console.log(' snapshot.val() ALL DATA PARTICIPANTE ', snapshot.val())
-            // console.log('STEP 1 PasswordCreated ______________', snapshot.val().passwordCreated)
-            // console.log('STEP 2 sendEmailVerification ________', snapshot.val().sendEmailVerification)
-            // console.log('STEP 3 EmailVerified ________________', user.emailVerified)
-            // console.log('STEP 4 setActiveUserEmail ________________', activeUserEmail)
-
-            // setActivePassword(snapshot.val().passwordCreated);
+                 console.log(' snapshot.val() ALL DATA PARTICIPANTE ', snapshot.val().empresa)
+                 localStorage.setItem('@Twitter:empresa', snapshot.val()?.empresa)
+           
             if (counterLogin == 1) {
               let actualkey = db.database().ref(`/public/userOnLogin`).push().key;
               db.database().ref(`/public/userOnLogin`).child(actualkey).update({

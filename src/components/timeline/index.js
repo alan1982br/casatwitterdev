@@ -9,6 +9,7 @@ import './style.scss'
 import data from '../../assets/mock-data/timeline.json'
 import { db } from "../../firebase";
 import { analyticsEvent } from '../../analytics';
+import ReactGA from 'react-ga'; 
 
 const TimelineComponent = () => {
 
@@ -102,20 +103,28 @@ const TimelineComponent = () => {
     if(dataObjToFirebase !== null) {
       // console.log("manda para o firebase");
 
-      analyticsEvent(dataObjToFirebase.idRoom,{
-        content_type: 'room',
-        content_id: dataObjToFirebase.idHotspot,
-        screen_name: dataObjToFirebase.title,
-        ITEM_ID : currentUser.uid,
-        character : currentUser.email,
-        nameUser: currentUser.displayName
+      // analyticsEvent(dataObjToFirebase.idRoom,{
+      //   content_type: 'room',
+      //   content_id: dataObjToFirebase.idHotspot,
+      //   screen_name: dataObjToFirebase.title,
+      //   ITEM_ID : currentUser.uid,
+      //   character : currentUser.email,
+      //   nameUser: currentUser.displayName
+      // });
+
+      ReactGA.event({
+        category: 'TIMELINE user :'+ currentUser.uid,
+        action: 'TIMELINE room click ' + currentUser.email,
+        label: 'HOTSPOT OPEN ' + dataObjToFirebase.idHotspot
+        
       });
   
 
       let objToFirebase = {
         ...dataObjToFirebase,
         status_ckeckin : true,
-        name:localStorage.getItem('@Twitter:displayName')
+        name:localStorage.getItem('@Twitter:displayName'),
+        empresa:localStorage.getItem('@Twitter:empresa')
       }
 
       const date = getDatetime();
@@ -203,10 +212,9 @@ const TimelineComponent = () => {
     if(readData) {
    
       try {
-        db.database().ref('timeline_users').child(currentUser.uid).on("value", snapshot => {
+        db.database().ref('public/timeline_users').child(currentUser.uid).on("value", snapshot => {
           try {
-            // console.log(' snapshot.val() ALL DATA timeline_users ', snapshot.val().room_1['hotspots'])
-            // console.log(' snapshot.val() ALL DATA timeline_users ', snapshot.val())
+            
             const snapshotVal = snapshot.val();
 
             // Se nenhum thumb ainda foi clicado pelo user 
@@ -223,12 +231,12 @@ const TimelineComponent = () => {
 
               // copia o array atual
               const oldData = [...dados];
-
+             
               // verifica se os ids atuais já foram visitados de acordo com o firebase
               const newData = oldData.map(thumb => {
                 let newThumb = {}
                 const found = arr.filter(id => id === thumb.id);
-                
+ 
                 if(found.length > 0) {
                   newThumb = {
                     ...thumb,
