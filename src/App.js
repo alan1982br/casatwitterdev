@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import ReactGA from 'react-ga'; 
 import { Container, Row, Col } from "react-bootstrap"
 import { AuthProvider } from "./contexts/AuthContext"
 import { AnimatePresence } from 'framer-motion'
@@ -41,6 +42,13 @@ function App() {
       // firebase.analytics().setCurrentScreen(location.pathname);
       // firebase.analytics().logEvent('screen_view', { screen_name: location.pathname });
           // console.log('location.pathname ' , location.pathname);
+
+          if(!window.GA_INITIALIZED) {
+            ReactGA.initialize(process.env.REACT_APP_GA_TRACKING_CODE);
+            window.GA_INITIALIZED = true;
+          }
+          ReactGA.set({ page: location.pathname});
+          ReactGA.pageview(location.pathname);
     }, [location]);
 
     return <></>;
