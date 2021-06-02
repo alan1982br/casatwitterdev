@@ -66,8 +66,8 @@ export default function Start() {
 
   return (
     <Container className="form">
-      <p className="text-center mb-4">Para começar digite o seu email abaixo<br /></p>
-          <Form onSubmit={handleSubmit} className="distance-top higher" style={{minHeight: '340px'}}>
+      <p className="text-center mb-4">Para entrar ou se cadastrar, digite seu e-mail abaixo<br /></p>
+          <Form onSubmit={handleSubmit} className="distance-top" style={{minHeight: '340px'}}>
             <Form.Group id="email">
               <Form.Control onChange={handleChange} type="text" name="email" id="txtEmail" autoComplete="off" className={inputs.email !== '' ? 'filled': 'empty'} />
               <Form.Label className={inputs.email !== '' ? 'filled': 'empty'} htmlFor="txtEmail">Email</Form.Label>
