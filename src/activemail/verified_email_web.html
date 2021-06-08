@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="shortcut icon"
+      href="./assets/icon/fav.ico"
+      type="image/x-icon"
+      type="image/x-icon"
+    />
+    <link rel="icon" href="./assets/icon/fav.ico" type="image/x-icon" />
+    <meta name="theme-color" content="#ffffff" />
+    <link rel="stylesheet" href="./style.css" />
+    <title>Tacontecendotanotwitter</title>
+
+    <script src="https://www.gstatic.com/firebasejs/5.9.3/firebase.js"></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {}, false);
+    </script>
+  </head>
+
+  <body>
+    <main id="recover_password" style="display: none;">
+      <div id="insert_password">
+        <header>
+          <img src="./assets/icon/logo.png" alt="logo do twitter" />
+        </header>
+
+        <section>
+          <p class="title">Olá,</p>
+          <p>Preencha abaixo com sua nova senha desejada:</p>
+          
+            <div class="input-container">
+              <input type="password" id="input_paswword" required size="0" />
+              <label for="input_paswword">Nova senha</label>
+            </div>
+            <div id="pswd_info">
+              <p id="title_requirements">
+                *A senha deve conter pelo menos 8 caracteres, contendo pelo menos
+                uma maiúscula, um número e um caractere especial.
+              </p>
+            </div>
+            <div class="button-container">
+              <button type="submit" id="send_newpassword">Cadastrar nova senha</button>
+            </div>
+          
+        </section>
+
+        <footer>
+          <p>
+            Caso não tenha conhecimento desta solicitação de nova senha, por
+            favor, desconsidere este e-mail.
+          </p>
+        </footer>
+      </div>
+      
+      <div id="password_changed">
+        <header>
+          <img src="./assets/icon/logo.png" alt="logo do twitter" />
+        </header>
+        <div>
+          <h1>Password changed</h1>
+        </div>
+        <div>
+          <p class="firebaseui-text">
+            You can now sign in with your new password
+          </p>
+        </div>
+      </div>
+
+      <div id="try_again_password">
+        <header>
+          <img src="./assets/icon/logo.png" alt="logo do twitter" />
+        </header>
+        <h1 class="firebaseui-title">Try resetting your password again</h1>
+        <div class="firebaseui-card-content">
+          <p class="firebaseui-text">
+            Your request to reset your password has expired or the link has
+            already been used
+          </p>
+        </div>
+      </div>
+    </main>
+
+    <main id="email_verified" style="display: none;">
+      <header>
+        <img src="./assets/icon/logo.png" alt="logo do twitter" />
+      </header>
+
+      <section>
+        <p class="title">Login confirmado com sucesso!</p>
+        <p class="text">
+          Agora você pode aproveitar a experiência 360° à vontade.
+        </p>
+        <form
+          action="https://tacontecendotanotwitter.com/login"
+        >
+          <div>
+            <button type="submit">Ir para o login</button>
+          </div>
+        </form>
+      </section>
+    </main>
+
+    <main id="email_token_error" style="display: none;">
+      <header>
+        <img src="./assets/icon/logo.png" alt="logo do twitter" />
+      </header>
+
+      <section>
+        <p class="title">The action code is invalid.</p>
+        <p class="text">
+          This can happen if the code is expired, or has already been used.
+        </p>
+      </section>
+    </main>
+    
+    <script src="./js/jquery.min.js"></script>
+    <script src="./js/index.js"></script>
+  </body>
+</html>

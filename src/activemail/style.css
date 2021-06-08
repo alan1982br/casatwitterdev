@@ -1,0 +1,280 @@
+@font-face {
+  font-family: "Chirp Regular";
+  src: url("./assets/fonts/chirp-regular.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "Chirp Light";
+  src: url("./assets/fonts/chirp-light.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "Chirp Bold";
+  src: url("./assets/fonts/chirp-bold.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "Chirp Extended Bold";
+  src: url("./assets/fonts/chirp-extended-bold.otf") format("opentype");
+}
+
+/* ------ GLOBAL ------ */
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body,
+input,
+button,
+label {
+  font-family: "Chirp Regular", sans-serif;
+}
+
+body {
+  background: #c4c4c4;
+  display: flex;
+  justify-content: center;
+  text-align: justify;
+
+  width: 100vw;
+  height: 100vh;
+}
+
+@media screen and (max-width: 560px) {
+  
+  /* ------ RECOVER PASSWORD CONTAINER ------ */
+
+  html,
+  body {
+    background-color: #fff;
+  }
+
+  #recover_password footer {
+    margin-bottom: 30px;
+  }
+
+  /* ------ EMAIL VERIFIED CONTAINER ------ */
+
+  body #email_verified {
+    width: 100%;
+    height: 100%;
+    padding: 45px 34px;
+  }
+
+  /* ------ EMAIL TOKEN ERROR CONTAINER ------ */
+
+  body #email_token_error {
+    padding: 45px 40px;
+  }
+}
+
+/* ------ RECOVER PASSWORD CONTAINER ------ */
+
+#recover_password {
+  width: 560px;
+  height: 580px;
+  background: #fff;
+  padding: 45px 40px;
+  /* display: none; */
+}
+
+#recover_password header {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+#recover_password section {
+  margin-bottom: 45px;
+}
+
+#recover_password section p {
+  margin-bottom: 35px;
+}
+
+#recover_password section .title {
+  font-family: "Chirp Bold", sans-serif;
+  color: #1d9bf0;
+  font-size: 26px;
+}
+
+#recover_password section form p {
+  font-family: "Chirp Light", sans-serif;
+  color: red;
+  opacity: 1;
+}
+
+#recover_password section input {
+  width: 100%;
+  padding: 16px 10px;
+  font-size: 20px;
+  border-radius: 5px;
+  border: 2px solid #000;
+  background-image: url("./assets/icon/inputIcon.png");
+  background-position: 95% 50%;
+  background-repeat: no-repeat;
+}
+
+#recover_password section input:valid {
+  background-image: none;
+}
+
+#recover_password section label {
+  position: absolute;
+  transform: translateY(-50%), scale(1);
+  bottom: 30%;
+  left: 12px;
+  font-size: 20px;
+  transition: 0.3s font-size, 0.3s bottom, 0.3s opacity;
+}
+
+#recover_password section input:focus ~ label {
+  font-size: 14px;
+  transition: 0.3s font-size, 0.3s bottom, 0.3s opacity;
+  bottom: 67%;
+  opacity: 0.8;
+}
+
+#recover_password section input:valid ~ label {
+  font-size: 14px;
+  bottom: 67%;
+  opacity: 0.8;
+}
+
+#recover_password section .input-container {
+  position: relative;
+  margin-bottom: 15px;
+}
+
+#recover_password section .button-container {
+  display: flex;
+  justify-content: center;
+}
+
+#recover_password section button {
+  color: #fff;
+  background-color: #1d9bf0;
+  border: 0;
+  border-radius: 5px;
+  padding: 15px 25px;
+  font-size: 18px;
+  transition: 0.5s background-color;
+}
+
+#recover_password section button:hover {
+  background-color: #198fdd;
+  cursor: pointer;
+}
+
+#recover_password footer p {
+  color: #797979;
+  font-family: "Chirp Light", sans-serif;
+}
+
+/* Password changed */
+
+#recover_password #password_changed h1,
+#recover_password #try_again_password h1 {
+  font-family: "Chirp Bold", sans-serif;
+  color: #1d9bf0;
+  font-size: 26px;
+  margin-bottom: 35px;
+}
+
+#recover_password #try_again_password header,
+#recover_password #password_changed header {
+  margin-bottom: 50px;
+}
+
+#try_again_password,
+#password_changed {
+  text-align: center;
+}
+
+
+/* ------ EMAIL VERIFIED CONTAINER ------ */
+
+#email_verified {
+  width: 560px;
+  height: 500px;
+  background: #fff;
+  padding: 45px 114px;
+  /* display: none; */
+}
+
+#email_verified header {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 65px;
+}
+
+#email_verified section {
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+#email_verified section .title {
+  font-family: "Chirp Bold", sans-serif;
+  color: #1d9bf0;
+  font-size: 28px;
+  margin-bottom: 35px;
+}
+
+#email_verified section .text {
+  margin-bottom: 55px;
+}
+
+#email_verified form div {
+  display: flex;
+  justify-content: center;
+}
+
+#email_verified button {
+  color: #fff;
+  background-color: #1d9bf0;
+  border: 0;
+  border-radius: 5px;
+  padding: 15px 70px;
+  font-size: 18px;
+  transition: 0.5s background-color;
+}
+
+#email_verified button:hover {
+  background-color: #198fdd;
+  cursor: pointer;
+}
+
+/* ------ EMAIL TOKEN ERROR CONTAINER ------ */
+
+#email_token_error {
+  width: 560px;
+  height: 500px;
+  background: #fff;
+  padding: 45px 114px;
+  /* display: none; */
+}
+
+#email_token_error header {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 65px;
+}
+
+#email_token_error section {
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+#email_token_error section .title {
+  font-family: "Chirp Bold", sans-serif;
+  color: #1d9bf0;
+  font-size: 28px;
+  margin-bottom: 35px;
+}
+
+#email_token_error section .text {
+  margin-bottom: 55px;
+}

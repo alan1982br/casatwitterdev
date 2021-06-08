@@ -103,14 +103,14 @@ const TimelineComponent = () => {
     if(dataObjToFirebase !== null) {
       // console.log("manda para o firebase");
 
-      // analyticsEvent(dataObjToFirebase.idRoom,{
-      //   content_type: 'room',
-      //   content_id: dataObjToFirebase.idHotspot,
-      //   screen_name: dataObjToFirebase.title,
-      //   ITEM_ID : currentUser.uid,
-      //   character : currentUser.email,
-      //   nameUser: currentUser.displayName
-      // });
+      analyticsEvent(dataObjToFirebase.idRoom,{
+        content_type: 'room',
+        content_id: dataObjToFirebase.idHotspot,
+        screen_name: dataObjToFirebase.title,
+        ITEM_ID : currentUser.uid,
+        character : currentUser.email,
+        nameUser: currentUser.displayName
+      });
 
       ReactGA.event({
         category: 'TIMELINE user :'+ currentUser.uid,

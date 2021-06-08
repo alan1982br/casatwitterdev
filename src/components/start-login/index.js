@@ -19,7 +19,10 @@ export default function Start() {
     if(!freeze) setFreeze(true);
     else return;
     e.preventDefault()
-    if(validateEmail(inputs.email) !== true) return setError("Informe um e-mail válido.")
+    if(validateEmail(inputs.email) !== true) {
+      setFreeze(false);
+      return setError("Informe um e-mail válido.");
+    }
 
     // clearUser();
 

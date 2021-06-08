@@ -39,8 +39,8 @@ function App() {
     const location = useLocation();
 
     useEffect(() => {
-      // firebase.analytics().setCurrentScreen(location.pathname);
-      // firebase.analytics().logEvent('screen_view', { screen_name: location.pathname });
+      firebase.analytics().setCurrentScreen(location.pathname);
+      firebase.analytics().logEvent('screen_view', { screen_name: location.pathname });
           // console.log('location.pathname ' , location.pathname);
 
           if(!window.GA_INITIALIZED) {
